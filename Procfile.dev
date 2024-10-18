@@ -1,2 +1,1 @@
-web: bin/rails server
-vite: cd frontend/web && npm install && npm run dev
+start: ./start_server.sh

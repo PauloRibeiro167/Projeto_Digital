@@ -1,10 +1,11 @@
 require_relative "boot"
-
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+require_relative '../app/middleware/error_logger_middleware' # Adicione esta linha
 
 module DigitalStor
   class Application < Rails::Application
@@ -23,5 +24,6 @@ module DigitalStor
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.middleware.use ErrorLoggerMiddleware
   end
 end

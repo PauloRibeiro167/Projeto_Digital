@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Função para parar o servidor Rails
+stop_rails_server() {
+  rails_pid=$(pgrep -f "rails server")
+  if [ -n "$rails_pid" ]; then
+    echo "Stopping Rails server (PID: $rails_pid)..."
+    kill -9 $rails_pid
+    echo "Rails server stopped."
+  else
+    echo "Rails server is not running."
+  fi
+}
+
+# Função para parar o servidor Vite
+stop_vite_server() {
+  vite_pid=$(pgrep -f "vite")
+  if [ -n "$vite_pid" ]; then
+    echo "Stopping Vite server (PID: $vite_pid)..."
+    kill -9 $vite_pid
+    echo "Vite server stopped."
+  else
+    echo "Vite server is not running."
+  fi
+}
+
+# Parar os servidores Rails e Vite
+stop_rails_server
+stop_vite_server
