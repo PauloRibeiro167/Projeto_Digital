@@ -52,4 +52,10 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
 
   config.log_level = :info
+
+  # Configuração do logger para remover timestamps
+  config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+  config.logger.formatter = proc do |severity, datetime, progname, msg|
+    "#{severity}: #{msg}\n"
+  end
 end
