@@ -1,2 +1,2 @@
 #!/usr/bin/env ruby
-exec "foreman start -f Procfile.dev --no-timestamp 2>&1 | sed 's/^start\.1 | //'"
+exec "foreman start -f Procfile.dev --no-timestamp 2>&1 | sed '/started with pid/d; s/^start\\.1 | //'"

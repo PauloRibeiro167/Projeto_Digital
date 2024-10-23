@@ -1,165 +1,199 @@
 #!/bin/bash
 
 # Função para centralizar texto
-center_text() {
-  local term_width=$(tput cols)
-  local text="$1"
-  local text_length=${#text}
-  local padding=$(( (term_width - text_length) / 2 ))
-  printf "%*s%s%*s\n" $padding "" "$text" $padding ""
+centralizar_texto() {
+  local largura_terminal=$(tput cols)
+  local texto="$1"
+  local comprimento_texto=${#texto}
+  local preenchimento=$(( (largura_terminal - comprimento_texto) / 2 ))
+  printf "%*s%s%*s\n" $preenchimento "" "$texto" $preenchimento ""
+}
+
+# Função para centralizar texto sem quebra de linha
+centralizar_texto_unica_linha() {
+  local largura_terminal=$(tput cols)
+  local texto="$1"
+  local comprimento_texto=${#texto}
+  local preenchimento=$(( (largura_terminal - comprimento_texto) / 2 ))
+  printf "%*s%s" $preenchimento "" "$texto"
 }
 
 # Função para formatar texto em negrito e verde
-bold_green() {
+negrito_verde() {
   echo -e "\e[1;32m$1\e[0m"
 }
-bold_blue() {
+negrito_azul() {
   echo -e "\e[1;36m$1\e[0m"
 }
-bold_red() {
+negrito_vermelho() {
   echo -e "\e[1;31m$1\e[0m"
 }
+negrito_amarelo() {
+  echo -e "\e[1;33m$1\e[0m"
+}
 
-# Função para exibir a barra de carregamento colorida em verde
-show_progress() {
-  local duration=$1
-  local increment=$((duration / 100))
-  local progress=0
-  local bar=""
+# Função para exibir a animação de carregamento com mensagem centralizada
+barra_de_progresso() {
+  local duration=$1  # Duração total do carregamento (em segundos)
+  local message="$2" # Mensagem a ser exibida
+  local increment=$((duration / 100))  # Tempo para cada incremento (100 etapas)
+  local block="█"  # Bloco verde
+  local bar=""  # Barra de progresso
 
-  while [ $progress -le 100 ]; do
-    bar=$(printf "%-${progress}s" "=")
-    echo -ne "\e[32m[${bar// /=}>] $progress%\e[0m\r"
-    sleep $increment
-    progress=$((progress + 1))
+  for i in $(seq 1 100); do
+      if (( i % 10 == 0 )); then
+          bar+=$block  # Adiciona um bloco verde a cada 10%
+      fi
+      # Calcula a largura total da mensagem e da barra de progresso
+      local total_message="$message [${bar///=} $i%]"
+      local largura_terminal=$(tput cols)
+      local comprimento_total=${#total_message}
+      local preenchimento=$(( (largura_terminal - comprimento_total) / 2 ))
+      # Exibe a mensagem e a barra de progresso centralizadas, sem quebrar linha
+      printf "\r%*s%s" $preenchimento "" "$total_message"
+      sleep $increment
   done
-  echo -ne "\n\n"
+  printf "\n"
 }
 
 # Função para matar processos pelo PID
-kill_process() {
+matar_processo() {
   local pid=$1
   if [ -n "$pid" ]; then
     kill -9 $pid
-    echo "Process $pid has been killed."
+    echo "Processo $pid foi terminado."
   fi
 }
 
 # Função para matar processos ativos de Rails e Vite
-kill_active_processes() {
+matar_processos_ativos() {
   local rails_pid=$(pgrep -f "rails server")
   local vite_pids=$(pgrep -f "vite")
 
   if [ -z "$rails_pid" ] && [ -z "$vite_pids" ]; then
-    center_text "$(bold_green "       Nenhum processo ativo encontrado.")"
-    center_text "$(bold_green "       Iniciando sistema...")"
+    centralizar_texto "$(negrito_verde "Nenhum processo PID ativo encontrado.")"
+    centralizar_texto "$(negrito_verde "Iniciando sistema...")"
     return
   fi
 
-  echo "PIDs ativos antes de iniciar os servidores:"
+  centralizar_texto "Checando processos ativos antes de iniciar os servidores:"
+  centralizar_texto "Checando servidores Rails ativos:"
   if [ -n "$rails_pid" ]; then
-    echo " Rails PID: $rails_pid"
+    centralizar_texto "$(negrito_vermelho "Processo Rails PID ativo encontrado.")"
+    centralizar_texto " Rails PID: $rails_pid"
   else
-    echo "Fechando processos Rails ativos..."
+    centralizar_texto "$(negrito_verde "Nenhum processo Rails PID ativo encontrado.")"
   fi
   if [ -n "$vite_pids" ]; then
-    echo " Vite PIDs:"
-    printf "%-10s\n" $vite_pids
-  else
-    echo -e "Fechando processos Vite ativos...\n"
-  fi
-
-  local killed_pids=0
-
-  if [ -n "$rails_pid" ]; then
-    echo "Rails server is running (PID: $rails_pid). Killing process..."
-    kill_process $rails_pid
-    killed_pids=$((killed_pids + 1))
-  fi
-  if [ -n "$vite_pids" ]; then
-    echo "Vite server is running (PIDs: $vite_pids). Killing processes..."
+    centralizar_texto "Vite PIDs:"
     for pid in $vite_pids; do
-      kill_process $pid
-      killed_pids=$((killed_pids + 1))
+      centralizar_texto "$(printf "%55s %-30s" "$(negrito_amarelo "Vite PID:")" "$(negrito_vermelho "$pid")")"
+    done
+  else
+    centralizar_texto "Fechando processos Vite ativos..."
+  fi
+
+  local pids_terminados=0
+  local pids_ativos=()
+  local pids_fechados=()
+
+  if [ -n "$rails_pid" ]; then
+    pids_ativos+=("Rails PID: $rails_pid")
+    centralizar_texto "Servidor Rails está rodando (PID: $rails_pid). Terminando processo..."
+    matar_processo $rails_pid
+    pids_fechados+=("Rails PID: $rails_pid")
+    pids_terminados=$((pids_terminados + 1))
+  fi
+  if [ -n "$vite_pids" ]; then
+    centralizar_texto "Servidor Vite está rodando (PIDs: $vite_pids). Terminando processos..."
+    for pid in $vite_pids; do
+      pids_ativos+=("$pid")
+      centralizar_texto "Terminando processo Vite (PID: $pid)..."
+      matar_processo $pid
+      pids_fechados+=("$pid")
+      pids_terminados=$((pids_terminados + 1))
     done
   fi
 
   if [ -f /workspaces/Rails-React/tmp/pids/server.pid ]; then
     rm /workspaces/Rails-React/tmp/pids/server.pid
-    echo "Arquivo server.pid removido."
+    centralizar_texto "Arquivo server.pid removido."
   fi
 
-  echo -e "\nTabela de Processos Ativos e Fechados:"
-  echo -e "--------------------------------------"
-  printf "%-20s %-20s\n" "Processo" "Status"
-  echo -e "--------------------------------------"
-  if [ -n "$rails_pid" ]; then
-    printf "%-20s %-20s\n" "Rails PID: $rails_pid" "Fechado"
-  fi
-  if [ -n "$vite_pids" ]; then
-    for pid in $vite_pids; do
-      printf "%-20s %-20s\n" "Vite PID: $pid" "Fechado"
-    done
-  fi
-  echo -e "--------------------------------------"
-  echo -e "Total de processos fechados: $killed_pids\n"
+  centralizar_texto "Tabela de Processos Ativos e Fechados:"
+  centralizar_texto "--------------------------------------"
+  centralizar_texto "Processo Ativo                Processo Fechado"
+  centralizar_texto "--------------------------------------"
+  for i in "${!pids_ativos[@]}"; do
+    local ativo="${pids_ativos[$i]}"
+    local fechado="${pids_fechados[$i]}"
+    centralizar_texto "$(printf "%55s %-30s" "$(negrito_vermelho "$ativo")" "$(negrito_verde "$fechado")")"
+  done
+  centralizar_texto "--------------------------------------"
+  centralizar_texto "Total de processos fechados: $pids_terminados"
 }
 
-
 # Função para iniciar o servidor Rails e verificar erros
-start_rails() {
-  center_text "Starting Rails server."
-  show_progress 5 &
+iniciar_rails() {
+  # Inicia a barra de progresso com a mensagem "Iniciando servidor Rails..."
+  barra_de_progresso 5 "$(negrito_vermelho "Iniciando servidor Rails...")" &
   local rails_progress_pid=$!
+  
   # Inicia o servidor Rails
   bin/rails server -d -p 3000 2>&1 > rails.log &
   wait $rails_progress_pid
 
   local rails_pid=$(pgrep -f "rails server")
   if [ -n "$rails_pid" ]; then
-    echo -e "\n\n"
-    center_text "$(bold_green "Backend startado com sucesso (Rails PID: $rails_pid).")"
-    center_text "$(bold_blue "Rails server is running at:") \e[1;31mhttp://localhost:3000\e[0m"
+    centralizar_texto "$(negrito_verde "Backend iniciado com sucesso $(negrito_vermelho "(Rails PID: $rails_pid).")")"
+    echo -e "\n"
   else
-    center_text "Erro ao startar o backend (Rails). Verificando logs..."
+    centralizar_texto "$(negrito_vermelho "Erro ao iniciar o servidor Rails. Verificando logs...")"
     tail -n 20 rails.log 
-    exit 1
+    exit 5
   fi
 }
 
-# Função para iniciar o servidor Vite e verificar erros
-start_vite() {
-  center_text "Instalando dependências do Node.js..."
-  (cd frontend/web && npm install --silent 2>&1 | tee vite_install.log)
-  center_text "Starting React-Vite server..."
-  show_progress 5 &
+iniciar_vite() {
+  centralizar_texto "$(negrito_azul "Iniciando servidor Vite...")"
+  centralizar_texto "$(negrito_verde "Instalando dependências do Node.js...")"
+  # mostrar_progresso 5 &
   local vite_progress_pid=$!
-  (cd frontend/web && npm run dev --silent 2>&1 | tee vite.log) &
+  (cd frontend/web && npm run dev --silent 2>&1 | tee vite.log | sed '/ready in/d;/Local:/d;/Network:/d') &
   wait $vite_progress_pid
 
   local vite_pids=$(pgrep -f "vite" | tr '\n' ' ')
   if [ -n "$vite_pids" ]; then
-    center_text "$(bold_green "React-Vite startado com sucesso (Vite PID: $vite_pids).")"
-    center_text "Vite server is running at: \e[1;34mhttp://localhost:5173\e[0m"
+    centralizar_texto "$(negrito_verde "React-Vite iniciado com sucesso $(negrito_azul "(Vite PID: $vite_pids).")")"
   else
-    center_text "Erro ao startar o React-Vite. Verificando logs..."
+    centralizar_texto "Erro ao iniciar o React-Vite. Verificando logs..."
     tail -n 20 frontend/web/vite.log # Mostra as últimas 20 linhas do log do Vite
     exit 1
   fi
 
+  # Captura as mensagens de inicialização do Vite
+  local vite_ready=$(grep "ready in" frontend/web/vite.log)
+  local vite_local=$(grep "Local:" frontend/web/vite.log)
+  local vite_network=$(grep "Network:" frontend/web/vite.log)
+
+  # Exibe as mensagens ao final do log
+  echo -e "\n"
+  centralizar_texto "$vite_ready"
+  centralizar_texto "$vite_local"
+  centralizar_texto "$vite_network"
+
+  # Remove as mensagens duplicadas do log
   tail -f frontend/web/vite.log | sed '/ready in/d;/Local:/d;/Network:/d'
 }
 
 # Função principal para iniciar servidores e tratar erros
-main() {
-  echo -e "\n\n"
-  center_text "$(bold_blue "                 started with pid: $(bold_red $$)")"
-  kill_active_processes
-  start_rails
-  start_vite
-  center_text "Rails server is running at: \e[1;31mhttp://localhost:3000\e[0m"
-  center_text "Vite server is running at: \e[1;34mhttp://localhost:5173\e[0m"
+principal() {
+  echo -e "\n"
+  centralizar_texto "$(negrito_azul "iniciado com pid: $(negrito_vermelho $$)")"
+  matar_processos_ativos
+  iniciar_rails
+  iniciar_vite
 }
 
 # Executar a função principal
-main
+principal
