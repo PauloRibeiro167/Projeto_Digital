@@ -1,5 +1,25 @@
 #!/bin/bash
 
+# Função para centralizar texto
+center_text() {
+  local term_width=$(tput cols)
+  local text="$1"
+  local text_length=${#text}
+  local padding=$(( (term_width - text_length) / 2 ))
+  printf "%*s%s%*s\n" $padding "" "$text" $padding ""
+}
+
+# Função para formatar texto em negrito e verde
+bold_green() {
+  echo -e "\e[1;32m$1\e[0m"
+}
+bold_blue() {
+  echo -e "\e[1;36m$1\e[0m"
+}
+bold_red() {
+  echo -e "\e[1;31m$1\e[0m"
+}
+
 # Função para exibir a barra de carregamento colorida em verde
 show_progress() {
   local duration=$1
@@ -31,7 +51,8 @@ kill_active_processes() {
   local vite_pids=$(pgrep -f "vite")
 
   if [ -z "$rails_pid" ] && [ -z "$vite_pids" ]; then
-    center_text "Nenhum processo ativo encontrado. Iniciando sistema..."
+    center_text "$(bold_green "       Nenhum processo ativo encontrado.")"
+    center_text "$(bold_green "       Iniciando sistema...")"
     return
   fi
 
@@ -84,23 +105,10 @@ kill_active_processes() {
   echo -e "Total de processos fechados: $killed_pids\n"
 }
 
-# Função para centralizar texto
-center_text() {
-  local term_width=$(tput cols)
-  local text="$1"
-  local text_length=${#text}
-  local padding=$(( (term_width - text_length) / 2 ))
-  printf "%*s%s%*s\n" $padding "" "$text" $padding ""
-}
-
-# Função para formatar texto em negrito e verde
-bold_green() {
-  echo -e "\e[1;32m$1\e[0m"
-}
 
 # Função para iniciar o servidor Rails e verificar erros
 start_rails() {
-  echo -e "Starting Rails server..."
+  center_text "Starting Rails server."
   show_progress 5 &
   local rails_progress_pid=$!
   # Inicia o servidor Rails
@@ -109,21 +117,21 @@ start_rails() {
 
   local rails_pid=$(pgrep -f "rails server")
   if [ -n "$rails_pid" ]; then
+    echo -e "\n\n"
     center_text "$(bold_green "Backend startado com sucesso (Rails PID: $rails_pid).")"
-    echo -e "\nRails server is running at: \e[1;31mhttp://localhost:3000\e[0m"
+    center_text "$(bold_blue "Rails server is running at:") \e[1;31mhttp://localhost:3000\e[0m"
   else
-    echo "Erro ao startar o backend (Rails). Verificando logs..."
-    tail -n 20 rails.log # Mostra as últimas 20 linhas do log do Rails
+    center_text "Erro ao startar o backend (Rails). Verificando logs..."
+    tail -n 20 rails.log 
     exit 1
   fi
 }
 
 # Função para iniciar o servidor Vite e verificar erros
 start_vite() {
-  echo -e "Instalando dependências do Node.js..."
+  center_text "Instalando dependências do Node.js..."
   (cd frontend/web && npm install --silent 2>&1 | tee vite_install.log)
-
-  echo -e "Starting React-Vite server..."
+  center_text "Starting React-Vite server..."
   show_progress 5 &
   local vite_progress_pid=$!
   (cd frontend/web && npm run dev --silent 2>&1 | tee vite.log) &
@@ -132,9 +140,9 @@ start_vite() {
   local vite_pids=$(pgrep -f "vite" | tr '\n' ' ')
   if [ -n "$vite_pids" ]; then
     center_text "$(bold_green "React-Vite startado com sucesso (Vite PID: $vite_pids).")"
-    echo -e "\nVite server is running at: \e[1;31mhttp://localhost:5173\e[0m"
+    center_text "Vite server is running at: \e[1;34mhttp://localhost:5173\e[0m"
   else
-    echo "Erro ao startar o React-Vite. Verificando logs..."
+    center_text "Erro ao startar o React-Vite. Verificando logs..."
     tail -n 20 frontend/web/vite.log # Mostra as últimas 20 linhas do log do Vite
     exit 1
   fi
@@ -144,10 +152,13 @@ start_vite() {
 
 # Função principal para iniciar servidores e tratar erros
 main() {
-  center_text "started with pid $$"
+  echo -e "\n\n"
+  center_text "$(bold_blue "                 started with pid: $(bold_red $$)")"
   kill_active_processes
   start_rails
   start_vite
+  center_text "Rails server is running at: \e[1;31mhttp://localhost:3000\e[0m"
+  center_text "Vite server is running at: \e[1;34mhttp://localhost:5173\e[0m"
 }
 
 # Executar a função principal
