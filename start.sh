@@ -36,7 +36,7 @@ negrito_amarelo() {
 barra_de_progresso() {
   local duration=$1  # Duração total do carregamento (em segundos)
   local message="$2" # Mensagem a ser exibida
-  local increment=$((duration / 100))  # Tempo para cada incremento (100 etapas)
+  local increment=$(echo "scale=2; $duration / 100" | bc)  # Tempo para cada incremento (100 etapas)
   local block="█"  # Bloco verde
   local bar=""  # Barra de progresso
 
@@ -65,25 +65,17 @@ matar_processo() {
   fi
 }
 
-# Função para matar processos ativos de Rails e Vite
+# Função para matar processos ativos de Vite
 matar_processos_ativos() {
-  local rails_pid=$(pgrep -f "rails server")
   local vite_pids=$(pgrep -f "vite")
 
-  if [ -z "$rails_pid" ] && [ -z "$vite_pids" ]; then
+  if [ -z "$vite_pids" ]; then
     centralizar_texto "$(negrito_verde "Nenhum processo PID ativo encontrado.")"
     centralizar_texto "$(negrito_verde "Iniciando sistema...")"
     return
   fi
 
   centralizar_texto "Checando processos ativos antes de iniciar os servidores:"
-  centralizar_texto "Checando servidores Rails ativos:"
-  if [ -n "$rails_pid" ]; then
-    centralizar_texto "$(negrito_vermelho "Processo Rails PID ativo encontrado.")"
-    centralizar_texto " Rails PID: $rails_pid"
-  else
-    centralizar_texto "$(negrito_verde "Nenhum processo Rails PID ativo encontrado.")"
-  fi
   if [ -n "$vite_pids" ]; then
     centralizar_texto "Vite PIDs:"
     for pid in $vite_pids; do
@@ -97,13 +89,6 @@ matar_processos_ativos() {
   local pids_ativos=()
   local pids_fechados=()
 
-  if [ -n "$rails_pid" ]; then
-    pids_ativos+=("Rails PID: $rails_pid")
-    centralizar_texto "Servidor Rails está rodando (PID: $rails_pid). Terminando processo..."
-    matar_processo $rails_pid
-    pids_fechados+=("Rails PID: $rails_pid")
-    pids_terminados=$((pids_terminados + 1))
-  fi
   if [ -n "$vite_pids" ]; then
     centralizar_texto "Servidor Vite está rodando (PIDs: $vite_pids). Terminando processos..."
     for pid in $vite_pids; do
@@ -113,11 +98,6 @@ matar_processos_ativos() {
       pids_fechados+=("$pid")
       pids_terminados=$((pids_terminados + 1))
     done
-  fi
-
-  if [ -f /workspaces/Rails-React/tmp/pids/server.pid ]; then
-    rm /workspaces/Rails-React/tmp/pids/server.pid
-    centralizar_texto "Arquivo server.pid removido."
   fi
 
   centralizar_texto "Tabela de Processos Ativos e Fechados:"
@@ -133,33 +113,19 @@ matar_processos_ativos() {
   centralizar_texto "Total de processos fechados: $pids_terminados"
 }
 
-# Função para iniciar o servidor Rails e verificar erros
-iniciar_rails() {
-  # Inicia a barra de progresso com a mensagem "Iniciando servidor Rails..."
-  barra_de_progresso 5 "$(negrito_vermelho "Iniciando servidor Rails...")" &
-  local rails_progress_pid=$!
-  
-  # Inicia o servidor Rails
-  bin/rails server -d -p 3000 2>&1 > rails.log &
-  wait $rails_progress_pid
-
-  local rails_pid=$(pgrep -f "rails server")
-  if [ -n "$rails_pid" ]; then
-    centralizar_texto "$(negrito_verde "Backend iniciado com sucesso $(negrito_vermelho "(Rails PID: $rails_pid).")")"
-    echo -e "\n"
-  else
-    centralizar_texto "$(negrito_vermelho "Erro ao iniciar o servidor Rails. Verificando logs...")"
-    tail -n 20 rails.log 
-    exit 5
-  fi
-}
-
 iniciar_vite() {
   centralizar_texto "$(negrito_azul "Iniciando servidor Vite...")"
   centralizar_texto "$(negrito_verde "Instalando dependências do Node.js...")"
-  # mostrar_progresso 5 &
+  barra_de_progresso 5 "$(negrito_azul "Iniciando servidor Vite...")" &
   local vite_progress_pid=$!
-  (cd frontend/web && npm run dev --silent 2>&1 | tee vite.log | sed '/ready in/d;/Local:/d;/Network:/d') &
+  
+  if [ -d "FRONTEND" ]; then
+    (cd FRONTEND && npm run dev --silent 2>&1 | tee vite.log | sed '/ready in/d;/Local:/d;/Network:/d') &
+  else
+    centralizar_texto "$(negrito_vermelho "Erro: Diretório 'FRONTEND' não encontrado.")"
+    exit 1
+  fi
+  
   wait $vite_progress_pid
 
   local vite_pids=$(pgrep -f "vite" | tr '\n' ' ')
@@ -167,14 +133,18 @@ iniciar_vite() {
     centralizar_texto "$(negrito_verde "React-Vite iniciado com sucesso $(negrito_azul "(Vite PID: $vite_pids).")")"
   else
     centralizar_texto "Erro ao iniciar o React-Vite. Verificando logs..."
-    tail -n 20 frontend/web/vite.log # Mostra as últimas 20 linhas do log do Vite
+    if [ -f "FRONTEND/vite.log" ]; then
+      tail -n 20 FRONTEND/vite.log # Mostra as últimas 20 linhas do log do Vite
+    else
+      centralizar_texto "$(negrito_vermelho "Erro: Arquivo de log 'FRONTEND/vite.log' não encontrado.")"
+    fi
     exit 1
   fi
 
   # Captura as mensagens de inicialização do Vite
-  local vite_ready=$(grep "ready in" frontend/web/vite.log)
-  local vite_local=$(grep "Local:" frontend/web/vite.log)
-  local vite_network=$(grep "Network:" frontend/web/vite.log)
+  local vite_ready=$(grep "ready in" FRONTEND/vite.log)
+  local vite_local=$(grep "Local:" FRONTEND/vite.log)
+  local vite_network=$(grep "Network:" FRONTEND/vite.log)
 
   # Exibe as mensagens ao final do log
   echo -e "\n"
@@ -183,7 +153,7 @@ iniciar_vite() {
   centralizar_texto "$vite_network"
 
   # Remove as mensagens duplicadas do log
-  tail -f frontend/web/vite.log | sed '/ready in/d;/Local:/d;/Network:/d'
+  tail -f FRONTEND/vite.log | sed '/ready in/d;/Local:/d;/Network:/d'
 }
 
 # Função principal para iniciar servidores e tratar erros
@@ -191,7 +161,6 @@ principal() {
   echo -e "\n"
   centralizar_texto "$(negrito_azul "iniciado com pid: $(negrito_vermelho $$)")"
   matar_processos_ativos
-  iniciar_rails
   iniciar_vite
 }
 
