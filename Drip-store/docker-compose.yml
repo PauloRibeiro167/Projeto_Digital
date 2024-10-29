@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   frontend:
     build:
@@ -6,22 +7,30 @@ services:
     volumes:
       - ./FRONTEND:/app
     ports:
-      - "3000:3000"
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+    command: npm start
+
   backend:
     build:
       context: ./BACKEND
     volumes:
       - ./BACKEND:/app
     ports:
-      - "3001:3000"
+      - "3000:3000"
     environment:
-      DATABASE_URL: 'postgresql://postgres:Q6e1GrfKg2g9O4YX@purely-exact-mutt.data-1.use1.tembo.io:5432/postgres'
+      DATABASE_URL: 'postgresql://postgres:.....@purely-exact-mutt.data-1.use1.tembo.io:5432/postgres'
+
   db:
-    build:
-      context: ./DB
+    image: postgres:13
     environment:
+      POSTGRES_DB: mydatabase
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
   pgadmin:
     image: dpage/pgadmin4
     environment:
@@ -29,3 +38,6 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "8080:80"
+
+volumes:
+  db-data:

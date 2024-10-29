@@ -1,13 +1,11 @@
-FROM node:14-alpine
+FROM node:16
 
 WORKDIR /app
 
-COPY BACKEND/package*.json ./
+COPY package*.json ./
 
 RUN npm install
 
-COPY BACKEND ./
-
-EXPOSE 5000
+COPY . .
 
 CMD ["npm", "start"]
