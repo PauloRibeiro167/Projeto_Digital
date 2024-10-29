@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+// vite.config.js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
@@ -12,4 +13,4 @@ export default defineConfig({
       '@styles': path.resolve(__dirname, 'src/assets/stylesheets'), // Alias atualizado para a pasta de estilos
     },
   },
-})
+});

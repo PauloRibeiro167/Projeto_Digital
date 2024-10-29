@@ -1,9 +1,10 @@
+// src/pwa/App.jsx
 import { useState, useEffect } from 'react';
-import reactLogo from '../assets/images/react.svg';
+import reactLogo from '../assets/images/react.svg'; // Corrigido o caminho do logo do React
 import viteLogo from '/vite.svg';
 import '@styles/App.css';
-import { fetchData } from './services/api';
-import { handlePromise } from './utils/helpers';
+import { fetchData } from '../services/api';
+import { handlePromise } from '../utils/helpers';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -39,7 +40,7 @@ function App() {
           count is {count}
         </button>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          Edit <code>src/pwa/App.jsx</code> and save to test HMR
         </p>
       </div>
       {error ? <p>{error}</p> : <pre>{JSON.stringify(data, null, 2)}</pre>}

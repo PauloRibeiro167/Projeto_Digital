@@ -1,6 +1,37 @@
 version: '3.8'
 
 services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./BACKEND
+    volumes:
+      - ./BACKEND:/app
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: 'postgresql://postgres:Q6e1GrfKg2g9O4YX@purely-exact-mutt.data-1.use1.tembo.io:5432/postgres'
+    depends_on:
+      - db
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
   frontend:
     build:
       context: ./FRONTEND
@@ -11,33 +42,9 @@ services:
     environment:
       - NODE_ENV=development
     command: npm start
-
-  backend:
-    build:
-      context: ./BACKEND
-    volumes:
-      - ./BACKEND:/app
-    ports:
-      - "3000:3000"
-    environment:
-      DATABASE_URL: 'postgresql://postgres:.....@purely-exact-mutt.data-1.use1.tembo.io:5432/postgres'
-
-  db:
-    image: postgres:13
-    environment:
-      POSTGRES_DB: mydatabase
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-    volumes:
-      - db-data:/var/lib/postgresql/data
-
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "8080:80"
+    depends_on:
+      - backend
+      - pgadmin
 
 volumes:
   db-data:
