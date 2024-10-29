@@ -1,19 +1,16 @@
 {
-  "name": "backend",
+  "name": "drip-store-backend",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "BACKEND/server.mjs",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node BACKEND/server.mjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "express": "^4.21.1",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "pg": "^8.6.0"
   }
 }
