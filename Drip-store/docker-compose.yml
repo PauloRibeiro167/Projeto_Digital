@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: ./FRONTEND
+    volumes:
+      - ./FRONTEND:/app
+    ports:
+      - "3000:3000"
+  backend:
+    build:
+      context: ./BACKEND
+    volumes:
+      - ./BACKEND:/app
+    ports:
+      - "3001:3000"
+    environment:
+      DATABASE_URL: 'postgresql://postgres:Q6e1GrfKg2g9O4YX@purely-exact-mutt.data-1.use1.tembo.io:5432/postgres'
+  db:
+    build:
+      context: ./DB
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
