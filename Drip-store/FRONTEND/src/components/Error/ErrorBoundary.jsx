@@ -1,7 +1,7 @@
-// src/components/ErrorBoundary/ErrorBoundary.jsx
+// src/components/Error/ErrorBoundary.jsx
 import React from 'react';
-import * as Sentry from '@sentry/react';
-import ErrorFallback from './ErrorFallback';
+import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary';
+import ErrorFallback from '../Error/ErrorFallback.jsx';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -14,15 +14,15 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    Sentry.captureException(error, { extra: errorInfo });
+    console.error("ErrorBoundary caught an error", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      return <ErrorFallback error={new Error('Something went wrong')} resetErrorBoundary={() => this.setState({ hasError: false })} />;
+      return <ErrorFallback />;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 

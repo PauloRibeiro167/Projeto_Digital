@@ -6,11 +6,16 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173, // Definindo a porta para 5173
+    port: 5173,
+  },
+  esbuild: {
+    loader: 'jsx',
+    include: /src\/.*\.[tj]sx?$/,
+    exclude: [],
   },
   resolve: {
     alias: {
-      '@styles': path.resolve(__dirname, 'src/assets/stylesheets'), // Alias atualizado para a pasta de estilos
+      '@styles': path.resolve(__dirname, 'src/assets/stylesheets'),
     },
   },
 });

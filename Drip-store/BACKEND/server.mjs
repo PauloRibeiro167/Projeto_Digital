@@ -1,10 +1,15 @@
+// server.mjs
 import express from 'express';
+import publicRoutes from './routes/publicRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 import pkg from 'pg';
-const { Pool } = pkg;
+import listEndpoints from 'express-list-endpoints';
 
+const { Pool } = pkg;
 const app = express();
 const port = 3000;
 
+// Configuração do banco de dados
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -20,20 +25,13 @@ pool.connect((err) => {
   }
 });
 
-const authMiddleware = (req, res, next) => {
-  if (req.isAuthenticated() && req.user.role === 'admin') {
-    return next();
-  } else {
-    res.status(403).send('Acesso negado');
-  }
-};
+// Usar as rotas
+app.use(publicRoutes);
+app.use(adminRoutes);
 
-app.get('/public', (req, res) => {
-  res.send('Conteúdo público');
-});
-
-app.get('/admin', authMiddleware, (req, res) => {
-  res.send('Conteúdo administrativo');
+// Listar todas as rotas
+app.get('/routes', (req, res) => {
+  res.json(listEndpoints(app));
 });
 
 app.listen(port, () => {
