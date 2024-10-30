@@ -1,12 +1,33 @@
 // src/pwa/App.jsx
 import { useState, useEffect } from 'react';
-import reactLogo from '../assets/images/react.svg'; // Corrigido o caminho do logo do React
+import reactLogo from '../assets/images/react.svg';
 import viteLogo from '/vite.svg';
 import '@styles/App.css';
 import { fetchData } from '../services/api';
 import { handlePromise } from '../utils/helpers';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import PublicPage from './PublicPage';
+import AdminPage from './AdminPage';
+import LoginPage from './LoginPage';
+import { useAuth } from './auth';
 
-function App() {
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const { isAuthenticated, user } = useAuth();
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        isAuthenticated && user.role === 'admin' ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
+      }
+    />
+  );
+};
+
+const App = () => {
   const [count, setCount] = useState(0);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -25,7 +46,13 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Router>
+      <Switch>
+        <Route path="/public" component={PublicPage} />
+        <Route path="/login" component={LoginPage} />
+        <PrivateRoute path="/admin" component={AdminPage} />
+        <Redirect from="/" to="/public" />
+      </Switch>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -47,8 +74,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-    </>
+    </Router>
   );
-}
+};
 
 export default App;
