@@ -1,7 +1,7 @@
 // src/services/api.js
 export async function fetchData() {
     try {
-      const response = await fetch('https://api.example.com/data');
+      const response = await fetch('https://api-store-do1w.onrender.com/shoes');
       const data = await response.json();
       return data;
     } catch (error) {
