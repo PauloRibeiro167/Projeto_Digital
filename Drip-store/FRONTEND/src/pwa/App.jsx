@@ -1,4 +1,3 @@
-// src/pwa/App.jsx
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import reactLogo from '../assets/images/react.svg';
@@ -13,6 +12,7 @@ import LoginPage from '../pages/LoginPage';
 import { AuthProvider } from '../components/context/auth.jsx';
 import PrivateRoute from '../components/PrivateRoutes';
 import { paths } from '../utils/paths';
+import ErrorBoundary from '../components/Error/ErrorBoundary';
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -33,38 +33,40 @@ const App = () => {
   }, []);
 
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path={paths.home} element={<HomePage />} />
-          <Route path={paths.public} element={<PublicPage />} />
-          <Route path={paths.login} element={<LoginPage />} />
-          <PrivateRoute path={paths.admin} element={<AdminPage />} />
-          <Route path="*" element={<Navigate to={paths.home} />} />
-        </Routes>
-        <div>
-          <a href="https://vite.dev" target="_blank">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-          </a>
-          <a href="https://react.dev" target="_blank">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-          </a>
-        </div>
-        <h1>Vite + React</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test HMR
+    <ErrorBoundary>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path={paths.home} element={<HomePage />} />
+            <Route path={paths.public} element={<PublicPage />} />
+            <Route path={paths.login} element={<LoginPage />} />
+            <Route path={paths.admin} element={<PrivateRoute element={<AdminPage />} />} />
+            <Route path="*" element={<Navigate to={paths.home} />} />
+          </Routes>
+          <div>
+            <a href="https://vite.dev" target="_blank">
+              <img src={viteLogo} className="logo" alt="Vite logo" />
+            </a>
+            <a href="https://react.dev" target="_blank">
+              <img src={reactLogo} className="logo react" alt="React logo" />
+            </a>
+          </div>
+          <h1>Vite + React</h1>
+          <div className="card">
+            <button onClick={() => setCount((count) => count + 1)}>
+              count is {count}
+            </button>
+            <p>
+              Edit <code>src/App.jsx</code> and save to test HMR
+            </p>
+          </div>
+          {error ? <p>{error}</p> : <pre>{JSON.stringify(data, null, 2)}</pre>}
+          <p className="read-the-docs">
+            Click on the Vite and React logos to learn more
           </p>
-        </div>
-        {error ? <p>{error}</p> : <pre>{JSON.stringify(data, null, 2)}</pre>}
-        <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
-        </p>
-      </Router>
-    </AuthProvider>
+        </Router>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 };
 
