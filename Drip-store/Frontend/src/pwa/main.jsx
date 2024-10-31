@@ -1,7 +1,7 @@
 // src/pwa/main.jsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import '@styles/index.css';
+import '@styles/pwa/App.css';
 import App from '../pwa/App.jsx';
 import ErrorBoundary from '../components/Error/ErrorBoundary.jsx';
 
