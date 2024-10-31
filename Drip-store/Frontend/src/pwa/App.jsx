@@ -41,7 +41,7 @@ const App = () => {
             <Route path={paths.admin} element={<PrivateRoute element={<AdminPage />} />} />
             <Route path="*" element={<Navigate to={paths.home} />} />
           </Routes>
-          {error ? <p>{error}</p> : <pre>{JSON.stringify(data, null, 2)}</pre>}
+          {error && <p>{error}</p>}
         </Router>
       </AuthProvider>
     </ErrorBoundary>
