@@ -6,6 +6,6 @@ export async function fetchData() {
       return data;
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
-      throw error; // Re-throw the error if you want to handle it further up the call stack
+      throw error; 
     }
   }
