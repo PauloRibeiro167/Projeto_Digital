@@ -1,0 +1,8 @@
+/* src/assets/stylesheets/themes/dark-theme.css */
+:root {
+  --primary-color: #C92071;
+  --secondary-color: #343a40;
+  --background-color: #000000;
+  --text-color: #ffffff;
+  /* Adicione mais variáveis conforme necessário */
+}

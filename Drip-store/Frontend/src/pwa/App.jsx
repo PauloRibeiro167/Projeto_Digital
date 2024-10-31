@@ -6,7 +6,7 @@ import { handlePromise } from '../utils/helpers';
 import HomePage from '../pages/Public/HomePage';
 import PublicPage from '../pages/Public/PublicPage';
 import AdminPage from '../pages/Admin/AdminPage';
-import LoginPage from '../pages/LoginPage';
+import AuthPage from '../pages/AuthPages.jsx';
 import { AuthProvider } from '../components/context/auth.jsx';
 import PrivateRoute from '../components/routes/PrivateRoutes.jsx';
 import { paths } from '../utils/paths';
@@ -14,7 +14,6 @@ import ErrorBoundary from '../components/Error/ErrorBoundary';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
-  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -24,7 +23,7 @@ const App = () => {
         setError('Erro ao buscar dados');
         console.error('Erro no getData:', err);
       } else {
-        setData(result);
+        console.log(result);
       }
     }
     getData();
@@ -37,7 +36,7 @@ const App = () => {
           <Routes>
             <Route path={paths.home} element={<HomePage />} />
             <Route path={paths.public} element={<PublicPage />} />
-            <Route path={paths.login} element={<LoginPage />} />
+            <Route path={paths.login} element={<AuthPage />} />
             <Route path={paths.admin} element={<PrivateRoute element={<AdminPage />} />} />
             <Route path="*" element={<Navigate to={paths.home} />} />
           </Routes>

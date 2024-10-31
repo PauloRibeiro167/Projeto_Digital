@@ -1,0 +1,50 @@
+.carousel-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.carousel-info {
+  flex: 1;
+  padding: 20px;
+  font-family: Inter;
+  font-weight: bold;
+}
+
+.carousel-content {
+  flex: 2;
+}
+
+.carousel-item-content {
+  display: flex;
+  align-items: center;
+}
+
+.carousel-text {
+  flex: 1;
+}
+
+.carousel-image {
+  flex: 1;
+  rotate: -20deg;
+}de
+
+.carousel-indicators {
+  display: none;
+}
+
+.radio-buttons label {
+  background-color: #c3b0b9;
+  padding: 5px 5px;
+  border-radius: 22px;
+  margin-right: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.radio-buttons input[type="radio"] {
+  display: none;
+}
+
+.radio-buttons input[type="radio"]:checked + label {
+  background-color: #c92071;
+}

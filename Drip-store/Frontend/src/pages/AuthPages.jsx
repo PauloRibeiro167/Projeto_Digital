@@ -1,18 +1,27 @@
-// src/pages/LoginPage.jsx
+// src/pages/AuthPages.jsx
 import React, { useState } from 'react';
 import { useAuth } from '../components/context/auth';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import '@styles/login/login.css';
 
-const LoginPage = () => {
+const AuthPage = () => {
+  const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useAuth();
 
-  const handleLogin = () => {
-    // Simulação de autenticação
+  const handleAuth = () => {
     const userData = { username, role: username === 'superadmin' ? 'superadmin' : 'user' };
     login(userData);
+  };
+
+  const toggleAuthMode = () => {
+    setIsLogin(!isLogin);
+  };
+
+  const switchTheme = (theme) => {
+    const themeLink = document.getElementById('theme-link');
+    themeLink.href = theme;
   };
 
   return (
@@ -21,7 +30,7 @@ const LoginPage = () => {
         <Col md={6}>
           <Card className="p-4 shadow-sm">
             <Card.Body>
-              <h1 className="text-center mb-4">Login</h1>
+              <h1 className="text-center mb-4">{isLogin ? 'Login' : 'Cadastro'}</h1>
               <Form>
                 <Form.Group controlId="formUsername">
                   <Form.Label>Username</Form.Label>
@@ -43,10 +52,19 @@ const LoginPage = () => {
                   />
                 </Form.Group>
 
-                <Button variant="primary" className="w-100 mt-4" onClick={handleLogin}>
-                  Login
+                <Button variant="primary" className="w-100 mt-4" onClick={handleAuth}>
+                  {isLogin ? 'Login' : 'Cadastrar'}
                 </Button>
               </Form>
+              <Button variant="link" className="w-100 mt-2" onClick={toggleAuthMode}>
+                {isLogin ? 'Não tem uma conta? Cadastre-se' : 'Já tem uma conta? Faça login'}
+              </Button>
+              <Button variant="secondary" className="w-100 mt-2" onClick={() => switchTheme('/src/assets/stylesheets/themes/dark-theme.css')}>
+                Switch to Dark Theme
+              </Button>
+              <Button variant="secondary" className="w-100 mt-2" onClick={() => switchTheme('/src/assets/stylesheets/themes/light-theme.css')}>
+                Switch to Light Theme
+              </Button>
             </Card.Body>
           </Card>
         </Col>
@@ -55,4 +73,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default AuthPage;

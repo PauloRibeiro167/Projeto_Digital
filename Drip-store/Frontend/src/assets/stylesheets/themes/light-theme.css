@@ -1,0 +1,8 @@
+/* src/assets/stylesheets/themes/light-theme.css */
+:root {
+  --primary-color: #C92071;
+  --secondary-color: #f8f9fa;
+  --background-color: #ffffff;
+  --text-color: #000000;
+  /* Adicione mais variáveis conforme necessário */
+}
