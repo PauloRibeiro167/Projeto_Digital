@@ -7,7 +7,8 @@ import HomePage from '../pages/Public/HomePage';
 import PublicPage from '../pages/Public/PublicPage';
 import AdminPage from '../pages/Admin/AdminPage';
 import AuthPage from '../pages/AuthPages.jsx';
-import { AuthProvider } from '../components/context/auth.jsx';
+import { AuthProvider } from '../context/auth';
+import CartProvider from '@context/cartcontext';
 import PrivateRoute from '../components/routes/PrivateRoutes.jsx';
 import { paths } from '../utils/paths';
 import ErrorBoundary from '../components/Error/ErrorBoundary';
@@ -26,22 +27,25 @@ const App = () => {
         console.log(result);
       }
     }
+
     getData();
   }, []);
 
   return (
     <ErrorBoundary>
       <AuthProvider>
-        <Router>
-          <Routes>
-            <Route path={paths.home} element={<HomePage />} />
-            <Route path={paths.public} element={<PublicPage />} />
-            <Route path={paths.login} element={<AuthPage />} />
-            <Route path={paths.admin} element={<PrivateRoute element={<AdminPage />} />} />
-            <Route path="*" element={<Navigate to={paths.home} />} />
-          </Routes>
-          {error && <p>{error}</p>}
-        </Router>
+        <CartProvider>
+          <Router>
+            <Routes>
+              <Route path={paths.home} element={<HomePage />} />
+              <Route path={paths.public} element={<PublicPage />} />
+              <Route path={paths.login} element={<AuthPage />} />
+              <Route path={paths.admin} element={<PrivateRoute element={<AdminPage />} />} />
+              <Route path="*" element={<Navigate to={paths.home} />} />
+            </Routes>
+            {error && <p>{error}</p>}
+          </Router>
+        </CartProvider>
       </AuthProvider>
     </ErrorBoundary>
   );

@@ -1,6 +1,6 @@
 // src/pages/AuthPages.jsx
 import React, { useState } from 'react';
-import { useAuth } from '../components/context/auth';
+import { useAuth } from '../context/auth';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import '@styles/login/login.css';
 

@@ -1,0 +1,88 @@
+/* src/styles/button/buttons.css */
+
+.btn-base {
+  color: white;
+  border: 2px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: border 0.5s ease-in-out;
+  border-radius: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.bprimary {
+  background-color: #c92071;
+}
+
+.bprimary:hover {
+  border-color: #c92071;
+}
+
+.btSecondary {
+  background-color: #991956;
+}
+
+.btSecondary:hover {
+  border-color: #991956;
+}
+
+.btTertiary {
+  background-color: #cccccc;
+}
+
+.btTertiary:hover {
+  border-color: #cccccc;
+}
+
+.glow-on-hover {
+  position: relative;
+  z-index: 1;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: radial-gradient(circle, #c92071, #991956, #8a0404);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(1px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 12px;
+}
+
+.glow-on-hover:active {
+  color: #f7f7f7;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 12px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}

@@ -1,0 +1,25 @@
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.start-100 {
+  left: 100%;
+}
+
+.translate-middle {
+  transform: translate(-50%, -50%);
+}
+
+.custom-cart-icon {
+  color: #cd317c;
+  width: 30px;
+  height: 30px;
+}

@@ -13,7 +13,6 @@ const Carrossel1 = () => {
         const data = await fetchData();
         const filteredSlide = data.find(slide => slide.id === 14);
         if (filteredSlide) {
-          // Adicionando mais um slide ao array
           setSlides([filteredSlide, filteredSlide, filteredSlide, filteredSlide]);
         }
       } catch (error) {
@@ -37,9 +36,9 @@ const Carrossel1 = () => {
               <div className="carousel-item-content d-flex">
                 <div className="carousel-text">
                   <div className="carousel-info p-3">
-                    <h6>Melhores ofertas personalizadas</h6>
+                    <h6 style={{color: '#f6aa1c'}}>Melhores ofertas personalizadas</h6>
                     <h2 className='text'>Queima de estoque Nike 🔥</h2>
-                    <p>Consequat culpa exercitation mollit nisi excepteur do do tempor laboris eiusmod irure consectetur.</p>
+                    <p>Consequat culpa exercitation mollit nisi excepteur do do <br /> tempor laboris eiusmod irure consectetur.</p>
                     <button className="btn btn-primary">Ver ofertas</button>
                   </div>
                 </div>
