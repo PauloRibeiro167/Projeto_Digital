@@ -30,7 +30,7 @@ const CustomNavbar = () => {
                 <BtPrymary>Cadastre-se / Entrar</BtPrymary>
               </Nav.Link>
               <Nav.Link onClick={handleShow} className="text-dark position-relative">
-                <i className="bi bi-cart fs-3 custom-cart-icon" style={{ color: '#f6aa1c' }}></i>
+                <i className="bi bi-cart fs-3 custom-cart-icon" style={{ color: '#C92071' }}></i>
                 {Array.isArray(cartItems) && cartItems.length > 0 && (
                   <Badge pill bg="danger" className="position-absolute top-0 start-100 translate-middle">
                     {cartItems.length}

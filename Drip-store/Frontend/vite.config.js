@@ -20,6 +20,7 @@ export default defineConfig({
       '@images': path.resolve(__dirname, 'src/assets/images'),
       '@routes': path.resolve(__dirname, 'src/components/routes'),
       '@context': path.resolve(__dirname, 'src/context'),
+      '@api-tenis': path.resolve(__dirname, 'src/services/api'),
     },
   },
 });
