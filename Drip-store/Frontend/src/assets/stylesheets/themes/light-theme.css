@@ -2,8 +2,23 @@
 :root {
   --primary-color: #C92071;
   --secondary-color: #f8f9fa;
+  --tertialy-color: #991956;
   --background-color: #ffffff;
   --text-color: #000000;
-  --text-danger-collor: #f6aa1c;
-
+  --text-danger-color: #f6aa1c;
+  --button-background-color: #C92071;
+  --button-text-color: #ffffff;
+  --transition-duration: 2s;
+  --Dark-gray: #1f1f1f;
+  --Dark-gray-2: #474747;
+  --Dark-gray-3: #666666;
+  --Light-gray: #8f8f8f;
+  --Light-gray-2: #cccccc;
+  --ligth-gray-3: #f5f5f5;
+  --white: #ffffff;
+  --error: #EE4266;
+  --succsses: #52ca76;
+  --warning: #f6aa1c;
+  --primary-g: linear-gradient(180deg, #C92071 0%, #EDABCA 100%);
+  --secondary-g: linear-gradient(180deg, #B5B6F2 0%, #EFEFFF 100%);
 }

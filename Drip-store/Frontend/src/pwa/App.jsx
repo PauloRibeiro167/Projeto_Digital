@@ -23,8 +23,6 @@ const App = () => {
       if (err) {
         setError('Erro ao buscar dados');
         console.error('Erro no getData:', err);
-      } else {
-        console.log(result);
       }
     }
 

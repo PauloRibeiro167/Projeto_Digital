@@ -28,23 +28,23 @@ const Carrossel1 = () => {
   };
 
   return (
-    <div className="carousel-container d-flex">
+    <div className="carousel-container">
       <div className="carousel-content">
         <Carousel activeIndex={activeIndex} onSelect={handleSelect}>
           {slides.map((slide, index) => (
             <Carousel.Item key={index}>
-              <div className="carousel-item-content d-flex">
+              <div className="carousel-item-content">
                 <div className="carousel-text">
-                  <div className="carousel-info p-3">
+                  <div className="carousel-info">
                     <h6 style={{color: '#f6aa1c'}}>Melhores ofertas personalizadas</h6>
                     <h2 className='text'>Queima de estoque Nike 🔥</h2>
                     <p>Consequat culpa exercitation mollit nisi excepteur do do <br /> tempor laboris eiusmod irure consectetur.</p>
                     <button className="btn btn-primary">Ver ofertas</button>
                   </div>
                 </div>
-                <div className="carousel-image p">
+                <div className="carousel-image">
                   <img
-                    className="d-block w-90 h-90 mx-auto mb-5 mt-5"
+                    className="d-block w-100"
                     src={slide.imagem_url}
                     alt={slide.nome}
                   />

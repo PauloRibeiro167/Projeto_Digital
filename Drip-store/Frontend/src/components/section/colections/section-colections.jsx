@@ -2,11 +2,11 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import '@styles/section/colections/section-colections.css';
-import bone from '@images/categorias/bone.svg';
-import calca from '@images/categorias/calca.svg';
-import camiseta from '@images/categorias/camiseta.svg';
-import fonesDeOuvido from '@images/categorias/fones.svg';
-import tenis from '@images/categorias/tenis.svg';
+import bone from '@images/section/categorias/bone.svg';
+import calca from '@images/section/categorias/calca.svg';
+import camiseta from '@images/section/categorias/camiseta.svg';
+import fonesDeOuvido from '@images/section/categorias/fones.svg';
+import tenis from '@images/section/categorias/tenis.svg';
 export { bone, calca, camiseta, fonesDeOuvido, tenis };
 
 const SectionColections = () => {

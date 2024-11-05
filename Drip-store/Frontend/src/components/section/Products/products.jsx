@@ -25,15 +25,16 @@ const SectionProducts = () => {
 
     return Array.from({ length: 8 }).map((_, index) => (
       <Col key={index} md={3} className='mb-2'>
-        <Card>
-          <Card.Img variant="top" src={product.imagem_url} />
-          <Card.Body/>
-        </Card>
-        <p className='text-start'>Tênis</p>
-        <Card.Title>{product.nome}</Card.Title>
-        <Card.Text>{product.preco_deconto}</Card.Text>
-        <Card.Text>{product.preco_original}</Card.Text>
-      </Col>
+      <Card>
+        <Card.Img variant="top" src={product.imagem_url} />
+        <Card.Body/>
+      </Card>
+      <p className='text-start text-color fw-bold'>Tênis</p>
+      <Card.Title className='text-start text-color mb-1'>{product.nome}</Card.Title>
+      <Card.Text className='text-start fw-bold'>
+        <span className="text-color"><s>${product.preco_original}</s></span> <strong className='text-color-black ms-2'>${product.preco_desconto}</strong>
+      </Card.Text>
+    </Col>
     ));
   };
 

@@ -1,9 +1,18 @@
+@import "@styles/button/toggletheme.css";
+
 .section-categorias {
-  background-color: #f9f8fe;
+  background-color: var(--background-color);
   padding: 50px 0;
   margin-top: 50px;
+  transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
 .text-color {
-  color: #474747;
+  color: var(--text-color);
+  transition: color var(--transition-duration);
+}
+
+.text-color-black {
+  color: var(--text-color);
+  transition: color var(--transition-duration);
 }
