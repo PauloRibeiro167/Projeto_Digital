@@ -21,4 +21,5 @@
   --warning: #f6aa1c;
   --primary-g: linear-gradient(180deg, #C92071 0%, #EDABCA 100%);
   --secondary-g: linear-gradient(180deg, #B5B6F2 0%, #EFEFFF 100%);
+  --image-logo: url(@images/logoheader.svg);
 }

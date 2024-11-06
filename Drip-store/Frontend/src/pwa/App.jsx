@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import '@styles/pwa/App.css';
+import '@styles/themes/dark-theme.css';
+import '@styles/themes/light-theme.css';
 import { fetchData } from '../services/api';
 import { handlePromise } from '../utils/helpers';
 import HomePage from '../pages/Public/HomePage';
@@ -13,6 +15,8 @@ import PrivateRoute from '../components/routes/PrivateRoutes.jsx';
 import { paths } from '../utils/paths';
 import ErrorBoundary from '../components/Error/ErrorBoundary';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ToggleTheme from '@components/button/toggletheme.jsx';
+
 
 const App = () => {
   const [error, setError] = useState(null);
@@ -34,6 +38,7 @@ const App = () => {
       <AuthProvider>
         <CartProvider>
           <Router>
+        
             <Routes>
               <Route path={paths.home} element={<HomePage />} />
               <Route path={paths.public} element={<PublicPage />} />
