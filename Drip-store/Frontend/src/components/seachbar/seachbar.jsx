@@ -22,7 +22,7 @@ const Seachbar = () => {
           aria-label="Search"
         />
         <InputGroup.Text onClick={handleSearch} style={{ cursor: 'pointer' }}>
-          <i id="search-icon" className="bi bi-search btn-search"></i>
+         
         </InputGroup.Text>
       </InputGroup>
     </Form>
