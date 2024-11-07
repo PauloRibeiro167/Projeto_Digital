@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  backend:
+    build:
+      context: ./Backend
+    volumes:
+      - ./Backend:/app
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: 'postgresql://postgres:Q6e1GrfKg2g9O4YX@purely-exact-mutt.data-1.use1.tembo.io:5432/postgres'
+    depends_on:
+      - db
+
   db:
     image: postgres:13
     environment:
@@ -10,17 +22,6 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
 
-  backend:
-    build:
-      context: ./BACKEND
-    volumes:
-      - ./BACKEND:/app
-    ports:
-      - "3000:3000"
-    environment:
-      DATABASE_URL: 'postgresql://postgres:Q6e1GrfKg2g9O4YX@purely-exact-mutt.data-1.use1.tembo.io:5432/postgres'
-    depends_on:
-      - db
 
   pgadmin:
     image: dpage/pgadmin4
@@ -34,9 +35,9 @@ services:
 
   frontend:
     build:
-      context: ./FRONTEND
+      context: ./Frontend
     volumes:
-      - ./FRONTEND:/app
+      - ./Frontend:/app
     ports:
       - "5173:5173"
     environment:
