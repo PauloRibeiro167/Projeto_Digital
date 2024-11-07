@@ -1,4 +1,3 @@
-// server.mjs
 import express from 'express';
 import publicRoutes from './routes/publicRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';

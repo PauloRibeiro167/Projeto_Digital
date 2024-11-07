@@ -15,8 +15,8 @@ import PrivateRoute from '../components/routes/PrivateRoutes.jsx';
 import { paths } from '../utils/paths';
 import ErrorBoundary from '../components/Error/ErrorBoundary';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ToggleTheme from '@components/button/toggletheme.jsx';
-
+// import ToggleTheme from '@components/button/toggletheme.jsx';
+import PaymentPage from '../pages/Public/PaymentPage.jsx'; // Corrigido o caminho do import
 
 const App = () => {
   const [error, setError] = useState(null);
@@ -38,11 +38,11 @@ const App = () => {
       <AuthProvider>
         <CartProvider>
           <Router>
-        
             <Routes>
               <Route path={paths.home} element={<HomePage />} />
               <Route path={paths.public} element={<PublicPage />} />
               <Route path={paths.login} element={<AuthPage />} />
+              <Route path={paths.payment} element={<PaymentPage />} />
               <Route path={paths.admin} element={<PrivateRoute element={<AdminPage />} />} />
               <Route path="*" element={<Navigate to={paths.home} />} />
             </Routes>

@@ -1,6 +1,7 @@
 // src/components/cart/custonoffcanvas.jsx
 import React from 'react';
-import { Offcanvas } from 'react-bootstrap';
+import { Offcanvas, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const CustomOffcanvas = ({ show, handleClose, title, children }) => {
   return (
@@ -10,6 +11,11 @@ const CustomOffcanvas = ({ show, handleClose, title, children }) => {
       </Offcanvas.Header>
       <Offcanvas.Body>
         {children}
+        <div className="mt-3">
+          <Button as={Link} to="/public/payment" variant="primary" onClick={handleClose}>
+            Ir para Pagamento
+          </Button>
+        </div>
       </Offcanvas.Body>
     </Offcanvas>
   );

@@ -1,4 +1,4 @@
-// routes/PublicRoutes.js
+2// routes/PublicRoutes.js
 import express from 'express';
 const router = express.Router();
 

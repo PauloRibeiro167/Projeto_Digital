@@ -21,6 +21,8 @@ export default defineConfig({
       '@routes': path.resolve(__dirname, 'src/components/routes'),
       '@context': path.resolve(__dirname, 'src/context'),
       '@api-tenis': path.resolve(__dirname, 'src/services/api'),
+      '@public_pages': path.resolve(__dirname, 'src/pages/public'),
+      '@admin_pages': path.resolve(__dirname, 'src/pages/admin'),
     },
   },
 });
