@@ -27,7 +27,7 @@ const AuthPage = () => {
   return (
     <Container className="d-flex justify-content-center align-items-center min-vh-100">
       <Row>
-        <Col md={6}>
+        <Col md={10}>
           <Card className="p-4 shadow-sm">
             <Card.Body>
               <h1 className="text-center mb-4">{isLogin ? 'Login' : 'Cadastro'}</h1>

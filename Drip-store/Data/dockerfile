@@ -1,16 +1,16 @@
-# /workspaces/Rails-React/Drip-store/DB/Dockerfile
+# /workspaces/Projeto_Digital/Drip-store/Data/Dockerfile
 FROM postgres:13
 
 # Instale as localizações necessárias
 RUN apt-get update && apt-get install -y locales && \
-    echo "pt_BR.UTF-8 UTF-8" > /etc/locale.gen && \
-    locale-gen pt_BR.UTF-8 && \
-    update-locale LANG=pt_BR.UTF-8
+    echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+    locale-gen en_US.UTF-8 && \
+    update-locale LANG=en_US.UTF-8
 
-# Defina a localidade padrão para pt_BR.UTF-8
-ENV LANG pt_BR.UTF-8
-ENV LANGUAGE pt_BR:pt
-ENV LC_ALL pt_BR.UTF-8
+# Defina a localidade padrão para en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 # Copie os arquivos de inicialização do banco de dados
 COPY ./initdb /docker-entrypoint-initdb.d/

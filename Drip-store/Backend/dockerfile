@@ -1,13 +1,29 @@
-FROM node:14-alpine
+# Estágio 1: Construir o frontend
+FROM node:14 AS build-frontend
+
+WORKDIR /app
+
+COPY ../Frontend/package*.json ./
+RUN npm install
+
+COPY ../Frontend ./
+RUN npm run build
+
+# Estágio 2: Configurar o backend
+FROM node:14
 
 WORKDIR /app
 
 COPY package*.json ./
-
 RUN npm install
+
+RUN apt-get update && apt-get install -y netcat
 
 COPY . .
 
+# Copiar arquivos estáticos do frontend
+COPY --from=build-frontend /app/dist ./public
+
 EXPOSE 3000
 
-CMD ["node", "server.mjs"]
+CMD ["npm", "start"]

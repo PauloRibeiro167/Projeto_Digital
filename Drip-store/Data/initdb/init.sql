@@ -26,6 +26,3 @@ CREATE TABLE cart (
 -- Insere dados iniciais na tabela 'cart'
 INSERT INTO cart (name, quantity, price) VALUES ('Produto A', 2, 19.99);
 INSERT INTO cart (name, quantity, price) VALUES ('Produto B', 1, 9.99);
-
--- preciso ainda criar os produtos do site para poder definir uma variavel para inserir no carrinho
--- até o momento não tenho a função de inserir produtos no carrinho.

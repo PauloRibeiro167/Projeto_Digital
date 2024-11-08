@@ -13,6 +13,9 @@ export default defineConfig({
     include: /src\/.*\.[tj]sx?$/,
     exclude: [],
   },
+  build: {
+    outDir: 'dist',
+  },
   resolve: {
     alias: {
       '@styles': path.resolve(__dirname, 'src/assets/stylesheets'),

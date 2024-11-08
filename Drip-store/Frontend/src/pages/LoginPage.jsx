@@ -18,10 +18,10 @@ const LoginPage = () => {
   return (
     <Container className="d-flex justify-content-center align-items-center min-vh-100">
       <Row>
-        <Col md={6}>
+        <Col style={{width: "80%"}}>
           <Card className="p-4 shadow-sm">
             <Card.Body>
-              <h1 className="text-center mb-4">Login</h1>
+              <h1 className="text-center mb-4">Login teste </h1>
               <Form>
                 <Form.Group controlId="formUsername">
                   <Form.Label>Username</Form.Label>

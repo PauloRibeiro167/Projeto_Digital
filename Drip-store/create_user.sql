@@ -1,0 +1,3 @@
+CREATE USER paulorezende877 WITH PASSWORD 'Lotus167';
+CREATE DATABASE dripstore;
+GRANT ALL PRIVILEGES ON DATABASE dripstore TO paulorezende877;

@@ -5,5 +5,4 @@ export const paths = {
     login: '/login',
     admin: '/admin',
     payment: '/public/payment',
-    admin: '/admin',
   };
