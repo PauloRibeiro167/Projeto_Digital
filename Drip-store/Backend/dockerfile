@@ -1,25 +1,25 @@
 # Estágio 1: Construir o frontend
-FROM node:14 AS build-frontend
+FROM node:16 AS build-frontend
 
 WORKDIR /app
 
-COPY ../Frontend/package*.json ./
+COPY ./Frontend/package*.json ./
 RUN npm install
 
-COPY ../Frontend ./
+COPY ./Frontend ./
 RUN npm run build
 
 # Estágio 2: Configurar o backend
-FROM node:14
+FROM node:16
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY ./Backend/package*.json ./
 RUN npm install
 
 RUN apt-get update && apt-get install -y netcat
 
-COPY . .
+COPY ./Backend ./
 
 # Copiar arquivos estáticos do frontend
 COPY --from=build-frontend /app/dist ./public

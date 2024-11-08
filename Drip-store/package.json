@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "inquirer": "^12.0.1"
+  },
+  "scripts": {
+  "dashboard": "node dashboard.js"
+}
+}

@@ -1,32 +1,38 @@
 version: '3.8'
 
 services:
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
   db:
     build:
       context: ./Data
+      dockerfile: Dockerfile
+    container_name: db
     environment:
-      POSTGRES_USER: paulorezende877
-      POSTGRES_PASSWORD: Lotus167
-      POSTGRES_DB: dripstore
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
     ports:
       - "5432:5432"
-    volumes:
-      - db-data:/var/lib/postgresql/data
 
-  backend:
+  frontend:
     build:
-      context: .
-      dockerfile: ./Backend/Dockerfile
-    volumes:
-      - ./Backend:/app
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: frontend
     ports:
       - "3000:3000"
-    environment:
-      DATABASE_URL: postgres://paulorezende877:Lotus167@db:5432/dripstore
-      DATABASE_SSL: "false"
+    volumes:
+      - ./Frontend:/app
+    working_dir: /app
+    command: ["npm", "start"]
     depends_on:
-      - db
-    command: ["sh", "-c", "/app/wait-for-it.sh db -- npm start"]
-
-volumes:
-  db-data:
+      - backend

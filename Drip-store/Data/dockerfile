@@ -1,5 +1,4 @@
-# /workspaces/Projeto_Digital/Drip-store/Data/Dockerfile
-FROM postgres:13
+FROM postgres:16
 
 # Instale as localizações necessárias
 RUN apt-get update && apt-get install -y locales && \
@@ -11,6 +10,3 @@ RUN apt-get update && apt-get install -y locales && \
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
-
-# Copie os arquivos de inicialização do banco de dados
-COPY ./initdb /docker-entrypoint-initdb.d/
