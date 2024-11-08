@@ -1,0 +1,11 @@
+@import '@styles/themes/dark-theme.css';
+@import '@styles/themes/light-theme.css';
+
+.cordefundo {
+  background:linear-gradient(180deg, #B5B6F2 0%, #EFEFFF 100%);
+}
+
+.mercadoria {
+  background-size: cover;
+  justify-content: flex-end;
+}
