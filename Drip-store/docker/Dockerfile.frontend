@@ -1,13 +1,16 @@
-# docker/Dockerfile.frontend
-FROM node:16-alpine
+# Use uma imagem base com Node 18
+FROM node:18-alpine
 
 WORKDIR /app
 
-COPY package.json ./
-COPY yarn.lock ./
+# Copie os arquivos package.json e yarn.lock
+COPY package.json yarn.lock ./
 
+# Instale as dependências
 RUN yarn install
 
+# Copie o restante do código
 COPY . .
 
-CMD ["yarn", "dev"]
+# Comando para iniciar a aplicação
+CMD ["yarn", "start"]

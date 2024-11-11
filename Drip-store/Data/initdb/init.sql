@@ -1,8 +1,8 @@
--- Cria um banco de dados chamado 'mydatabase'
-CREATE DATABASE mydatabase;
+-- Cria um banco de dados chamado 'dripstore'
+CREATE DATABASE dripstore;
 
--- Conecta ao banco de dados 'mydatabase'
-\c mydatabase
+-- Conecta ao banco de dados 'dripstore'
+\c dripstore
 
 -- Cria uma tabela chamada 'users'
 CREATE TABLE users (
