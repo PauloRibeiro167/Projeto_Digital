@@ -2,10 +2,10 @@
   "recommendations": [
       "github.copilot",
       "usernamehw.errorlens",
-      "vscode-icons-team.vscode-icons",
       "oderwat.indent-rainbow",
-      "azemoh.one-monokai-80s",
+      "axiomaticstudios.one-monokai-80s",
       "ms-ceintl.vscode-language-pack-pt-BR",
-      "joshpeng.react-bootstrap-snippets"
+      "joshpeng.react-bootstrap-snippets",
+      "tal7aouy.icons"
   ]
 }

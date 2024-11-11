@@ -1,5 +1,19 @@
 version: '3.7'
 services:
+  backend:
+    build:
+      context: ../Backend
+      dockerfile: ../docker/Dockerfile.backend
+    ports:
+      - "4000:4000"
+    volumes:
+      - ../Backend:/app
+      - /app/node_modules
+      - ../Backend/Data:/app/Data
+    environment:
+      - NODE_ENV=development
+    command: ["node", "server.mjs"]
+
   frontend:
     build:
       context: ../Frontend
@@ -11,20 +25,6 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-
-  backend:
-    build:
-      context: ../Backend
-      dockerfile: ../docker/Dockerfile.backend
-    ports:
-      - "4000:4000"
-    volumes:
-      - ../Backend:/app
-      - /app/node_modules
-      - ../Backend/Data:/app/data  # Monta o diretório de dados no contêiner
-    environment:
-      - NODE_ENV=development
-    command: ["node", "server.mjs"]
 
   database:
     image: postgres:14-alpine

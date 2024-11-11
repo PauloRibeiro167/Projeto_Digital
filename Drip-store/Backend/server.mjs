@@ -10,7 +10,6 @@ const { Pool } = pkg;
 const app = express();
 const port = 3000;
 
-// Configuração do banco de dados
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: process.env.DATABASE_SSL === 'true' ? { rejectUnauthorized: false } : false

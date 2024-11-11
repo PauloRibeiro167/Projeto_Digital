@@ -13,11 +13,8 @@ RUN npm install
 # Copie o restante do código da aplicação
 COPY . .
 
-# Construa a aplicação
-RUN npm run build
-
 # Exponha a porta que a aplicação irá rodar
-EXPOSE 5173
+EXPOSE 3000
 
 # Comando para iniciar a aplicação
-CMD ["npm", "run", "preview"]
+CMD ["node", "server.mjs"]
