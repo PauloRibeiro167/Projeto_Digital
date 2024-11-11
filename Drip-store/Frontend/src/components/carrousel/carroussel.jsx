@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
-import '@styles/carroussel/carroussel1.css';
+import '@styles/carroussel/carroussel.css';
 import { fetchData } from '../../services/api';
 
 const Carrossel1 = () => {
@@ -28,9 +28,9 @@ const Carrossel1 = () => {
   };
 
   return (
-    <div className="carousel-container">
+    <div className="carousel-container mt-4">
       <div className="carousel-content">
-        <Carousel activeIndex={activeIndex} onSelect={handleSelect}>
+        <Carousel activeIndex={activeIndex} onSelect={handleSelect} interval={3000}>
           {slides.map((slide, index) => (
             <Carousel.Item key={index}>
               <div className="carousel-item-content">
@@ -47,14 +47,15 @@ const Carrossel1 = () => {
                     className="d-block w-100"
                     src={slide.imagem_url}
                     alt={slide.nome}
+                    style={{ marginBottom: '20px' }}
                   />
                 </div>
               </div>
             </Carousel.Item>
           ))}
         </Carousel>
-        <div className="radio-buttons mt-3">
-          {slides.map((slide, index) => (
+        <div className="radio-buttons mt-4">
+          {slides.map((slides, index) => (
             <React.Fragment key={index}>
               <input
                 type="radio"

@@ -1,7 +1,7 @@
 // src/pages/Home/HomePage.jsx
 import React from 'react';
 import CustomNavbar from '@components/navbar/navbar1';
-import Carrossel1 from '@components/carrousel/carroussel1';
+import Carrossel1 from '@components/carrousel/carroussel';
 import Footer1 from '@components/footer/footer1';
 import SectionCategorias from '@components/section/categorias/section-categorias.jsx';
 import SectionsColections from '@components/section/colections/section-colections.jsx';

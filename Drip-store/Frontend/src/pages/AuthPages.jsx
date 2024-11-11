@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/auth';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
-import '@styles/login/login.css';
+import '@styles/Auth/Auth.css';
 import Footer1 from '@components/footer/footer1';
 
 const AuthPage = () => {
@@ -43,7 +43,6 @@ const AuthPage = () => {
                       onChange={(e) => setUsername(e.target.value)}
                     />
                   </Form.Group>
-
                   <Form.Group controlId="formPassword" className="mt-3">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
@@ -53,7 +52,6 @@ const AuthPage = () => {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </Form.Group>
-
                   <Button variant="primary" className="w-100 mt-4" onClick={handleAuth}>
                     {isLogin ? 'Login' : 'Cadastrar'}
                   </Button>

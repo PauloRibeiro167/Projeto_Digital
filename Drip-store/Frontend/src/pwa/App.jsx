@@ -15,8 +15,7 @@ import PrivateRoute from '../components/routes/PrivateRoutes.jsx';
 import { paths } from '../utils/paths';
 import ErrorBoundary from '../components/Error/ErrorBoundary';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import ToggleTheme from '@components/button/toggletheme.jsx';
-import PaymentPage from '../pages/Public/PaymentPage.jsx'; // Corrigido o caminho do import
+import PaymentPage from '../pages/Public/PaymentPage.jsx';
 
 const App = () => {
   const [error, setError] = useState(null);
