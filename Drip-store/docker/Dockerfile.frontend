@@ -9,8 +9,11 @@ COPY package.json yarn.lock ./
 # Instale as dependências
 RUN yarn install
 
+# Instale o nodemon globalmente
+RUN yarn global add nodemon
+
 # Copie o restante do código
 COPY . .
 
-# Comando para iniciar a aplicação
-CMD ["yarn", "start"]
+# Comando para iniciar a aplicação em modo watch
+CMD ["yarn", "watch"]

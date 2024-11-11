@@ -22,7 +22,11 @@ const ToggleTheme = () => {
 
   return (
     <button onClick={toggleTheme} className="toggle-theme-button">
-      {isDarkTheme ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
+      {isDarkTheme ? (
+        <span><i className="bi bi-toggle-off"></i></span>
+      ) : (
+        <span><i className="bi bi-toggle-on"></i></span>
+      )}
     </button>
   );
 };
