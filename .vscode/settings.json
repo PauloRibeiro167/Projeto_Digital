@@ -1,6 +1,6 @@
 {
     "editor.tabSize": 2,
-    "workbench.statusBar.visible": false,
+    "workbench.statusBar.visible": true,
     "workbench.commandPalette.preserveInput": false,
     "workbench.layoutControl.enabled": false,
     "workbench.activityBar.location": "top",
