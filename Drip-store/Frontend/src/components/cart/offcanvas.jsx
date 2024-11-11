@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Container, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '@styles/navbar/navbar1.css';
-import logo from '@images/logo-header.svg';
+import logo from '@images/logo-header.png';
 import { BtPrymary } from '@components/button/Buttons';
 import Seachbar from '@components/seachbar/seachbar';
 import CustomOffcanvas from '@components/cart/custonoffcanvas';
