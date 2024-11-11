@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+  frontend:
+    build:
+      context: ../Frontend
+      dockerfile: ../docker/Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../Frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
+  backend:
+    build:
+      context: ../Backend
+      dockerfile: ../docker/Dockerfile.backend
+    ports:
+      - "4000:4000"
+    volumes:
+      - ../Backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: ["node", "server.mjs"]
+
+  database:
+    image: postgres:14-alpine
+    volumes:
+      - db_data_pg_14:/var/lib/postgresql/data
+    ports:
+      - "5444:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+
+volumes:
+  db_data_pg_14:
