@@ -1,9 +1,9 @@
-// src/pages/AuthPages.jsx
 import React, { useState } from 'react';
 import { useAuth } from '../context/auth';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
-import '@styles/Auth/Auth.css';
+import '@styles/login/AuthPages.css';
 import Footer1 from '@components/footer/footer1';
+import mercadoria from '@images/sapatos.png';
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -26,25 +26,25 @@ const AuthPage = () => {
   };
 
   return (
-    <div className='w-100'>
-      <Container className="d-flex justify-content-center align-items-center min-vh-100">
+    <>
+      <Container className="d-flex justify-content-center align-items-center min-vh-100 min-vw-100 cordefundo">
         <Row>
-          <Col md={10}>
-            <Card className="p-4 shadow-sm">
+          <Col>
+            <Card className="py-4 p-5 shadow-sm">
               <Card.Body>
-                <h1 className="text-center mb-4">{isLogin ? 'Login' : 'Cadastro'}</h1>
+                <h1 className="d-flex mb-4">{isLogin ? 'Acesse sua Conta' : 'Crie sua Conta'}</h1>
                 <Form>
                   <Form.Group controlId="formUsername">
-                    <Form.Label>Username</Form.Label>
+                    <Form.Label>Login *</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Enter username"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                     />
-                  </Form.Group>
+</Form.Group>
                   <Form.Group controlId="formPassword" className="mt-3">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Senha</Form.Label>
                     <Form.Control
                       type="password"
                       placeholder="Enter password"
@@ -52,26 +52,19 @@ const AuthPage = () => {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </Form.Group>
-                  <Button variant="primary" className="w-100 mt-4" onClick={handleAuth}>
+                  <Button className="w-100 mt-4 mb-4" onClick={handleAuth} style={{ backgroundColor: '#c92071' }}>
                     {isLogin ? 'Login' : 'Cadastrar'}
                   </Button>
                 </Form>
-                <Button variant="link" className="w-100 mt-2" onClick={toggleAuthMode}>
-                  {isLogin ? 'Não tem uma conta? Cadastre-se' : 'Já tem uma conta? Faça login'}
-                </Button>
-                <Button variant="secondary" className="w-100 mt-2" onClick={() => switchTheme('/src/assets/stylesheets/themes/dark-theme.css')}>
-                  Switch to Dark Theme
-                </Button>
-                <Button variant="secondary" className="w-100 mt-2" onClick={() => switchTheme('/src/assets/stylesheets/themes/light-theme.css')}>
-                  Switch to Light Theme
-                </Button>
+                <a className="mt-2">Ou faça login com</a>
               </Card.Body>
             </Card>
           </Col>
         </Row>
+        <img src={mercadoria} alt="Sapatos modelo melvin bueno" />
       </Container>
-    <Footer1 />
-  </div>
+      <Footer1 />
+    </>
   );
 };
 
