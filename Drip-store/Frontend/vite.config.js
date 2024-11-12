@@ -9,13 +9,8 @@ export default defineConfig({
     port: 5173,
     host: true,
   },
-  esbuild: {
-    loader: {'.js': 'jsx','.ts': 'tsx',},
-    include: /src\/.*\.[tj]sx?$/,
-    exclude: [],
-  },
   build: {
-    outDir: 'dist',
+    outDir: 'dist', // Certifique-se de que este caminho corresponde ao caminho no Dockerfile
   },
   resolve: {
     alias: {

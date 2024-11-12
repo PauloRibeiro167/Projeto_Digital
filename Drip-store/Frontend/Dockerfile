@@ -1,23 +1,28 @@
-# Use a imagem base do Node.js
-FROM node:18
+# Use uma imagem base do Node para construir o frontend
+FROM node:18-alpine as build
 
-# Defina o diretório de trabalho
 WORKDIR /app
 
-# Copie o package.json e o package-lock.json
-COPY package*.json ./
+# Copie os arquivos package.json e yarn.lock
+COPY Frontend/package.json Frontend/yarn.lock ./
 
 # Instale as dependências
-RUN npm install
+RUN yarn install
 
-# Copie o restante do código da aplicação
-COPY . .
+# Copie o restante dos arquivos do frontend
+COPY Frontend .
 
-# Construa a aplicação
-RUN npm run build
+# Build do frontend
+RUN yarn build
 
-# Exponha a porta que a aplicação irá rodar
-EXPOSE 5173
+# Use uma imagem base do Nginx para servir o frontend
+FROM nginx:alpine
 
-# Comando para iniciar a aplicação
-CMD ["npm", "run", "preview"]
+# Copie os arquivos buildados para o diretório padrão do Nginx
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Exponha a porta 80 para acessar o frontend
+EXPOSE 80
+
+# Comando para rodar o Nginx
+CMD ["nginx", "-g", "daemon off;"]

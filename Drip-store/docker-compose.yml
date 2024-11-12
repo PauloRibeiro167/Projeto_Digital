@@ -1,48 +1,33 @@
-version: '3.7'
+version: '3.8'
+
 services:
   backend:
     build:
-      context: ./Backend
-      dockerfile: ../docker/Dockerfile.backend
-    ports:
-      - "4000:4000"
-    volumes:
-      - ./Backend:/app
-      - /app/node_modules
-      - ../Backend/Data:/app/Data
+      context: .
+      dockerfile: Backend/Dockerfile
     environment:
-      - NODE_ENV=development
-      - DATABASE_URL=postgres://postgres:senha_segura@database:5432/dripstore
-    command: ["node", "server.mjs"]
+      - DATABASE_URL=postgresql://postgres:password@database:5432/mydatabase
+      - DATABASE_SSL=false
+    ports:
+      - "3000:3000"
     depends_on:
       - database
 
   frontend:
     build:
-      context: ./Frontend
-      dockerfile: ../docker/Dockerfile.frontend
+      context: .
+      dockerfile: Frontend/Dockerfile
     ports:
-      - "3000:3000"
-    volumes:
-      - /workspaces/Projeto_Digital/Drip-store/Frontend:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-    command: ["yarn", "dev"]
+      - "80:80"
 
   database:
-    image: postgres:14-alpine
-    volumes:
-      - db_data_pg_14:/var/lib/postgresql/data
-      - ../Backend/Data/initdb/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ../Backend/Data/initdb/create_user.sql:/docker-entrypoint-initdb.d/create_user.sql
-      - ../Backend/Data/initdb/init.sh:/docker-entrypoint-initdb.d/init.sh
-    ports:
-      - "5432:5432"
+    image: postgres:14
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: senha_segura
-      POSTGRES_DB: dripstore
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
-  db_data_pg_14:
+  pgdata:

@@ -1,13 +1,15 @@
-# docker/Dockerfile.backend
+# Use Node 18 base image
 FROM node:18-alpine
 
 WORKDIR /app
 
-COPY package.json ./
-COPY yarn.lock ./
+# Copy package.json and yarn.lock from the backend directory
+COPY Backend/package.json Backend/yarn.lock ./
 
-RUN yarn install
+# Install dependencies
+RUN if [ -f yarn.lock ]; then yarn install; else yarn install; fi
 
-COPY . .
+# Copy the rest of the backend directory
+COPY Backend .
 
 CMD ["node", "server.mjs"]

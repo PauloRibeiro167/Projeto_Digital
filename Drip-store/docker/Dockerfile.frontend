@@ -1,19 +1,15 @@
-# Use uma imagem base com Node 18
+# Use Node 18 base image
 FROM node:18-alpine
 
 WORKDIR /app
 
-# Copie os arquivos package.json e yarn.lock
-COPY package.json yarn.lock ./
+# Copy package.json and yarn.lock from the frontend directory
+COPY Frontend/package.json Frontend/yarn.lock ./
 
-# Instale as dependências
-RUN yarn install
+# Install dependencies
+RUN if [ -f yarn.lock ]; then yarn install; else yarn install; fi
 
-# Instale o nodemon globalmente
-RUN yarn global add nodemon
+# Copy the rest of the frontend directory
+COPY Frontend .
 
-# Copie o restante do código
-COPY . .
-
-# Comando para iniciar a aplicação em modo watch
-CMD ["yarn", "watch"]
+CMD ["yarn", "dev", "watch"]
