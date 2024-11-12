@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <div className="w-100">
       <CustomNavbar />
-      <Carrossel1 />
+      <Carrossel1 /> teste 
       <SectionCategorias />
       <SectionsColections />
       <SectionProducts />
