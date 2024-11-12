@@ -1,0 +1,55 @@
+User
+
+Atributos: id, name, email, password, role, created_at, updated_at
+Role
+
+Atributos: id, name, description
+Access
+
+Atributos: id, user_id, role_id, permissions
+Product
+
+Atributos: id, name, description, price, stock, category_id, created_at, updated_at
+Category
+
+Atributos: id, name, description
+Order
+
+Atributos: id, user_id, total_amount, status, created_at, updated_at
+OrderItem
+
+Atributos: id, order_id, product_id, quantity, price
+Cart
+
+Atributos: id, user_id, created_at, updated_at
+CartItem
+
+Atributos: id, cart_id, product_id, quantity
+Review
+
+Atributos: id, user_id, product_id, rating, comment, created_at, updated_at
+Wishlist
+
+Atributos: id, user_id, created_at, updated_at
+WishlistItem
+
+Atributos: id, wishlist_id, product_id
+Payment
+
+Atributos: id, order_id, amount, status, payment_method, created_at, updated_at
+Discount
+
+Atributos: id, code, description, discount_percentage, valid_from, valid_to
+Address
+
+Atributos: id, user_id, address_line1, address_line2, city, state, postal_code, country
+Tracking
+
+Atributos: id, order_id, tracking_number, status, estimated_delivery, created_at, updated_at
+Email
+
+Atributos: id, user_id, subject, body, sent_at
+QRCode
+
+Atributos: id, order_id, qr_code_data, created_at
+Esses models cobrem as principais entidades necessárias para um sistema de e-commerce de sapatos, conforme descrito nos controllers.
