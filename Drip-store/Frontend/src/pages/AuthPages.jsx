@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/auth';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
-import '@styles/login/AuthPages.css';
+import '@styles/Auth/AuthPages.css';
 import Footer1 from '@components/footer/footer1';
 import mercadoria from '@images/sapatos.png';
 

@@ -1,6 +1,5 @@
-// vite.config.js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 import path from 'path';
 
 export default defineConfig({
@@ -9,19 +8,16 @@ export default defineConfig({
     port: 5173,
     host: true,
   },
-  build: {
-    outDir: 'dist', // Certifique-se de que este caminho corresponde ao caminho no Dockerfile
-  },
   resolve: {
     alias: {
-      '@styles': path.resolve(__dirname, 'src/assets/stylesheets'),
-      '@components': path.resolve(__dirname, 'src/components'),
-      '@images': path.resolve(__dirname, 'src/assets/images'),
-      '@routes': path.resolve(__dirname, 'src/components/routes'),
-      '@context': path.resolve(__dirname, 'src/context'),
-      '@api-tenis': path.resolve(__dirname, 'src/services/api'),
-      '@public_pages': path.resolve(__dirname, 'src/pages/public'),
-      '@admin_pages': path.resolve(__dirname, 'src/pages/admin'),
+      '@styles': path.resolve(__dirname, '/src/assets/stylesheets'),
+      '@components': path.resolve(__dirname, '/src/components'),
+      '@images': path.resolve(__dirname, '/src/assets/images'),
+      '@routes': path.resolve(__dirname, '/src/components/routes'),
+      '@context': path.resolve(__dirname, '/src/context'),
+      '@api-tenis': path.resolve(__dirname, '/src/services/api'),
+      '@public_pages': path.resolve(__dirname, '/src/pages/public'),
+      '@admin_pages': path.resolve(__dirname, '/src/pages/admin'),
     },
   },
-});
+})
