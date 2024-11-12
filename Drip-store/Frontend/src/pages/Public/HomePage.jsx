@@ -1,4 +1,6 @@
 // src/pages/Home/HomePage.jsx
+
+//--> estrutura oficial da formação da HomePage
 import React from 'react';
 import CustomNavbar from '@components/navbar/navbar1';
 import Carrossel1 from '@components/carrousel/carroussel';
