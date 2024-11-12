@@ -42,7 +42,7 @@ const AuthPage = () => {
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                     />
-</Form.Group>
+                </Form.Group>
                   <Form.Group controlId="formPassword" className="mt-3">
                     <Form.Label>Senha</Form.Label>
                     <Form.Control
