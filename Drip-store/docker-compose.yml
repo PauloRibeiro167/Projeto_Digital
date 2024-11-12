@@ -1,4 +1,4 @@
-version: '3.8'
+version: '27.3'
 
 services:
   backend:
@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: Frontend/Dockerfile
     ports:
-      - "80:80"
+      - "8000:8000"
 
   database:
     image: postgres:14

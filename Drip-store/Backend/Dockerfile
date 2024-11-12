@@ -15,14 +15,8 @@ COPY Backend .
 # Build do backend
 RUN yarn build
 
-# Use uma imagem base do Nginx para servir o backend
-FROM nginx:alpine
+# Exponha a porta que o backend usa
+EXPOSE 3000
 
-# Copie os arquivos buildados para o diretório padrão do Nginx
-COPY --from=build /app/build /usr/share/nginx/html
-
-# Exponha a porta 80 para acessar o backend
-EXPOSE 80
-
-# Comando para rodar o Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Comando para rodar o backend
+CMD ["yarn", "start"]

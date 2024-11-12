@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "webpack serve --mode development --open --hot",
     "build": "vite build",
     "start": "vite preview --host --port 5173",
     "preview": "vite preview --host --port 5173",
@@ -28,18 +28,21 @@
     "react-scripts": "^5.0.1",
     "sqlite3": "^5.1.7"
   },
-  "devDependencies": {
-    "@eslint/js": "^9.13.0",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.3",
-    "eslint": "^9.13.0",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.14",
-    "globals": "^15.11.0",
-    "nodemon": "^3.1.7",
-    "vite": "^5.4.10"
+ "devDependencies": {
+  "webpack": "^5.88.2",
+  "webpack-cli": "^4.10.0",
+  "webpack-dev-server": "^4.0.0",
+  "@eslint/js": "^9.13.0",
+  "@types/react": "^18.3.12",
+  "@types/react-dom": "^18.3.1",
+  "@vitejs/plugin-react": "^4.3.3",
+  "eslint": "^9.13.0",
+  "eslint-plugin-react": "^7.37.2",
+  "eslint-plugin-react-hooks": "^5.0.0",
+  "eslint-plugin-react-refresh": "^0.4.14",
+  "globals": "^15.11.0",
+  "nodemon": "^3.1.7",
+  "vite": "^5.4.10"
   },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "main": "eslint.config.js",

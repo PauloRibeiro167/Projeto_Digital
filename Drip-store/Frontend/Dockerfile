@@ -1,5 +1,5 @@
-# Use uma imagem base do Node para construir o frontend
-FROM node:18-alpine as build
+# Use uma imagem base do Node para construir e rodar o frontend
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -12,17 +12,8 @@ RUN yarn install
 # Copie o restante dos arquivos do frontend
 COPY Frontend .
 
-# Build do frontend
-RUN yarn build
+# Exponha a porta que o webpack-dev-server usa
+EXPOSE 3000
 
-# Use uma imagem base do Nginx para servir o frontend
-FROM nginx:alpine
-
-# Copie os arquivos buildados para o diretório padrão do Nginx
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Exponha a porta 80 para acessar o frontend
-EXPOSE 80
-
-# Comando para rodar o Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Comando para rodar o webpack-dev-server
+CMD ["yarn", "run", "dev"]
