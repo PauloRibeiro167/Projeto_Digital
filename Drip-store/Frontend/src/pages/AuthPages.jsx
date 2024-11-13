@@ -34,10 +34,10 @@ const AuthPage = () => {
   return (
     <>
       <CustomNbar />
-      <Container className="d-flex justify-content-center align-items-center min-vh-75 min-vw-100 cordefundo">
-        <Row>
-          <Col>
-            <Card className="shadow-sm ms-3 py-1 p-3 shadow-sm m-4 ms-3">
+      <Container fluid className="d-flex justify-content-center align-items-center cordefundo" style={{width: "100%"}}>
+        <Row className="w-100">
+          <Col className="d-flex justify-content-center">
+            <Card className="shadow-sm py-1 p-3 shadow-sm m-4" style={{ width: '100%', maxWidth: '500px' }}>
               <Card.Body>
                 <h3 className="text-center mb-3">
                   {isLogin ? 'Acesse sua Conta' : 'Crie sua Conta'}
@@ -83,7 +83,11 @@ const AuthPage = () => {
             </Card>
           </Col>
         </Row>
-        <img className="d-none d-md-block" src={mercadoria} alt="Sapatos modelo melvin bueno" style={{width: "40%"}} />
+        <Row className="w-100">
+          <Col className="d-flex justify-content-center">
+            <img className="d-none d-md-block" src={mercadoria} alt="Sapatos modelo melvin bueno" style={{width: "100%", maxWidth: "500px"}} />
+          </Col>
+        </Row>
       </Container>
       <Footer1 />
     </>
