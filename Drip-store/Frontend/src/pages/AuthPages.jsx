@@ -4,7 +4,7 @@ import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap'
 import '@styles/Auth/AuthPages.css';
 import Footer1 from '@components/footer/footer1';
 import mercadoria from '@images/sapatos.png';
-// import { CustomNbar } from '@components/navbar/nbar.jsx';
+import { CustomNbar } from '@components/navbar/nbar.jsx';
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
