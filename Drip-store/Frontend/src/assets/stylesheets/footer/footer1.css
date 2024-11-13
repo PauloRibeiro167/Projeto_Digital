@@ -8,3 +8,8 @@ a {
   text-decoration: none;
   color: inherit; 
 }
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+}
