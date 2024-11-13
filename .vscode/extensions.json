@@ -1,11 +1,11 @@
 {
   "recommendations": [
-      "github.copilot",
-      "usernamehw.errorlens",
-      "oderwat.indent-rainbow",
-      "axiomaticstudios.one-monokai-80s",
-      "ms-ceintl.vscode-language-pack-pt-BR",
-      "joshpeng.react-bootstrap-snippets",
-      "tal7aouy.icons"
+    "github.copilot",
+    "usernamehw.errorlens",
+    "oderwat.indent-rainbow",
+    "axiomaticstudios.one-monokai-80s",
+    "ms-ceintl.vscode-language-pack-pt-BR",
+    "joshpeng.react-bootstrap-snippets",
+    "tal7aouy.icons"
   ]
 }

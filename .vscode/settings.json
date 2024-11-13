@@ -1,9 +1,9 @@
 {
-    "editor.tabSize": 2,
-    "workbench.statusBar.visible": true,
-    "workbench.commandPalette.preserveInput": false,
-    "workbench.layoutControl.enabled": false,
-    "workbench.activityBar.location": "top",
-    "workbench.colorTheme": "One Monokai 80s",
-    "workbench.iconTheme": "icons"
+  "editor.tabSize": 2,
+  "workbench.statusBar.visible": true,
+  "workbench.commandPalette.preserveInput": false,
+  "workbench.layoutControl.enabled": false,
+  "workbench.activityBar.location": "top",
+  "workbench.colorTheme": "One Monokai 80s",
+  "workbench.iconTheme": "icons"
 }
