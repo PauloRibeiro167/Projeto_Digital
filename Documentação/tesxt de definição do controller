@@ -1,0 +1,90 @@
+Para um e-commerce de sapatos com as funcionalidades descritas, aqui está uma estrutura sugerida para os controllers, com algumas ideias de funções específicas e adicionais que são essenciais para um sistema completo:
+
+1. AccessController
+Responsável pelo mapeamento e controle de acessos, garantindo que diferentes níveis de usuários (usuário, admin, superadmin) tenham permissões específicas.
+Funções principais:
+index: listar todos os acessos e permissões.
+update_access: atualizar permissões de acesso para um usuário específico.
+delete_access: remover permissões de um usuário.
+
+2. UserController
+Gerencia operações relacionadas aos usuários comuns da loja.
+Funções principais:
+show: exibir perfil do usuário.
+update: atualizar dados do usuário.
+delete: desativar ou excluir conta de usuário.
+order_history: exibir histórico de pedidos do usuário.
+
+3. AdminController
+Gerencia operações administrativas para os administradores do e-commerce.
+Funções principais:
+index: listar todas as ações administrativas disponíveis.
+manage_users: gerenciar informações e permissões dos usuários.
+manage_orders: gerenciar todos os pedidos e seu status.
+manage_products: adicionar, editar e excluir produtos da loja.
+
+4. EmailController
+Controla o envio de e-mails para comunicação com os usuários e notificações administrativas.
+Funções principais:
+send_welcome_email: envia um e-mail de boas-vindas para novos usuários.
+send_order_confirmation: confirmações de pedido para usuários.
+send_shipping_update: atualizações de envio e entrega.
+send_password_reset: e-mails para redefinição de senha.
+
+5. RolesController
+Define e controla diferentes papéis e níveis de acesso (usuário, vendedor, superadmin).
+Funções principais:
+assign_role: atribuir papéis específicos a usuários (superadmin, vendedor).
+list_roles: listar todos os papéis disponíveis.
+manage_companies: gerenciar empresas e adicionar revendedores.
+
+6. QRCodeController
+Gera códigos QR para pagamentos, possibilitando pagamentos mais rápidos e seguros.
+Funções principais:
+generate_qr: gera o QR code com base no valor do pedido.
+validate_qr: valida a leitura do QR code para garantir a segurança do pagamento.
+
+7. AddressValidationController
+Valida endereços de entrega para garantir que sejam corretos e atendidos pelo serviço de entrega.
+Funções principais:
+validate_address: valida o formato e a viabilidade do endereço inserido.
+list_supported_locations: lista áreas e regiões atendidas.
+
+8. TrackingController
+Controla o rastreamento das entregas para que os usuários possam acompanhar seus pedidos.
+Funções principais:
+track_order: rastrear status do pedido com código de rastreamento.
+show_tracking_info: exibir detalhes e status de entrega atualizados.
+
+9. Suggestions for Additional Important Controllers and Functions
+Além dos controllers mencionados, algumas funcionalidades adicionais podem complementar o e-commerce:
+
+CartController:
+
+Controla o carrinho de compras do usuário.
+Funções: add_to_cart, remove_from_cart, checkout.
+ProductController:
+
+Gerencia o catálogo de produtos.
+Funções: list_products, show_product, filter_by_category.
+ReviewController:
+
+Permite que os usuários façam avaliações e comentários sobre produtos.
+Funções: create_review, update_review, delete_review.
+WishlistController:
+
+Gerencia a lista de desejos dos usuários.
+Funções: add_to_wishlist, remove_from_wishlist, view_wishlist.
+PaymentController:
+
+Lida com pagamentos e confirmações.
+Funções: process_payment, confirm_payment.
+DiscountController:
+
+Gerencia cupons e promoções.
+Funções: apply_discount, remove_discount, list_discounts.
+Esses controllers formam uma estrutura robusta, capaz de atender aos requisitos básicos e avançados de um e-commerce.
+
+cd /workspaces/Projeto_Digital/Drip-store/Backend/models
+
+touch User.js Role.js Access.js Product.js Category.js Order.js OrderItem.js Cart.js CartItem.js Review.js Wishlist.js WishlistItem.js Payment.js Discount.js Address.js Tracking.js Email.js QRCode.js
