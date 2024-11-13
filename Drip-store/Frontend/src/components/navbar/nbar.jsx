@@ -9,7 +9,7 @@ const CustomNbar = () => {
       <Navbar expand="lg" className="custom-navbar">
         <Container fluid className="navbar-container">
 
-          
+          teste  de navbar
         </Container>
       </Navbar>
     </>
