@@ -28,7 +28,7 @@ const Carrossel1 = () => {
   };
 
   return (
-    <div className="carousel-container mt-4">
+    <div className="carousel-container mt-4 w-100">
       <div className="carousel-content">
         <Carousel activeIndex={activeIndex} onSelect={handleSelect} interval={3000}>
           {slides.map((slide, index) => (
