@@ -8,25 +8,25 @@ import '@styles/footer/footer1.css';
 
 const Footer1 = () => {
   return (
-    <footer className="bg-dark  text-white p-5 text-start">
+    <footer className="bg-dark  text-white p-1 text-start">
       <Container>
         <Row>
 
-        <Col xs={12} md={3} className='bg-dark text-white p-3 text-start'>
+        <Col xs={12} md={3} className='bg-dark text-white p-3 mt-4 text-start'>
             <img src={logofooter} alt="Logo Footer" className="d-flex mb-3 w-75 w-sm-50" />
-            <p className='ms-3 mb-1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            <p className='mb-1 mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
               <br />sed do eiusmod tempor incididunt ut labore et dolore.</p>
-            <div className="social-media d-flex justify-content-start mb-5 mt-5">
+            <div className="social-media d-flex justify-content-start mb-2 mt-5">
               <img src={facebookF} alt='Nosso Facebook' className="social-icon mx-2" />
               <img src={instagramF} alt='Nosso Instagram' className="social-icon mx-2" />
               <img src={twitter} alt='Nosso Twitter' className="social-icon mx-2" />
             </div>
           </Col> 
 
-          <Col xs={6} md={3} className='bg-dark text-white p-3 mt-2 text-start'>
-          <h4 className='text-center mb-5'>Informações</h4>
+          <Col xs={6} md={3} className='bg-dark text-white p-3 mt-4 text-start'>
+          <h4 className='text-center mb-3'>Informações</h4>
             <div className='d-flex justify-content-center'>
-              <ul className="list-unstyled ms-3">
+              <ul className="list-unstyled ">
                 <li>Sobre Drip Store</li>
                 <li>Segurança</li>
                 <li>Wishlist</li>
@@ -37,10 +37,10 @@ const Footer1 = () => {
               </div>
           </Col>
 
-          <Col xs={6} md={3} className='bg-dark text-white p-3 mt-2 text-start'>
-            <h4 className='text-center mb-5'>Categorias</h4>
+          <Col xs={6} md={3} className='bg-dark text-white p-3 mt-4 text-start'>
+            <h4 className='text-center mb-3'>Categorias</h4>
               <div className='d-flex justify-content-center'>
-              <ul className="list-unstyled ms-3 text-start">
+              <ul className="list-unstyled  text-start">
                 <li>Camisetas</li>
                 <li>Calças</li>
                 <li>Bonés</li>
@@ -50,9 +50,9 @@ const Footer1 = () => {
               </div>
             </Col>
 
-            <Col xs={12} md={3} className='bg-dark text-white p-3 mt-2 text-start'>
-              <h4 className='text-center mb-5'>Contatos</h4>
-              <ul className="list-unstyled ms-3">
+            <Col xs={12} md={3} className='bg-dark text-white p-3 mt-4 text-start'>
+              <h4 className='text-center mb-3'>Contatos</h4>
+              <ul className="list-unstyled ">
                 <a href = 'https://www.google.com/maps?q=Av.+Santos+Dumont,+1510+-+10%C2%BA+Andar+-+Aldeota,+Fortaleza+-+CE,+60165-000' target = '_blank' rel="noopener noreferrer">
                   Av. Santos Dumont, 1510   - 10° Andar - Aldeota, Fortaleza - CE, 60165-000</a>
                 <li>Telefone: (85) 1234-5678</li>
