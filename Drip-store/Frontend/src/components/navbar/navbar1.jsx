@@ -1,83 +1,77 @@
-import React, { useState } from 'react';
-import { useAuth } from '@context/auth';
-import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
-import '@styles/Auth/AuthPages.css';
-import Footer1 from '@components/footer/footer1';
-import mercadoria from '@images/sapatos.png';
-import context from 'react-bootstrap/esm/AccordionContext';
-// import CustomNavbar from '@components/navbar/navbar1.jsx';
+import React, { useState, useContext } from 'react';
+import { Navbar, Nav, Container, Badge } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import '@styles/navbar/navbar1.css';
+import { BtPrymary } from '@components/button/Buttons';
+import Seachbar from '@components/seachbar/seachbar';
+import ToggleTheme from '@components/button/toggletheme';
+import CustomOffcanvas from '@components/cart/custonoffcanvas';
+import { CartContext } from '@context/cartcontext';
 
-const AuthPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const { login } = useAuth();
+const CustomNavbar = () => {
+  const [show, setShow] = useState(false);
+  const { cartItems } = useContext(CartContext);
 
-  const handleAuth = (e) => {
-    e.preventDefault();
-    if (!username || !password) {
-      setError('Por favor, preencha todos os campos.');
-      return;
-    }
-    const userData = { username, role: username === 'superadmin' ? 'superadmin' : 'user' };
-    login(userData);
-  };
-
-  const toggleAuthMode = () => {
-    setIsLogin(!isLogin);
-    setError('');
-  };
-
-  const switchTheme = (theme) => {
-    const themeLink = document.getElementById('theme-link');
-    themeLink.href = theme;
-  };
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
-      <Container className="d-flex justify-content-center align-items-center min-vh-100 min-vw-100 cordefundo">
-        <Row>
-          <Col>
-            <Card className="py-4 p-5 shadow-sm">
-              <Card.Body>
-                <h1 className="d-flex mb-4">{isLogin ? 'Acesse sua Conta' : 'Crie sua Conta'}</h1>
-                {error && <Alert variant="danger">{error}</Alert>}
-                <Form onSubmit={handleAuth}>
-                  <Form.Group controlId="formUsername">
-                    <Form.Label>Login *</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter username"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="formPassword" className="mt-3">
-                    <Form.Label>Senha</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Enter password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </Form.Group>
-                  <Button className="w-100 mt-4 mb-4" type="submit" style={{ backgroundColor: '#c92071' }}>
-                    {isLogin ? 'Login' : 'Cadastrar'}
-                  </Button>
-                </Form>
-                <a className="mt-2" onClick={toggleAuthMode}>
-                  {isLogin ? 'Não tem uma conta? Cadastre-se' : 'Já tem uma conta? Faça login'}
-                </a>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-        <img className="w-50" src={mercadoria} alt="Sapatos modelo melvin bueno" />
-      </Container>
-      <Footer1 />
+      <Navbar expand="lg" className="custom-navbar">
+        <Container fluid className="navbar-container">
+          <Navbar.Brand href="#home" className="navbar-brand mx-auto ms-5">
+            <img alt="Digital Store" className='--image-logo'/>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav" className="navbar-collapse justify-content-center me-5">
+            <Seachbar className="searchbar mx-auto" />
+          </Navbar.Collapse>
+            <Nav className="ml-auto nav-items">
+              <ToggleTheme/>
+            </Nav>
+            <Nav className="ml-auto nav-items">
+              <Nav.Link as={Link} to="/login" className="nav-link">
+                <BtPrymary>Cadastre-se/Entrar</BtPrymary>
+              </Nav.Link>
+              <Nav.Link onClick={handleShow} className="nav-link position-relative me-5">
+                <i className="bi bi-cart custom-cart-icon"></i>
+                {Array.isArray(cartItems) && cartItems.length > 0 && (
+                  <Badge pill bg="danger" className="cart-badge">
+                    {cartItems.length}
+                  </Badge>
+                )}
+              </Nav.Link>
+            </Nav>
+        </Container>
+      </Navbar>
+      
+      <Navbar  expand="lg" className="custom-navbar te">
+        <Container fluid className="navbar-container te">
+          <Navbar.Toggle aria-controls="basic-navbar-nav-2 te" />
+          <Navbar.Collapse id="basic-navbar-nav-2" className="navbar-collapse te">
+            <Nav className="nav-items justify-content-start ms-5">
+              <Nav.Link as={Link} to="/home" className="nav-link">Home</Nav.Link>
+              <Nav.Link as={Link} to="/produtos" className="nav-link">Produtos</Nav.Link>
+              <Nav.Link as={Link} to="/categorias" className="nav-link">Categorias</Nav.Link>
+              <Nav.Link as={Link} to="/meus-pedidos" className="nav-link">Meus Pedidos</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      <CustomOffcanvas show={show} handleClose={handleClose} title="Carrinho de Compras">
+        {Array.isArray(cartItems) && cartItems.length === 0 ? (
+          <p>Seu carrinho está vazio.</p>
+        ) : (
+          <ul>
+            {Array.isArray(cartItems) && cartItems.map(item => (
+              <li key={item.id}>{item.name}</li>
+            ))}
+          </ul>
+        )}
+      </CustomOffcanvas>
     </>
   );
 };
 
-export default AuthPage;
+export default CustomNavbar;
