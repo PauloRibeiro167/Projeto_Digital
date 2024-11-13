@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/auth';
+import { useAuth } from '@context/auth';
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import '@styles/Auth/AuthPages.css';
 import Footer1 from '@components/footer/footer1';
 import mercadoria from '@images/sapatos.png';
-import CustomNbar from '@components/navbar/nbar.jsx';
+import context from 'react-bootstrap/esm/AccordionContext';
+// import CustomNavbar from '@components/navbar/navbar1.jsx';
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -35,7 +36,6 @@ const AuthPage = () => {
 
   return (
     <>
-      <CustomNbar />
       <Container className="d-flex justify-content-center align-items-center min-vh-100 min-vw-100 cordefundo">
         <Row>
           <Col>
