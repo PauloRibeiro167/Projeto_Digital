@@ -1,4 +1,5 @@
-
+@import "@styles/themes/dark-theme.css";
+@import "@styles/themes/light-theme.css";
 
 ColunaFooter {
   margin-left: 2%;
@@ -12,4 +13,16 @@ a {
 .social-icon {
   width: 20px;
   height: 20px;
+}
+
+.footer {
+  background-color: var(--footer-background);
+}
+
+.text-color {
+  color: var(--text-color);
+}
+
+.text-color  svg .fill {
+  color: black;
 }

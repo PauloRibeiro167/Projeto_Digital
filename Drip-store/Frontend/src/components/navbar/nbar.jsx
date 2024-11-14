@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import '@styles/navbar/navbar1.css';
 import logoDrip from '@images/logo-header.png';
 
@@ -7,7 +8,7 @@ const CustomNbar = () => {
   return (
     <Container fluid className="navbar-container">
       <Navbar expand="lg" className="custom-navbar">
-        <Navbar.Brand href="#home" className="navbar-brand mx-auto mx-lg-5">
+        <Navbar.Brand as={Link} to="/" className="navbar-brand mx-auto mx-lg-5">
           <img 
             src={logoDrip} 
             alt="Digital Store" 

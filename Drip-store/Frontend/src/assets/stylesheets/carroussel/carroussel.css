@@ -8,7 +8,7 @@
 
 .carousel-content {
   width: 100%;
-  max-width: 1200px; /* Ajuste conforme necessário */
+  max-width: 1200px;
 }
 
 .carousel-item-content {
@@ -59,7 +59,14 @@
 .radio-buttons input[type="radio"]:checked + label {
   background-color: #c92071;
 }
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   display: none;
+}
+
+.bg {
+  height: 60vh;
+  background-color: var(--carroussel-background);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

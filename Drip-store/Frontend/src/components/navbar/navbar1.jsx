@@ -18,38 +18,41 @@ const CustomNavbar = () => {
 
   return (
     <>
-        <Navbar expand="lg" className="custom-navbar">
-          <Container fluid className="navbar-container">
-            <Navbar.Brand href="#home" className="navbar-brand mx-auto ms-5">
-              <img src={logoDrip} alt="Digital Store" className='--image-logo' style={{width: "70%"}}/>
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" className="navbar-collapse justify-content-center me-5">
-              <Seachbar className="searchbar mx-auto" />
-            </Navbar.Collapse>
-              <Nav className="ml-auto nav-items">
-                <ToggleTheme/>
-              </Nav>
-              <Nav className="ml-auto nav-items">
-                <Nav.Link as={Link} to="/login" className="nav-link">
-                  <BtPrymary>Cadastre-se/Entrar</BtPrymary>
-                </Nav.Link>
-                <Nav.Link onClick={handleShow} className="nav-link position-relative me-5">
-                  <i className="bi bi-cart custom-cart-icon"></i>
-                  {Array.isArray(cartItems) && cartItems.length > 0 && (
-                    <Badge pill bg="danger" className="cart-badge">
-                      {cartItems.length}
-                    </Badge>
-                  )}
-                </Nav.Link>
-              </Nav>
-          </Container>
-        </Navbar>
-      
-      <Navbar  expand="lg" className="custom-navbar te">
-        <Container fluid className="navbar-container te">
-          <Navbar.Toggle aria-controls="basic-navbar-nav-2 te" />
-          <Navbar.Collapse id="basic-navbar-nav-2" className="navbar-collapse te">
+      <Navbar expand="lg" className="custom-navbar">
+        <Container fluid className="navbar-container">
+
+
+          <Navbar.Brand as={Link} to="/" className="navbar-brand ms-3 mx-auto">
+            <img src={logoDrip} alt="Digital Store" style={{width: "70%"}}/>
+          </Navbar.Brand>
+
+
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav" className="navbar-collapse justify-content-center me-5">
+            <Seachbar className="searchbar mx-auto" />
+          </Navbar.Collapse>
+            <Nav className="ml-auto nav-items me-3">
+              <ToggleTheme/>
+            </Nav>
+            <Nav className="ml-auto nav-items">
+              <Nav.Link as={Link} to="/login" className="nav-link">
+                <BtPrymary>Cadastre-se/Entrar</BtPrymary>
+              </Nav.Link>
+              <Nav.Link onClick={handleShow} className="nav-link position-relative me-5">
+                <i className="bi bi-cart custom-cart-icon"></i>
+                {Array.isArray(cartItems) && cartItems.length > 0 && (
+                  <Badge pill bg="danger" className="cart-badge">
+                    {cartItems.length}
+                  </Badge>
+                )}
+              </Nav.Link>
+            </Nav>
+        </Container>
+      </Navbar>
+      <Navbar  expand="lg" className="custom-navbar">
+        <Container fluid className="navbar-container">
+          <Navbar.Toggle aria-controls="basic-navbar-nav-2" />
+          <Navbar.Collapse id="basic-navbar-nav-2 ms-3" className="navbar-collapse te">
             <Nav className="nav-items justify-content-start ms-5">
               <Nav.Link as={Link} to="/home" className="nav-link">Home</Nav.Link>
               <Nav.Link as={Link} to="/produtos" className="nav-link">Produtos</Nav.Link>
@@ -59,7 +62,6 @@ const CustomNavbar = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
       <CustomOffcanvas show={show} handleClose={handleClose} title="Carrinho de Compras">
         {Array.isArray(cartItems) && cartItems.length === 0 ? (
           <p>Seu carrinho está vazio.</p>
