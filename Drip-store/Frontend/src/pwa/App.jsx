@@ -9,6 +9,7 @@ import HomePage from '../pages/Public/HomePage';
 import PublicPage from '../pages/Public/PublicPage';
 import AdminPage from '../pages/Admin/AdminPage';
 import AuthPage from '../pages/AuthPages.jsx';
+import CadastroPage from '../pages/Public/Cadastro.jsx';
 import { AuthProvider } from '../context/auth';
 import CartProvider from '@context/cartcontext';
 import PrivateRoute from '../components/routes/PrivateRoutes.jsx';
@@ -43,7 +44,11 @@ const App = () => {
               <Route path={paths.login} element={<AuthPage />} />
               <Route path={paths.payment} element={<PaymentPage />} />
               <Route path={paths.admin} element={<PrivateRoute element={<AdminPage />} />} />
+<<<<<<< Updated upstream
               <Route path={paths.cadastro} element={<Navigate to={paths.home} />} />
+=======
+              <Route path={paths.cadastro} element={<CadastroPage />} />
+>>>>>>> Stashed changes
             </Routes>
             {error && <p>{error}</p>}
           </Router>

@@ -7,10 +7,10 @@ import { CustomNbar } from '@components/navbar/nbar.jsx';
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import facebookIcon from '@images/icons/facebook.png';
 import gmail from '@images/icons/gmail.png';
-import "@styles/Auth/AuthPages.css";
+import { Link } from 'react-router-dom';
+import { paths } from '../utils/paths';
 
 const AuthPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -26,11 +26,6 @@ const AuthPage = () => {
     login(userData);
   };
 
-  const toggleAuthMode = () => {
-    setIsLogin(!isLogin);
-    setError('');
-  };
-
   return (
     <>
       <CustomNbar />
@@ -39,13 +34,8 @@ const AuthPage = () => {
           <Col className="d-flex justify-content-center">
             <Card className="shadow-sm py-1 p-3 shadow-sm m-4" style={{ width: '100%', maxWidth: '500px' }}>
               <Card.Body>
-                <h3 className="text-center mb-3">
-                  {isLogin ? 'Acesse sua Conta' : 'Crie sua Conta'}
-                </h3>
+                <h3 className="text-center mb-3">Acesse sua Conta</h3>
                 {error && <Alert variant="danger">{error}</Alert>}
-                <a className="mt-2 text-secondary" onClick={toggleAuthMode}>
-                  {isLogin ? 'Não tem uma conta? Cadastre-se' : 'Já tem uma conta? Faça login'}
-                </a>
                 <Form onSubmit={handleAuth}>
                   <Form.Group className='text-start text-secondary' controlId="formUsername">
                     <Form.Label className="text-dark">Login</Form.Label>
@@ -69,20 +59,18 @@ const AuthPage = () => {
                   <p className='justify-content-start mt-3 text-dark text-decoration-underline'>Esqueci minha senha</p>
                   </Form.Group>
                   <Button className="w-100 mt-1 mb-3" type="submit" style={{ backgroundColor: '#c92071' }}>
-                    {isLogin ? 'Login' : 'Cadastrar'}
+                    Login
                   </Button>
                   <div className="mt-2 ms-3 d-flex align-items-center text-secondary">
-                    {isLogin ? 'Ou faça o login com' : 'Já tem uma conta? Faça login'}
+                    Ou faça o login com
                     <div className="d-flex justify-content-start ms-3">
                       <img src={gmail} alt="Google" className="me-2" style={{ width: "15%" }} />
                       <img src={facebookIcon} alt="Facebook" className="me-2" style={{ width: "15%" }} />
                     </div>
                   </div>
-                  {!isLogin && (
-                    <Link to={paths.cadastro} className="mt-2 ms-3 d-flex align-items-center text-secondary">
-                      Não tem uma conta? Cadastre-se
-                    </Link>
-                  )}
+                  <div className="mt-2 ms-3 d-flex align-items-center text-secondary">
+                    Não tem uma conta? <Link to={paths.cadastro} className="ms-1">Cadastre-se</Link>
+                  </div>
                 </Form>
               </Card.Body>
             </Card>
