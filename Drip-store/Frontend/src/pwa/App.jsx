@@ -43,7 +43,7 @@ const App = () => {
               <Route path={paths.login} element={<AuthPage />} />
               <Route path={paths.payment} element={<PaymentPage />} />
               <Route path={paths.admin} element={<PrivateRoute element={<AdminPage />} />} />
-              <Route path="*" element={<Navigate to={paths.home} />} />
+              <Route path={paths.cadastro} element={<Navigate to={paths.home} />} />
             </Routes>
             {error && <p>{error}</p>}
           </Router>

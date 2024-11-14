@@ -71,13 +71,18 @@ const AuthPage = () => {
                   <Button className="w-100 mt-1 mb-3" type="submit" style={{ backgroundColor: '#c92071' }}>
                     {isLogin ? 'Login' : 'Cadastrar'}
                   </Button>
-                  <a className="mt-2 ms-3 d-flex align-items-center text-secondary" onClick={toggleAuthMode}>
+                  <div className="mt-2 ms-3 d-flex align-items-center text-secondary">
                     {isLogin ? 'Ou faça o login com' : 'Já tem uma conta? Faça login'}
                     <div className="d-flex justify-content-start ms-3">
                       <img src={gmail} alt="Google" className="me-2" style={{ width: "15%" }} />
                       <img src={facebookIcon} alt="Facebook" className="me-2" style={{ width: "15%" }} />
                     </div>
-                  </a>
+                  </div>
+                  {!isLogin && (
+                    <Link to={paths.cadastro} className="mt-2 ms-3 d-flex align-items-center text-secondary">
+                      Não tem uma conta? Cadastre-se
+                    </Link>
+                  )}
                 </Form>
               </Card.Body>
             </Card>

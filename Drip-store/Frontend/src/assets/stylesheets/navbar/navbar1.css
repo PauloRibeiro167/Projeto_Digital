@@ -51,6 +51,7 @@
 }
 
 .nav-link:hover {
+  color: var(--primary-color) !important;
   background-color: var(--secondary-color);
   border-radius: 5px;
 }

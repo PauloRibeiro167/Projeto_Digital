@@ -25,7 +25,7 @@ const CustomNavbar = () => {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="navbar-collapse justify-content-center me-5">
-              <Seachbar className="searchbar mx-auto" />
+              <Seachbar className="searchbar mx-auto" style={{width: "40%"}} />
             </Navbar.Collapse>
               <Nav className="ml-auto nav-items">
                 <ToggleTheme/>
@@ -46,19 +46,19 @@ const CustomNavbar = () => {
           </Container>
         </Navbar>
       
-      <Navbar  expand="lg" className="custom-navbar te">
-        <Container fluid className="navbar-container te">
-          <Navbar.Toggle aria-controls="basic-navbar-nav-2 te" />
-          <Navbar.Collapse id="basic-navbar-nav-2" className="navbar-collapse te">
-            <Nav className="nav-items justify-content-start ms-5">
-              <Nav.Link as={Link} to="/home" className="nav-link">Home</Nav.Link>
-              <Nav.Link as={Link} to="/produtos" className="nav-link">Produtos</Nav.Link>
-              <Nav.Link as={Link} to="/categorias" className="nav-link">Categorias</Nav.Link>
-              <Nav.Link as={Link} to="/meus-pedidos" className="nav-link">Meus Pedidos</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+        <Navbar expand="lg" className="custom-navbar ms-5">
+          <Container fluid className="navbar-container">
+            <Navbar.Toggle aria-controls="basic-navbar-nav-2 te" />
+            <Navbar.Collapse id="basic-navbar-nav-2" className="navbar-collapse te">
+              <Nav className="nav-items justify-content-start ms-5">
+                <Nav.Link as={Link} to="/home" className="nav-link">Home</Nav.Link>
+                <Nav.Link as={Link} to="/produtos" className="nav-link">Produtos</Nav.Link>
+                <Nav.Link as={Link} to="/categorias" className="nav-link">Categorias</Nav.Link>
+                <Nav.Link as={Link} to="/meus-pedidos" className="nav-link">Meus Pedidos</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
 
       <CustomOffcanvas show={show} handleClose={handleClose} title="Carrinho de Compras">
         {Array.isArray(cartItems) && cartItems.length === 0 ? (
