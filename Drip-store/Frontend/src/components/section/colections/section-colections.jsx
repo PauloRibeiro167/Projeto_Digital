@@ -12,13 +12,13 @@ export { bone, calca, camiseta, fonesDeOuvido, tenis };
 const SectionColections = () => {
   return (
     <Container className='section-colections text-center'>
-      <h3>Coleções em destaque</h3>
+      <h3 className='text-color'>Coleções em destaque</h3>
       <Row className="justify-content-center">
         <Col md={2} className="mb-4">
           <Card className="bg-transparent border-0">
             <Card.Img src={camiseta} alt="Camiseta" />
             <Card.Body>
-              <Card.Text>Camiseta</Card.Text>
+              <Card.Text className='text-color'>Camiseta</Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -26,7 +26,7 @@ const SectionColections = () => {
           <Card className="bg-transparent border-0">
             <Card.Img src={calca} alt="Calça" />
             <Card.Body>
-              <Card.Text>Calça</Card.Text>
+              <Card.Text className='text-color'>Calça</Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -34,7 +34,7 @@ const SectionColections = () => {
           <Card className="bg-transparent border-0">
             <Card.Img src={bone} alt="Boné" />
             <Card.Body>
-              <Card.Text>Boné</Card.Text>
+              <Card.Text className='text-color'>Boné</Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -42,7 +42,7 @@ const SectionColections = () => {
           <Card className="bg-transparent border-0">
             <Card.Img src={fonesDeOuvido} alt="Fones de Ouvido" />
             <Card.Body>
-              <Card.Text>Headphones</Card.Text>
+              <Card.Text className='text-color'>Headphones</Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -50,7 +50,7 @@ const SectionColections = () => {
           <Card className="bg-transparent border-0">
             <Card.Img src={tenis} alt="Tênis" />
             <Card.Body>
-              <Card.Text>Tênis</Card.Text>
+              <Card.Text className='text-color'>Tênis</Card.Text>
             </Card.Body>
           </Card>
         </Col>

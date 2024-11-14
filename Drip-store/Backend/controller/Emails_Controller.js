@@ -10,15 +10,15 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const EmailController = {
+const ControladorEmail = {
   // Função para enviar um e-mail de boas-vindas para novos usuários
-  send_welcome_email: (req, res) => {
-    const { email, name } = req.body;
+  enviar_email_boas_vindas: (req, res) => {
+    const { email, nome } = req.body;
     const mailOptions = {
       from: 'seu-email@gmail.com',
       to: email,
       subject: 'Bem-vindo à nossa loja!',
-      text: `Olá ${name},\n\nBem-vindo à nossa loja! Estamos felizes em tê-lo conosco.\n\nAtenciosamente,\nEquipe da Loja`
+      text: `Olá ${nome},\n\nBem-vindo à nossa loja! Estamos felizes em tê-lo conosco.\n\nAtenciosamente,\nEquipe da Loja`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -30,13 +30,13 @@ const EmailController = {
   },
 
   // Função para enviar confirmações de pedido para usuários
-  send_order_confirmation: (req, res) => {
-    const { email, orderId } = req.body;
+  enviar_confirmacao_pedido: (req, res) => {
+    const { email, pedidoId } = req.body;
     const mailOptions = {
       from: 'seu-email@gmail.com',
       to: email,
       subject: 'Confirmação de Pedido',
-      text: `Olá,\n\nSeu pedido ${orderId} foi confirmado com sucesso.\n\nAtenciosamente,\nEquipe da Loja`
+      text: `Olá,\n\nSeu pedido ${pedidoId} foi confirmado com sucesso.\n\nAtenciosamente,\nEquipe da Loja`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -48,13 +48,13 @@ const EmailController = {
   },
 
   // Função para enviar atualizações de envio e entrega
-  send_shipping_update: (req, res) => {
-    const { email, trackingNumber } = req.body;
+  enviar_atualizacao_envio: (req, res) => {
+    const { email, numeroRastreamento } = req.body;
     const mailOptions = {
       from: 'seu-email@gmail.com',
       to: email,
       subject: 'Atualização de Envio',
-      text: `Olá,\n\nSeu pedido foi enviado. O número de rastreamento é ${trackingNumber}.\n\nAtenciosamente,\nEquipe da Loja`
+      text: `Olá,\n\nSeu pedido foi enviado. O número de rastreamento é ${numeroRastreamento}.\n\nAtenciosamente,\nEquipe da Loja`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -66,13 +66,13 @@ const EmailController = {
   },
 
   // Função para enviar e-mails de redefinição de senha
-  send_password_reset: (req, res) => {
-    const { email, resetLink } = req.body;
+  enviar_redefinicao_senha: (req, res) => {
+    const { email, linkRedefinicao } = req.body;
     const mailOptions = {
       from: 'seu-email@gmail.com',
       to: email,
       subject: 'Redefinição de Senha',
-      text: `Olá,\n\nClique no link a seguir para redefinir sua senha: ${resetLink}\n\nAtenciosamente,\nEquipe da Loja`
+      text: `Olá,\n\nClique no link a seguir para redefinir sua senha: ${linkRedefinicao}\n\nAtenciosamente,\nEquipe da Loja`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -85,4 +85,4 @@ const EmailController = {
 };
 
 // Exportar o controlador
-module.exports = EmailController;
+module.exports = ControladorEmail;

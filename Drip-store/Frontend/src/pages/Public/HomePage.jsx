@@ -7,15 +7,16 @@ import Footer1 from '@components/footer/footer1';
 import SectionCategorias from '@components/section/categorias/section-categorias.jsx';
 import SectionsColections from '@components/section/colections/section-colections.jsx';
 import SectionProducts from '@components/section/Products/products.jsx';
+import "@styles/pages/homePage.css";
 
 const HomePage = () => {
   return (
-    <div className="w-100">
+    <div className="w-100 background">
       <CustomNavbar />
       <Carrossel1 />
       <SectionCategorias />
       <SectionsColections />
-      <SectionProducts />
+      <SectionProducts/>
       <Footer1 />
     </div>
   );

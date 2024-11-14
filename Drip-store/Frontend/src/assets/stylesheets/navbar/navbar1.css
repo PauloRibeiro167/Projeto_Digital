@@ -14,12 +14,6 @@
   align-items: center;
 }
 
-.navbar-brand {
-  text-align: center;
-  color: var(--text-color) !important;
-  background-color: var(--background-color);
-}
-
 .navbar-brand img {
   max-height: 50px;
   content: var(--image-log);

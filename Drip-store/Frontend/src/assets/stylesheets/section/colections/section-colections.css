@@ -1,2 +1,18 @@
 @import '@styles/themes/light-theme.css';
 
+.section-colections {
+  background-color: var(--background-color);
+  padding: 50px 0;
+  margin-top: 50px;
+  transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+.text-color {
+  color: var(--text-color);
+  transition: color var(--transition-duration);
+}
+
+.text-color-black {
+  color: var(--text-color);
+  transition: color var(--transition-duration);
+}

@@ -60,31 +60,26 @@ show_tracking_info: exibir detalhes e status de entrega atualizados.
 Além dos controllers mencionados, algumas funcionalidades adicionais podem complementar o e-commerce:
 
 CartController:
-
 Controla o carrinho de compras do usuário.
 Funções: add_to_cart, remove_from_cart, checkout.
-ProductController:
 
+ProductController:
 Gerencia o catálogo de produtos.
 Funções: list_products, show_product, filter_by_category.
-ReviewController:
 
+ReviewController:
 Permite que os usuários façam avaliações e comentários sobre produtos.
 Funções: create_review, update_review, delete_review.
-WishlistController:
 
+WishlistController:
 Gerencia a lista de desejos dos usuários.
 Funções: add_to_wishlist, remove_from_wishlist, view_wishlist.
-PaymentController:
 
+PaymentController:
 Lida com pagamentos e confirmações.
 Funções: process_payment, confirm_payment.
-DiscountController:
 
+DiscountController:
 Gerencia cupons e promoções.
 Funções: apply_discount, remove_discount, list_discounts.
 Esses controllers formam uma estrutura robusta, capaz de atender aos requisitos básicos e avançados de um e-commerce.
-
-cd /workspaces/Projeto_Digital/Drip-store/Backend/models
-
-touch User.js Role.js Access.js Product.js Category.js Order.js OrderItem.js Cart.js CartItem.js Review.js Wishlist.js WishlistItem.js Payment.js Discount.js Address.js Tracking.js Email.js QRCode.js
