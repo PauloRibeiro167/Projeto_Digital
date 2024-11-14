@@ -2,6 +2,7 @@
 @import '@styles/themes/dark-theme.css';
 @import '@styles/themes/light-theme.css';
 
+
 .custom-navbar {
   width: 100%;
   background-color: var(--background-color);
@@ -46,8 +47,30 @@
 
 .nav-link:hover {
   color: var(--primary-color) !important;
-  background-color: var(--secondary-color);
   border-radius: 5px;
+  transform: scale(1.2);
+  transition: transform 0.5s ease;
+  
+  background: rgba(255, 0, 0, 0);
+  font-weight: 900;
+  letter-spacing: 1px;
+  
+  svg {
+    height: 45px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  
+  rect {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 5;
+    stroke-dasharray: 15, 310;
+    stroke-dashoffset: 48;
+    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  }
 }
 
 .nav-link:hover::after {

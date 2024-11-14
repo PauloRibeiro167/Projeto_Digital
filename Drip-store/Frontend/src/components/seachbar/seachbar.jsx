@@ -10,29 +10,20 @@ import pesquisa from '@images/icons/pesquisa.png';
 const Seachbar = () => {
   const handleSearch = (event) => {
     event.preventDefault();
-        // {falta implementar logicas de busca}
+    
     console.log('Formulário enviado');
   };
 
   return (
-
     <Form className="form w-50" onSubmit={handleSearch}>
-
-      <InputGroup className="search bg-primary">
-        <FormControl
-          type="search"
-          placeholder="Pesquisar"
-          aria-label="Search"
-          className="border-0"
-        />
-
-
-        <InputGroup.Text className="botão border-0">
+      <InputGroup className="search custom-input-group">
+        <FormControl type="search" placeholder="Pesquisar" aria-label="Search" />
+        <InputGroup.Text className="botão">
           <input
             type="image"
             src={pesquisa}
             alt="Pesquisa"
-            className="icon border-0"
+            className="icon"
           />
         </InputGroup.Text>
       </InputGroup>

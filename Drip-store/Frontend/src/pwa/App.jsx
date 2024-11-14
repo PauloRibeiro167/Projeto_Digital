@@ -44,11 +44,7 @@ const App = () => {
               <Route path={paths.login} element={<AuthPage />} />
               <Route path={paths.payment} element={<PaymentPage />} />
               <Route path={paths.admin} element={<PrivateRoute element={<AdminPage />} />} />
-<<<<<<< Updated upstream
-              <Route path={paths.cadastro} element={<Navigate to={paths.home} />} />
-=======
               <Route path={paths.cadastro} element={<CadastroPage />} />
->>>>>>> Stashed changes
             </Routes>
             {error && <p>{error}</p>}
           </Router>

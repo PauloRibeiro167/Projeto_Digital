@@ -3,7 +3,6 @@ import { Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '@styles/navbar/navbar1.css';
 import logoDrip from '@images/logo-header.png';
-import { Link } from 'react-router-dom';
 
 const CustomNbar = () => {
   return (
