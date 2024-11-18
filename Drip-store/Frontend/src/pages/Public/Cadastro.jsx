@@ -6,8 +6,6 @@ import mercadoria from '@images/sapatos.png';
 import Footer1 from '@components/footer/footer1';
 import { CustomNbar } from '@components/navbar/nbar.jsx';
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
-// import facebookIcon from '@images/icons/facebook.png';
-// import gmail from '@images/icons/gmail.png';
 import { paths } from '../../utils/paths';
 import { Link } from 'react-router-dom';
 
@@ -40,7 +38,7 @@ const CadastroPage = () => {
                   aqui que eu estou pelo amor de deus 
                 </h3>
                 {error && <Alert variant="danger">{error}</Alert>}
-<Form onSubmit={handleAuth}>
+                  <Form onSubmit={handleAuth}>
                   <Form.Group className='text-start text-secondary' controlId="formUsername">
                     <Form.Label className="text-dark">Login</Form.Label>
                     <Form.Control
