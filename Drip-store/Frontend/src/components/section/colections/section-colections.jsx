@@ -11,52 +11,29 @@ export { bone, calca, camiseta, fonesDeOuvido, tenis };
 
 const SectionColections = () => {
   return (
-    <Container className='section-colections text-center'>
-      <h3 className='text-color'>Coleções em destaque</h3>
-      <Row className="justify-content-center">
-        <Col md={2} className="mb-4">
-          <Card className="bg-transparent border-0">
-            <Card.Img src={camiseta} alt="Camiseta" />
-            <Card.Body>
-              <Card.Text className='text-color'>Camiseta</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={2} className="mb-4">
-          <Card className="bg-transparent border-0">
-            <Card.Img src={calca} alt="Calça" />
-            <Card.Body>
-              <Card.Text className='text-color'>Calça</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={2} className="mb-4">
-          <Card className="bg-transparent border-0">
-            <Card.Img src={bone} alt="Boné" />
-            <Card.Body>
-              <Card.Text className='text-color'>Boné</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={2} className="mb-4">
-          <Card className="bg-transparent border-0">
-            <Card.Img src={fonesDeOuvido} alt="Fones de Ouvido" />
-            <Card.Body>
-              <Card.Text className='text-color'>Headphones</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={2} className="mb-4">
-          <Card className="bg-transparent border-0">
-            <Card.Img src={tenis} alt="Tênis" />
-            <Card.Body>
-              <Card.Text className='text-color'>Tênis</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
+    <section className="py-5">
+    <Container>
+      <h3 className="mb-4 text-center">Coleções em Destaque</h3>
+      <Row className="g-3 justify-content-center">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <Col xs={6} md={2} key={index}>
+            <Card className="border-0">
+              <Card.Img
+                src="https://via.placeholder.com/150"
+                alt="Novo drop Supreme"
+                className="card-img-top"
+              />
+              <Card.Body className="text-center">
+                <h5 className="card-title mt-2">Camisetas</h5>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
       </Row>
     </Container>
-  );
-}
+  </section>
+);
+};
+
 
 export default SectionColections;

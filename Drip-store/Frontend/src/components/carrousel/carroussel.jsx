@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
 import '@styles/carroussel/carroussel.css';
 import { fetchData } from '../../services/api';
+import image from '@images/White-Sneakers-PNG-Clipart 1.svg';
 
 const Carrossel1 = () => {
   const [slides, setSlides] = useState([]);
@@ -28,34 +29,39 @@ const Carrossel1 = () => {
   };
 
   return (
-    <div className="carousel-container mt-4 w-100 bg">
-      <div className="carousel-content" >
-        <Carousel activeIndex={activeIndex} onSelect={handleSelect} interval={3000}>
+    <div className="carousel-container w-100 bg-light">
+      <div className="carousel-content h-100">
+        <Carousel activeIndex={activeIndex} onSelect={handleSelect} interval={3000} className="h-100">
           {slides.map((slide, index) => (
-            <Carousel.Item key={index}>
-              <div className="carousel-item-content">
-                <div className="carousel-text">
-                  <div className="carousel-info">
-                    <h6 style={{color: '#f6aa1c'}}>Melhores ofertas personalizadas</h6>
-                    <h2 className='text'>Queima de estoque Nike 🔥</h2>
-                    <p>Consequat culpa exercitation mollit nisi excepteur do do <br /> tempor laboris eiusmod irure consectetur.</p>
-                    <button className="btn btn-primary">Ver ofertas</button>
+            <Carousel.Item key={index} className="h-100">
+              <div className="d-flex align-items-center justify-content-center text-md-start text-center container flex-column flex-md-row">
+                <section className="order-2 order-md-1 py-5 flex-fill">
+                  <div>
+                    <h6 className="carousel-mini-text">Melhores ofertas personalizadas</h6>
+                    <h1 className=" carousel-info">
+                      Queima de estoque Nike <span className="text-danger">🔥</span>
+                    </h1>
+                    <p className=" carousel-text ">
+                      Consequat culpa exercitation mollit nisi excepteur do do tempor laboris
+                      eiusmod irure consectetur.
+                    </p>
+                    <button className="btn btn-carousel col-md-12">Ver Ofertas</button>
                   </div>
-                </div>
-                <div className="carousel-image">
+                </section>
+                <section className="order-1 order-md-2 flex-fill">
                   <img
                     className="d-block w-100"
-                    src={slide.imagem_url}
+                    src={image}
                     alt={slide.nome}
                     style={{ marginBottom: '20px' }}
                   />
-                </div>
+                </section>
               </div>
             </Carousel.Item>
           ))}
         </Carousel>
         <div className="radio-buttons mt-4">
-          {slides.map((slides, index) => (
+          {slides.map((_, index) => (
             <React.Fragment key={index}>
               <input
                 type="radio"

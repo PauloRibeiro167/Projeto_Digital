@@ -1,50 +1,90 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
 import '@styles/section/Products/products.css';
 import { fetchData } from '@api-tenis';
 
 const SectionProducts = () => {
-  const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const getProduct = async () => {
+    const getProducts = async () => {
       try {
-        const data = await fetchData();
-        const product = data.find(item => item.id === 0);
-        setProduct(product);
+        const data = await fetchData(); // Fetches data from your API
+        setProducts(data.slice(0, 10)); // Limits to 10 products for the grid
       } catch (error) {
-        console.error('Erro ao buscar produto:', error);
+        console.error('Erro ao buscar produtos:', error);
+        // Fallback to mock data if API call fails
+        setProducts([
+          {
+            id: 1,
+            nome: 'Produto Mock',
+            preco_original: 200,
+            preco_desconto: 100,
+            imagem_url: 'https://via.placeholder.com/200',
+          },
+          // Add more mock data as needed
+        ]);
       }
     };
 
-    getProduct();
+    getProducts();
   }, []);
 
-  const renderCards = () => {
-    if (!product) return null;
-
-    return Array.from({ length: 8 }).map((_, index) => (
-      <Col key={index} md={3} className='mb-2'>
-      <Card>
-        <Card.Img variant="top" src={product.imagem_url} />
-        <Card.Body/>
-      </Card>
-      <p className='text-start text-color fw-bold mt-4'>Tênis</p>
-      <Card.Title className='text-start text-color mb-1'>{product.nome}</Card.Title>
-      <Card.Text className='text-start mb-5'>
-        <span className="text-color"><s className='text-secondary'>${product.preco_original}</s></span><strong className='text-color-black ms-2'>${product.preco_desconto}</strong>
-      </Card.Text>
-    </Col>
-    ));
-  };
-
   return (
-    <Container className='p-5 mb-4 mt-2'>
-      <Row>
-        {renderCards()}
-      </Row>
-    </Container>
+    <>
+ <section className="bg-light py-5">
+<Container>
+<div className="row d-flex align-items-center justify-content-between mb-4">
+    <div className="col-auto">
+      <h3 className="text-start">Coleções em destaque</h3>
+    </div>
+    <div className="col-auto">
+      <a>Ver todos</a>
+    </div>
+  </div>
+  <Row className="row-cols-2 row-cols-md-5 g-4">
+    {products.map((product, index) => (
+      <Col key={index}>
+        <div className="custom-card">
+          <div className="image-container">
+            {product.preco_desconto && (
+              <div className="discount-badge">
+                {Math.round(
+                  ((product.preco_original - product.preco_desconto) /
+                    product.preco_original) *
+                    100
+                )}
+                % OFF
+              </div>
+            )}
+            <img
+              src={product.imagem_url || 'https://via.placeholder.com/200'}
+              alt={product.nome}
+              className="product-image"
+            />
+          </div>
+          <div className="custom-body text-start">
+            <h6 className="text-muted">Tênis</h6>
+            <h5 className="product-title">{product.nome}</h5>
+            <p className="price">
+              <del>${product.preco_original}</del>{' '}
+              <span className="text-descont">${product.preco_desconto}</span>
+            </p>
+          </div>
+        </div>
+      </Col>
+    ))}
+  </Row>
+</Container>
+
+</section>
+
+
+
+
+    </>
   );
 };
 
 export default SectionProducts;
+``

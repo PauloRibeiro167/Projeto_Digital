@@ -1,32 +1,36 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import '@styles/special_offer/special_offer.css';
-import specialOfferImage from '@images/special_offer.png'; 
+import '@styles/section/special_offer/special_offer.css';
+import specialOfferImage from '@images/Laye 1.png'; 
 
 const SpecialOffer = () => {
-  const specialOffer = {
-    title: 'Oferta Especial',
-    description: 'Descrição da oferta especial',
-    imageUrl: specialOfferImage,
-    discount: '50% Off'
-  };
-
   return (
-    <Container className='special-offer'>
-      <h2 className='text-center text-color'>Oferta Especial</h2>
-      <Row className='justify-content-center'>
-        <Col md={6} className='mb-4'>
-          <Card>
-            <Card.Img variant="top" src={specialOffer.imageUrl} alt={specialOffer.title} />
-            <Card.Body>
-              <Card.Title>{specialOffer.title}</Card.Title>
-              <Card.Text>{specialOffer.description}</Card.Text>
-              <Button variant="success">{specialOffer.discount}</Button>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+    <section className="bg-light text-center py-5">
+      <Container className="d-flex align-items-center justify-content-center text-center text-md-start flex-column flex-md-row">
+        <div className="esfera"></div>
+        <section className="order-md-1">
+          <img 
+            src={specialOfferImage} 
+            alt="Tênis Nike" 
+            className="img-fluid" 
+            style={{ position: 'relative', zIndex: 1 }} 
+          />
+        </section>
+
+        <section className="order-md-2 py-5">
+          <div>
+            <h6 className=" ">Oferta especial</h6>
+            <h1 className="special-text">
+              Air Jordan edição de colecionador
+            </h1>
+            <p className="text-wrap lh-base">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+            </p>
+            <Button variant="danger">Ver Ofertas</Button>
+          </div>
+        </section>
+      </Container>
+    </section>
   );
 };
 
