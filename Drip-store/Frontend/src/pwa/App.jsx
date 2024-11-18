@@ -17,13 +17,14 @@ import { paths } from '../utils/paths';
 import ErrorBoundary from '../components/Error/ErrorBoundary';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PaymentPage from '../pages/Public/PaymentPage.jsx';
+import ErrorPage from '../pages/Public/ErrorPage.jsx';
 
 const App = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getData() {
-      const [err, result] = await handlePromise(fetchData());
+      const [err] = await handlePromise(fetchData());
       if (err) {
         setError('Erro ao buscar dados');
         console.error('Erro no getData:', err);
@@ -32,6 +33,16 @@ const App = () => {
 
     getData();
   }, []);
+
+  if (error) {
+    return (
+      <div>
+        <h1>{error}</h1>
+        <p>Ocorreu um erro ao carregar os dados da aplicação. Por favor, tente novamente mais tarde.</p>
+        <button onClick={() => window.location.reload()}>Recarregar Página</button>
+      </div>
+    );
+  }
 
   return (
     <ErrorBoundary>
@@ -45,8 +56,8 @@ const App = () => {
               <Route path={paths.payment} element={<PaymentPage />} />
               <Route path={paths.admin} element={<PrivateRoute element={<AdminPage />} />} />
               <Route path={paths.cadastro} element={<CadastroPage />} />
+              <Route path="/error" element={<ErrorPage />} />
             </Routes>
-            {error && <p>{error}</p>}
           </Router>
         </CartProvider>
       </AuthProvider>
