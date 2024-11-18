@@ -7,23 +7,33 @@ import { CustomNbar } from '@components/navbar/nbar.jsx';
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import facebookIcon from '@images/icons/facebook.png';
 import gmail from '@images/icons/gmail.png';
-import { Link } from 'react-router-dom';
-import { paths } from '../utils/paths';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AuthPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleAuth = (e) => {
+  const handleAuth = async (e) => {
     e.preventDefault();
     if (!username || !password) {
       setError('Por favor, preencha todos os campos.');
       return;
     }
-    const userData = { username, role: username === 'superadmin' ? 'superadmin' : 'user' };
-    login(userData);
+
+    try {
+      const userData = await login({ username, password });
+      if (userData.role === 'super_admin') {
+        navigate('/admin');
+      } else {
+        navigate('/home');
+      }
+    } catch (err) {
+      setError('Credenciais inválidas');
+      navigate('/login');
+    }
   };
 
   return (
