@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Navbar, Nav, Container, Badge } from 'react-bootstrap';
+import React from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '@styles/navbar/navbar1.css';
 import logo from '@images/logo-header.png';
@@ -7,7 +7,7 @@ import { BtPrymary } from '@components/button/Buttons';
 import Seachbar from '@components/seachbar/seachbar';
 import CartIcon from '@components/cart/CartIcon';
 
-const CustomNavbar = ({ cartItemCount }) => {
+const CustomNavbar = () => {
   return (
     <>
       <Navbar bg="light" expand="lg" className="w-100">
@@ -20,7 +20,7 @@ const CustomNavbar = ({ cartItemCount }) => {
             <Nav.Link as={Link} to="/login" className="text-dark">
               <BtPrymary>Cadastre-se / Entrar</BtPrymary>
             </Nav.Link>
-            <CartIcon itemCount={cartItemCount} />
+            <CartIcon itemCount={5} />
           </Nav>
         </Container>
       </Navbar>

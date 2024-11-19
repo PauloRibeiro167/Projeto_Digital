@@ -1,0 +1,8 @@
+.discount-button {
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--dicont-background);
+  font-size: 12px;
+}
