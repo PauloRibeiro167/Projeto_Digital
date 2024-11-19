@@ -16,3 +16,41 @@
   color: var(--text-color);
   transition: color var(--transition-duration);
 }
+
+/* Remove qualquer fundo ou borda do "card" */
+.card {
+  background: none !important; /* Remove o fundo */
+  border: none !important; /* Remove a borda */
+  box-shadow: none !important; /* Remove qualquer sombra padrão */
+}
+
+/* Estiliza o container da imagem */
+.image-container-product {
+  width: 100px; /* Tamanho do container redondo */
+  height: 100px;
+  background-color: #fff; /* Fundo transparente */
+  border-radius: 50%; /* Forma redonda */
+  display: flex;
+  justify-content: center; /* Alinha horizontalmente */
+  align-items: center; /* Alinha verticalmente */
+  margin: 0 auto;
+  transition: box-shadow 0.3s ease-in-out; /* Transição suave para a sombra */
+  color: rgba(201, 32, 113, 1);
+}
+
+/* Estiliza a imagem */
+.card-img-top-product {
+  width: 60%; /* Ajusta o tamanho da imagem */
+  height: auto; /* Mantém a proporção */
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Transições para o efeito hover */
+}
+
+/* Sombra e transformação ao passar o mouse */
+.card:hover .image-container-product {
+  box-shadow: rgba(0, 0, 0, 0.05); /* Adiciona sombra no hover */
+}
+
+.card:hover .card-img-top-product{
+  fill: rgba(201, 32, 113, 1); /* Altera a cor para o rosa desejado */
+}
+

@@ -1,55 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import React from 'react';
 import '@styles/section/categorias/section-categorias.css';
 
+// Importação de imagens estáticas
+import dropSupreme from '@images/collection-1.png';
+import colecaoAdidas from '@images/collection-2.png';
+import beatBass from '@images/collection-3.png';
+
+const collections = [
+  {
+    src: dropSupreme,
+    alt: 'Novo drop Supreme',
+    discount: '30% OFF',
+  },
+  {
+    src: colecaoAdidas,
+    alt: 'Coleção Adidas',
+    discount: '20% OFF',
+  },
+  {
+    src: beatBass,
+    alt: 'Beat Bass',
+    discount: '50% OFF',
+  },
+];
+
 const SectionCategorias = () => {
-  // Estado para armazenar as coleções
-  const [collections, setCollections] = useState([]);
-
-  // Efeito para buscar as coleções da API
-  useEffect(() => {
-    const fetchCollections = async () => {
-      try {
-        // Substitua pela URL da sua API
-        const response = await fetch('URL_DA_SUA_API');
-        const data = await response.json();
-        
-        // Assumindo que a resposta da API tenha um array de coleções
-        setCollections(data); 
-      } catch (error) {
-        console.error('Erro ao buscar as coleções:', error);
-      }
-    };
-
-    fetchCollections();
-  }, []); // O array vazio faz com que o useEffect rode apenas uma vez
-
-  // Função para renderizar os cards
-  const renderCard = (collection, index) => (
-    <Col md={4} key={index}>
-      <Card className="bg-transparent border-0 position-relative">
-        <Card.Img src={collection.src} alt={collection.alt} />
-        <Button variant="success" className="position-absolute top-0 start-0 m-5">
-          {collection.discount || '30% Off'}  {/* Desconto, se houver */}
-        </Button>
-        <Button variant="primary" className="position-absolute bottom-0 start-50 translate-middle-x mb-5">
-          Comprar
-        </Button>
-      </Card>
-    </Col>
-  );
-
   return (
-    <Container className="section-categorias text">
-      <h4 className="text-start text-color ms-4">Coleções em destaque</h4>
-      <Row>
-        {collections.length > 0 ? (
-          collections.map((collection, index) => renderCard(collection, index))
-        ) : (
-          <Col>Loading...</Col> // Exibe um texto de carregamento enquanto as coleções não são carregadas
-        )}
-      </Row>
-    </Container>
+    <section className="py-5" style={{ background: "rgba(249, 248, 254, 1)" }}>
+      <div className="container">
+        <h3 className="mb-4">Coleções em Destaque</h3>
+        <div className="row g-3">
+          {collections.map((collection, index) => (
+            <div className="col-md-4" key={index}>
+              <div className="card">
+                <div className="position-relative">
+                  <img
+                    src={collection.src}
+                    className="card-img-top"
+                    alt={collection.alt}
+                  />
+                  <span className="badge custom-badge">{collection.discount}</span>
+                  <a href="#" className="btn custom-button mb-4 ms-4">
+                    Comprar
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
