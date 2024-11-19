@@ -5,7 +5,7 @@ import specialOfferImage from '@images/Laye 1.png';
 
 const SpecialOffer = () => {
   return (
-    <section className="bg-light text-center py-5">
+    <section className="text-center py-5 "style={{ background: "rgba(255, 255, 255, 1)" }}>
       <Container className="d-flex align-items-center justify-content-center text-center text-md-start flex-column flex-md-row">
         <div className="esfera"></div>
         <section className="order-md-1">

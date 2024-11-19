@@ -3,7 +3,7 @@
   "workbench.statusBar.visible": true,
   "workbench.commandPalette.preserveInput": false,
   "workbench.layoutControl.enabled": false,
-  "workbench.activityBar.location": "top",
+  "workbench.activityBar.location": "default",
   "workbench.colorTheme": "One Monokai 80s",
   "workbench.iconTheme": "icons"
 }

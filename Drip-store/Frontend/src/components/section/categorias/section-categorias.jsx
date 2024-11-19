@@ -1,5 +1,8 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Container, Row, Col, Card } from 'react-bootstrap';
+=======
+>>>>>>> 77c0e4f0ef87893e69caff73000ed5f7bb30b9bf
 import '@styles/section/categorias/section-categorias.css';
 import collection1 from '@images/section/collections/collection-1.png';
 import collection2 from '@images/section/collections/collection-2.png';
@@ -11,6 +14,29 @@ const collections = [
   { src: collection1, alt: "Novo drop Supreme", discount: 40 },
   { src: collection2, alt: "Coleção adiddas", discount: 30 },
   { src: collection3, alt: "Coleção 2", discount: 30 },
+];
+
+// Importação de imagens estáticas
+import dropSupreme from '@images/collection-1.png';
+import colecaoAdidas from '@images/collection-2.png';
+import beatBass from '@images/collection-3.png';
+
+const collections = [
+  {
+    src: dropSupreme,
+    alt: 'Novo drop Supreme',
+    discount: '30% OFF',
+  },
+  {
+    src: colecaoAdidas,
+    alt: 'Coleção Adidas',
+    discount: '20% OFF',
+  },
+  {
+    src: beatBass,
+    alt: 'Beat Bass',
+    discount: '50% OFF',
+  },
 ];
 
 const SectionCategorias = () => {
