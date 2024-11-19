@@ -2,7 +2,6 @@
 @import '@styles/themes/dark-theme.css';
 @import '@styles/themes/light-theme.css';
 
-
 .custom-navbar {
   width: 100%;
   background-color: var(--background-color);
@@ -16,7 +15,7 @@
 }
 
 .navbar-brand img {
-  max-height: 50px;
+  max-height: 1.9rem;
   content: var(--image-log);
 }
 
@@ -52,7 +51,6 @@
   transition: transform 0.5s ease;
 }
 
-
 .nav-link:hover::after {
   background-color: var(--primary-color);
 }
@@ -64,4 +62,54 @@
 
 .cart-badge {
   font-size: 0.75rem;
+}
+
+.custom-navbar .menu-button {
+  background-color: var(--light-gray-3);
+  border: none;
+  color: var(--Dark-gray);
+}
+
+.custom-navbar .menu-button:hover {
+  color: var(--text-color);
+  background-color: var(--Dark-gray-2);
+  border-color: #ffffff;
+}
+
+.custom-navbar .logo-image {
+  max-height: 40px;
+}
+
+.custom-navbar .custom-cart-icon {
+  font-size: 1.5rem;
+}
+
+.custom-navbar .cart-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.glow-on-hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+}
+
+.button {
+  background-color: var(--background-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.btn-scale:hover {
+  transform: scale(1.5);
+  transition: transform 0.4s ease-in-out;
 }

@@ -10,7 +10,7 @@ export const BtPrymary = ({ children }) => {
 
 export const BtSecondary = ({ children }) => {
   return (
-    <button className="btn-base btSecondary glow-on-hover">{children}</button>
+    <button className="btn-base btSecondary glow-secundary">{children}</button>
   );
 };
 
