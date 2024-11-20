@@ -21,15 +21,12 @@ const CustomNavbar = () => {
         <Navbar expand="sm" className="custom-navbar d-flex d-md-none">
           <Container fluid className="navbar-container">
             <button onClick={() => setShowDropdown(true)} className="button  border-0 btn-scale">
-              <i className="bi bi-list fs-3 text-dark"></i>
+              <i className="bi bi-list fs-3 menu-icon ms-2"></i>
             </button>
-
-                  {/* Logo centralizado */}
                   <Navbar.Brand as={Link} to="/" className="mx-auto">
                     <img src={logoDrip} alt="Digital Store" className="logo-image" />
                   </Navbar.Brand>
-
-                  <Nav.Link onClick={handleShow} className="nav-link position-relative me-5">
+                  2<Nav.Link onClick={handleShow} className="nav-link position-relative me-2">
                     <i className="bi bi-cart custom-cart-icon"></i>
                     {Array.isArray(cartItems) && cartItems.length > 0 && (
                       <Badge pill bg="danger" className="cart-badge">
@@ -53,12 +50,6 @@ const CustomNavbar = () => {
                 </div>
               </CustomOffcanvas>
             </Navbar>
-
-
-
-
-
-          {/* Navbar para dispositivos médios e grandes (>= md) */}
           <Navbar expand="md" className="custom-navbar d-none d-md-flex">
             <Container fluid className="navbar-container">
               <Navbar.Toggle aria-controls="basic-navbar-nav-lg" />
