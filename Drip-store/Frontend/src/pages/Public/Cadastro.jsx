@@ -5,6 +5,7 @@ import { useAuth } from '@context/auth';
 import mercadoria from '@images/sapatos.png';
 import Footer1 from '@components/footer/footer1';
 import { CustomNbar } from '@components/navbar/nbar.jsx';
+
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import { paths } from '../../utils/paths';
 import { Link } from 'react-router-dom';
