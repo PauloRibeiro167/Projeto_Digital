@@ -18,6 +18,7 @@ import ErrorBoundary from '../components/Error/ErrorBoundary';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PaymentPage from '../pages/Public/PaymentPage.jsx';
 import ErrorPage from '../pages/Public/ErrorPage.jsx';
+import ProductViewPage from '../pages/Public/ProductViewPage.jsx'; // Certifique-se de que o caminho está correto
 
 const App = () => {
   const [error, setError] = useState(null);
@@ -56,6 +57,7 @@ const App = () => {
               <Route path={paths.payment} element={<PaymentPage />} />
               <Route path={paths.admin} element={<PrivateRoute element={<AdminPage />} />} />
               <Route path={paths.cadastro} element={<CadastroPage />} />
+              <Route path={paths.show_products} element={<ProductViewPage />} /> 
               <Route path="/error" element={<ErrorPage />} />
             </Routes>
           </Router>

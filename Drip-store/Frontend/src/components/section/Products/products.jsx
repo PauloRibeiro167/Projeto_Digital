@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "@styles/section/Products/products.css";
 import { fetchData } from "@api-tenis";
 
@@ -40,7 +41,7 @@ const SectionProducts = () => {
               <h3 className="text-start text-color ms-5">Coleções em destaque</h3>
             </div>
             <div className="col-auto text-color me-3">
-              <a>Ver todos</a>
+              <Link to="/Show_products">Ver todos</Link> {/* Atualize para usar o componente Link */}
             </div>
           </div>
           <Row className="row-cols-2 row-cols-md-5 g-4">
