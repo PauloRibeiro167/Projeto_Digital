@@ -1,4 +1,3 @@
-
 import '@styles/Auth/AuthPages.css';
 import React, { useState } from 'react';
 import { useAuth } from '@context/auth';
@@ -31,11 +30,11 @@ const CadastroPage = () => {
       <Container fluid className="d-flex justify-content-center align-items-center cordefundo" style={{width: "100%"}}>
         <Row className="w-100 m-3">
           <Col className="d-flex justify-content-center">
-            <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-4 mb-4 w-100 card">
+            <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-4 mb-4 w-75 card ms-5">
               <Card.Body  className='bg-white rounded-3 p-3 ms-5'>
-                <h3 className="text-center mb-3">Crie sua Conta</h3>
+                <h3 className="text-center m-3">Crie sua Conta</h3>
                 {error && <Alert variant="danger">{error}</Alert>}
-                  <Form onSubmit={handleAuth}>
+                  <Form onSubmit={handleAuth} className="m-4">
                   <Form.Group className='text-start text-secondary' controlId="formUsername">
                     <Form.Label className="text-dark">Login</Form.Label>
                     <Form.Control
@@ -55,8 +54,9 @@ const CadastroPage = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       className="custom-placeholder"
                     />
-                  </Form.Group>
-                  <Button className="w-100 mt-1 mb-3" type="submit" style={{ backgroundColor: '#c92071' }}>
+                  </Form.Group> 
+                  {/*Estilização e a função do botão cadastrar*/}
+                  <Button className="w-75 mt-3 mb-3" type="submit" style={{ backgroundColor: '#c92071' }}>
                     Cadastrar
                   </Button>
                   <div className="mt-2 ms-3 d-flex align-items-center text-secondary">
