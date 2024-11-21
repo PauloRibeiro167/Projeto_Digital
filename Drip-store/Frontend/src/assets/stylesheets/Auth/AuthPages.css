@@ -38,18 +38,6 @@ footer a:hover {
   color: #ccc;
 }
 
-.custom-badge {
-  font-size: 14px;
-  position: absolute;
-  top: 10px;
-  left: 22px;
-  border-radius: 29px;
-  padding: 9px 15px 9px 18px;
-  background-color: rgba(231, 255, 134, 1);
-  color: rgba(71, 71, 71, 1);
-
-}
-
 .custom-badge-produtos {
   font-size: 14px;
   position: absolute;
@@ -166,7 +154,7 @@ footer a:hover {
 
 .text {
   color: var(--text-color);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
 }
 
 @media (max-width: 768px) {
