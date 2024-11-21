@@ -1,0 +1,24 @@
+/* src/assets/stylesheets/navbar/navbar1.css */
+@import '@styles/themes/dark-theme.css';
+@import '@styles/themes/light-theme.css';
+
+.navbar-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--background-color);
+  transition: background-color var(--transition-duration), color var(--transition-duration);
+  align-items: center;
+}
+
+.custom-navbar {
+  width: 100%;
+  background-color: var(--background-color);
+  transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+.navbar-collapse {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}

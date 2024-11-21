@@ -117,3 +117,22 @@
 .menu-icon{
   color: var(--menu-icon-color);
 }
+
+.menu-off-canvas {
+  background-color: var(--background-color);
+}
+
+.menu-itens{
+  background-color: var(--background-color);
+  color: var(--itens-menu-offcanvas);
+}
+
+
+.offcanvas-header {
+  background-color: var(--background-color);
+  color: var(--text-color);
+} 
+
+.offcanvas-body {
+  background-color: var(--background-color);
+}

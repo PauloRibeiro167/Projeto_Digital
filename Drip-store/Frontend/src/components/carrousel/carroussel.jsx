@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
 import '@styles/carroussel/carroussel.css';
 import { fetchData } from '../../services/api';
-import image from '@images/White-Sneakers-PNG-Clipart 1.svg';
 
 const Carrossel1 = () => {
   const [slides, setSlides] = useState([]);
@@ -12,9 +11,13 @@ const Carrossel1 = () => {
     async function getSlides() {
       try {
         const data = await fetchData();
-        const filteredSlide = data.find(slide => slide.id === 14);
-        if (filteredSlide) {
-          setSlides([filteredSlide, filteredSlide, filteredSlide, filteredSlide]);
+        console.log('Dados da API:', data); // Adiciona esta linha para imprimir os dados no console
+        const item14 = data.find(item => item.id === 14); // Supondo que o item 14 tenha um id de 14
+        if (item14) {
+          const replicatedSlides = Array(4).fill(item14);
+          setSlides(replicatedSlides);
+        } else {
+          console.error('Item 14 não encontrado nos dados da API');
         }
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
@@ -29,7 +32,7 @@ const Carrossel1 = () => {
   };
 
   return (
-    <div className="carousel-container w-100 bg-light">
+    <div className="carousel-container w-100">
       <div className="carousel-content h-100">
         <Carousel activeIndex={activeIndex} onSelect={handleSelect} interval={3000} className="h-100">
           {slides.map((slide, index) => (
@@ -38,10 +41,10 @@ const Carrossel1 = () => {
                 <section className="order-2 order-md-1 py-5 flex-fill">
                   <div>
                     <h6 className="carousel-mini-text">Melhores ofertas personalizadas</h6>
-                    <h1 className=" carousel-info">
+                    <h1 className="carousel-info">
                       Queima de estoque Nike <span className="text-danger">🔥</span>
                     </h1>
-                    <p className=" carousel-text ">
+                    <p className="carousel-text">
                       Consequat culpa exercitation mollit nisi excepteur do do tempor laboris
                       eiusmod irure consectetur.
                     </p>
@@ -51,7 +54,7 @@ const Carrossel1 = () => {
                 <section className="order-1 order-md-2 flex-fill">
                   <img
                     className="d-block w-100"
-                    src={image}
+                    src={slide.image}
                     alt={slide.nome}
                     style={{ marginBottom: '20px' }}
                   />

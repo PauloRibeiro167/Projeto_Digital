@@ -2,7 +2,7 @@
 import React from 'react';
 import { Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import '@styles/navbar/navbar1.css';
+import '@styles/navbar/nbar.css';
 import logoDrip from '@images/logo-header.png';
 
 const CustomNbar = () => {

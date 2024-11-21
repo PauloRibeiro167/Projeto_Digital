@@ -36,3 +36,8 @@
   transform: scale(1.1); 
   transition: transform 0.5s ease; 
 }
+.span-text {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: var(--togglethme-text);
+  letter-spacing: 0.05rem;
+}

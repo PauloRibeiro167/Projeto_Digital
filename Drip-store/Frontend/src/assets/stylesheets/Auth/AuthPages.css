@@ -161,6 +161,11 @@ footer a:hover {
   transform: none;
 }
 
+.text{
+  color: var(--text-color);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 
 
 

@@ -23,13 +23,14 @@ const ToggleTheme = () => {
   };
 
   return (
-    <div onClick={toggleTheme} className="toggle-theme-button">
-    {isDarkTheme ? (
-      <span><i className="bi bi-toggle-on on fs-3"></i></span>
-    ) : (
-      <span><i className="bi bi-toggle-off off fs-3"></i></span>
-    )}
-  </div>
+    <div onClick={toggleTheme} className="toggle-theme-button d-flex align-items-center">
+      <span className="me-2 span-text">{isDarkTheme ? 'Light Mode' : 'Dark Mode'}</span>
+      {isDarkTheme ? (
+        <i className="bi bi-toggle-on on fs-3"></i>
+      ) : (
+        <i className="bi bi-toggle-off off fs-3"></i>
+      )}
+    </div>
   );
 };
 

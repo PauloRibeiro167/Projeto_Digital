@@ -5,7 +5,6 @@ import { useAuth } from '@context/auth';
 import mercadoria from '@images/sapatos.png';
 import Footer1 from '@components/footer/footer1';
 import { CustomNbar } from '@components/navbar/nbar.jsx';
-
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import { paths } from '../../utils/paths';
 import { Link } from 'react-router-dom';
@@ -32,12 +31,9 @@ const CadastroPage = () => {
       <Container fluid className="d-flex justify-content-center align-items-center cordefundo" style={{width: "100%"}}>
         <Row className="w-100">
           <Col className="d-flex justify-content-center">
-            <Card className="shadow-sm py-1 p-3 shadow-sm m-4" style={{ width: '100%', maxWidth: '500px' }}>
-              <Card.Body>
-                <h3 className="text-center mb-3">Crie sua Conta
-
-                  aqui que eu estou pelo amor de deus 
-                </h3>
+            <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-4 mb-4 w-100 card">
+              <Card.Body  className='bg-white rounded-3 p-3'>
+                <h3 className="text-center mb-3">Crie sua Conta</h3>
                 {error && <Alert variant="danger">{error}</Alert>}
                   <Form onSubmit={handleAuth}>
                   <Form.Group className='text-start text-secondary' controlId="formUsername">
