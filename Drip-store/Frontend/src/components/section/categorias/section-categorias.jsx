@@ -37,10 +37,10 @@ const SectionCategorias = () => {
               <Discounbtn 
                 discount={collection.discount} 
                 onClick={() => alert(`Desconto de ${collection.discount} aplicado!`)} 
-                className="position-absolute top-5 start-3 m-3 rounded-4 py-2 p-2 fw-bold discount-button-custom"
+                className="position-absolute top-5 start-3 m-3 rounded-4 py-2 p-2 discount-button-custom"
               />
               <SecondaryBtn 
-                label="Comprar agora" 
+                label="Comprar" 
                 onClick={() => alert('Botão Comprar agora clicado!')} 
                 className="btn-categorias position-absolute bottom-0 start-0 mb-5 ms-5 rounded-3 py-2 px-3" 
               />
