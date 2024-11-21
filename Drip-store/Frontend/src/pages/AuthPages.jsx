@@ -41,15 +41,15 @@ const AuthPage = () => {
     <>
       <CustomNbar />
       <div className="d-flex justify-content-center align-items-center cordefundo w-100">
-        <Row className="w-100 justify-content-center">
+        <Row className="w-75 justify-content-center mb-5"> {/*tamanho do card*/}
           <Col className="d-flex justify-content-center">
-            <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-4 mb-4 w-100 card">
-              <Card.Body className='bg-white rounded-3 p-3'>
+            <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-5 mb-5 w-100 card">
+              <Card.Body className='bg-white rounded-3 p-3'> {/*Parte de cima do card*/}
                 <h3 className="text-center mb-3 mt-3 text">Acesse sua Conta</h3>
 
                 <div className="m-2 d-flex justify-content-center align-items-center text-center text-secondary">
-                    Não tem uma conta? <Link to={paths.cadastro} className="ms-1">Cadastre-se</Link>
-                  </div>
+                  Não tem uma conta? <Link to={paths.cadastro} className="ms-1">Cadastre-se</Link>
+                </div>
 
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Form onSubmit={handleAuth}>
@@ -63,6 +63,27 @@ const AuthPage = () => {
                       className="custom-placeholder"
                     />
                   </Form.Group>
+
+                  {/* -------> Explicação do campo de formulários
+                  </Form>{error && <Alert variant="danger">{error}</Alert>}
+                   --> Exibe mensagem de erro se houver*/
+
+                    /*<Form onSubmit={handleAuth}>
+                   -->Formulário de login, handleAuth autentica se o usuário existe ou não
+                    <Form.Group className='text-start text-secondary m-4' controlId="formUsername">
+                    <Form.Label className="text">Login</Form.Label> 
+                    <Form.Control 
+                      type="text"
+                      placeholder="Insira seu login ou email" 
+                    -->Tipo de formulário, nesse caso é um campo para o usuário se cadastrar*
+                      value={username} 
+                      onChange={(e) => setUsername(e.target.value)} 
+                    --> vai buscar no controller (que vai no banco) e vai validar se o login existe*
+                      className="custom-placeholder" 
+                    --> custom-placeholder é a função de mostar o que vai aparecer no campo do formulário*/}
+
+
+
                   <Form.Group controlId="formPassword" className="mt-3 m-4 text-start text-secondary">
                     <Form.Label className="text">Senha</Form.Label>
                     <Form.Control
@@ -72,22 +93,31 @@ const AuthPage = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       className="custom-placeholder"
                     />
-                  <p className='justify-content-start mt-3 text text-decoration-underline'>Esqueci minha senha</p>
+                    <p className='justify-content-start mt-3 text text-decoration-underline'>Esqueci minha senha</p>
                   </Form.Group>
+
+                      {/*value={password} vai transformar esse valor em uma senha criptografada, 
+                      e o 'onChange' vai transformar em uma senha criptografada também, onChange vai verificar no controller
+                      se a senha existe ou não, se não existe vai mostrar uma mensagem de erro*/}
+
                   <Button className="w-75 mt-1 mb-3 m-4" type="submit" style={{ backgroundColor: '#c92071' }}>
                     Login
                   </Button>
                   <div className="m-2 d-flex justify-content-center align-items-center text-secondary">
                     Ou faça o login com
                     <div className="d-flex justify-content-start ms-3">
-                      <img src={gmail} alt="Google" className="me-2" style={{ width: "15%" }} />
-                      <img src={facebookIcon} alt="Facebook" className="me-2" style={{ width: "15%" }} />
+                      <Link to={paths.cadastro}>
+                      <img
+                      src={gmail} alt="Google" className="me-2" style={{ width: "15%" }} /> </Link>
+                      <Link to={paths.cadastro}> 
+                      <img src={facebookIcon} alt="Facebook" className="me-2" style={{ width: "15%" }} /> </Link>
                     </div>
                   </div>
                 </Form>
               </Card.Body>
             </Card>
           </Col>
+          {/*Imagem do Sapato na Tela*/}
           <Col xs={12} md={6} className="d-none d-md-flex justify-content-center">
             <img src={mercadoria} alt="Sapatos modelo melvin bueno" className="img-fluid" style={{ maxWidth: "500px" }} />
           </Col>

@@ -14,11 +14,16 @@ const Footer1 = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit,
               <br />sed do eiusmod tempor incididunt ut labore et dolore.
             </p>
+
             <div className="text-color social-media d-flex justify-content-start mb-2 mt-4 ms-3">
-              <i className="bi bi-facebook text-color fs-5 me-2 ms-2"></i>
-              <i className="bi bi-instagram text-color fs-5 me-2 ms-2"></i>
-              <i className="bi bi-twitter text-color fs-5 me-2 ms-2"></i>
+              <a href="https://www.facebook.com/digitalcollegebr/" target="_blank" rel="noopener noreferrer">
+              <i className="bi bi-facebook text-color fs-5 me-2 ms-2"></i></a>
+              <a href="https://www.instagram.com/digitalcollegebr/" target="_blank" rel="noopener noreferrer">
+              <i className="bi bi-instagram text-color fs-5 me-2 ms-2"></i></a>
+              <a href="https://x.com/_digitalcollege" target="_blank" rel="noopener noreferrer">
+              <i className="bi bi-twitter text-color fs-5 me-2 ms-2"></i></a>
             </div>
+
           </Col>
 
           <Col xs={6} md={3} className="text-white p-3 mt-4 text-start">
@@ -58,7 +63,7 @@ const Footer1 = () => {
             </ul>
           </Col>
           <hr />
-          <p className="text-color text-center">@ Digital college</p>
+          <p className="text-color text-center">@ 2024 Drip Store, Todos os direitos reservados para a Equipe dos que não foram imbora</p>
         </Row>
       </Container>
     </footer>
