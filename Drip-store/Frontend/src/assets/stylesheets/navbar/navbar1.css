@@ -136,3 +136,11 @@
 .offcanvas-body {
   background-color: var(--background-color);
 }
+
+/* src/styles/navbar/navbar1.css */
+.menu-off-canvas .offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}

@@ -92,21 +92,23 @@ const CustomNavbar = () => {
           </Offcanvas.Title>
           <button type="button" className="btn-close" aria-label="Close" onClick={handleClose}></button>
         </Offcanvas.Header>
-        <div className="d-flex justify-content-center menu-itens mt-auto">
-          <Link to={paths.login} className="btn btn-secondary">
-            Login
-          </Link>
-        </div>
-        <Offcanvas.Body>
-          {Array.isArray(cartItems) && cartItems.length === 0 ? (
-            <p>Seu carrinho está vazio.</p>
-          ) : (
-            <ul>
-              {Array.isArray(cartItems) && cartItems.map(item => (
-                <li key={item.id}>{item.name}</li>
-              ))}
-            </ul>
-          )}
+        <Offcanvas.Body className="d-flex flex-column justify-content-between">
+          <div>
+            {Array.isArray(cartItems) && cartItems.length === 0 ? (
+              <p>Seu carrinho está vazio.</p>
+            ) : (
+              <ul>
+                {Array.isArray(cartItems) && cartItems.map(item => (
+                  <li key={item.id}>{item.name}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div className="d-flex justify-content-center menu-itens mt-auto">
+            <Link to={paths.login} className="btn btn-primary">
+              Login
+            </Link>
+          </div>
         </Offcanvas.Body>
       </Offcanvas>
     </>
