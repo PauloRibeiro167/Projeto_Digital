@@ -41,11 +41,11 @@ const AuthPage = () => {
     <>
       <CustomNbar />
       <div className="d-flex justify-content-center align-items-center cordefundo w-100">
-        <Row className="w-100 justify-content-center">
+        <Row className="m-3 justify-content-center">
           <Col className="d-flex justify-content-center">
-            <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-4 mb-4 w-100 card">
-              <Card.Body className='bg-white rounded-3 p-3'>
-                <h3 className="text-center mb-3 mt-3 text">Acesse sua Conta</h3>
+            <Card className="shadow-sm py-0 p-1 m-1 mt-4 mb-4 w-100 card">
+              <Card.Body className='bg-white rounded-4 p-3 mt-3 mb-3'>
+                <h3 className="text-dark text-center mb-3 mt-3 text">Acesse sua Conta</h3>
 
                 <div className="m-2 d-flex justify-content-center align-items-center text-center text-secondary">
                     Não tem uma conta? <Link to={paths.cadastro} className="ms-1">Cadastre-se</Link>
@@ -79,9 +79,13 @@ const AuthPage = () => {
                   </Button>
                   <div className="m-2 d-flex justify-content-center align-items-center text-secondary">
                     Ou faça o login com
-                    <div className="d-flex justify-content-start ms-3">
-                      <img src={gmail} alt="Google" className="me-2" style={{ width: "15%" }} />
+                    <div>
+                      <Link to={paths.cadastro}>
+                        <img src={gmail} alt="Google" className="me-2" style={{ width: "15%" }} />
+                      </Link>
+                      <Link to={paths.cadastro}>
                       <img src={facebookIcon} alt="Facebook" className="me-2" style={{ width: "15%" }} />
+                      </Link>
                     </div>
                   </div>
                 </Form>

@@ -29,10 +29,10 @@ const CadastroPage = () => {
     <>
       <CustomNbar />
       <Container fluid className="d-flex justify-content-center align-items-center cordefundo" style={{width: "100%"}}>
-        <Row className="w-100">
+        <Row className="w-100 m-3">
           <Col className="d-flex justify-content-center">
             <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-4 mb-4 w-100 card">
-              <Card.Body  className='bg-white rounded-3 p-3'>
+              <Card.Body  className='bg-white rounded-3 p-3 ms-5'>
                 <h3 className="text-center mb-3">Crie sua Conta</h3>
                 {error && <Alert variant="danger">{error}</Alert>}
                   <Form onSubmit={handleAuth}>

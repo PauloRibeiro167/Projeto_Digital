@@ -1,6 +1,6 @@
 // src/components/section/colections/section-colections.jsx
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 import "@styles/section/colections/section-colections.css";
 import bone from "@images/section/categorias/bone.svg";
 import calca from "@images/section/categorias/calca.svg";
@@ -18,12 +18,13 @@ const SectionColections = () => {
   ];
 
   return (
-    <section className="py-5" style={{ background: "rgba(249, 248, 254, 1)" }}>
-      <Container>
-        <h3 className="mb-4 text-center">Coleções em Destaque</h3>
-        <Row className="m-5 justify-content-center">
+    <section className="py-5 section-colections">
+      <Container className="d-flex justify-content-center "/>
+        <h3 className="mb-4 text-center text-color">Coleções em Destaque</h3>
+      <Container className="d-flex justify-content-center">
+        <div className="scroll-container">
           {collections.map((collection) => (
-            <Col xs={6} md={2} key={collection.id}>
+            <div className="scroll-item" key={collection.id}>
               <Card className="border-0 text-center">
                 <div className="image-container-product">
                   <Card.Img
@@ -33,12 +34,12 @@ const SectionColections = () => {
                   />
                 </div>
                 <Card.Body>
-                  <h5 className="card-title mt-2">{collection.title}</h5>
+                  <h5 className="card-title mt-2 text-color">{collection.title}</h5>
                 </Card.Body>
               </Card>
-            </Col>
+            </div>
           ))}
-        </Row>
+        </div>
       </Container>
     </section>
   );

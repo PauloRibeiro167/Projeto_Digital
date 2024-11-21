@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Badge } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "@styles/section/Products/products.css";
 import { fetchData } from "@api-tenis";
 
@@ -10,7 +10,8 @@ const SectionProducts = () => {
     const getProducts = async () => {
       try {
         const data = await fetchData(); // Fetches data from your API
-        setProducts(data.slice(0, 10)); // Limits to 10 products for the grid
+        const filteredData = data.filter(product => product.id !== 4); // Remove item with id 4
+        setProducts(filteredData.slice(0, 10)); // Limits to 10 products for the grid
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);
         // Fallback to mock data if API call fails
@@ -32,13 +33,13 @@ const SectionProducts = () => {
 
   return (
     <>
-      <section className="py-5" style={{ background: "rgba(249, 248, 254, 1)" }}>
+      <section className="py-2 section-categorias">
         <Container>
           <div className="row d-flex align-items-center justify-content-between mb-4" >
             <div className="col-auto">
-              <h3 className="text-start">Coleções em destaque</h3>
+              <h3 className="text-start text-color ms-5">Coleções em destaque</h3>
             </div>
-            <div className="col-auto">
+            <div className="col-auto text-color me-3">
               <a>Ver todos</a>
             </div>
           </div>
@@ -66,11 +67,11 @@ const SectionProducts = () => {
                     />
                   </div>
                   <div className="custom-body text-start">
-                    <h6 className="text-muted">Tênis</h6>
-                    <h5 className="product-title">{product.nome}</h5>
+                    <h6 className="text-muted text-color">Tênis</h6>
+                    <h5 className="product-title text-color">{product.nome}</h5>
                     <p className="price">
                       <del>${product.preco_original}</del>{" "}
-                      <span className="text-descont">
+                      <span className="text-descont text-danger fw-bold">
                         ${product.preco_desconto}
                       </span>
                     </p>
@@ -86,4 +87,3 @@ const SectionProducts = () => {
 };
 
 export default SectionProducts;
-``;

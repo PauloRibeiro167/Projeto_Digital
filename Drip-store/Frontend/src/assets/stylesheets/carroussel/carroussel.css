@@ -60,6 +60,11 @@
   height: auto;
   rotate: -20deg;
 }
+
+.rotate-img {
+  transform: rotate(-35deg);
+}
+
 .btn-carousel {
   width: 220px;
   height: 48px;
