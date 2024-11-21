@@ -93,7 +93,7 @@ const CustomNavbar = () => {
           <button type="button" className="btn-close" aria-label="Close" onClick={handleClose}></button>
         </Offcanvas.Header>
         <Offcanvas.Body className="d-flex flex-column justify-content-between">
-          <div>
+          <div className='text-color'>
             {Array.isArray(cartItems) && cartItems.length === 0 ? (
               <p>Seu carrinho está vazio.</p>
             ) : (
