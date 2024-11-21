@@ -11,7 +11,6 @@ const Carrossel1 = () => {
     async function getSlides() {
       try {
         const data = await fetchData();
-        console.log('Dados da API:', data); // Adiciona esta linha para imprimir os dados no console
         const item14 = data.find(item => item.id === 14); // Supondo que o item 14 tenha um id de 14
         if (item14) {
           const replicatedSlides = Array(4).fill(item14);
@@ -51,10 +50,10 @@ const Carrossel1 = () => {
                     <button className="btn btn-carousel col-md-12">Ver Ofertas</button>
                   </div>
                 </section>
-                <section className="order-1 order-md-2 flex-fill">
+                <section className="order-1 order-md-2 flex-fill w-100">
                   <img
                     className="d-block w-100"
-                    src={slide.image}
+                    src={slide.imagem_url}
                     alt={slide.nome}
                     style={{ marginBottom: '20px' }}
                   />
@@ -82,4 +81,4 @@ const Carrossel1 = () => {
   );
 };
 
-export default Carrossel1;
+export default Carrossel1; 

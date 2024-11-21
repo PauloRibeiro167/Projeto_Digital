@@ -29,7 +29,7 @@
 
 }
 .carousel-info {
-  font-size: 64px;
+  font-size: 3rem;
   font-weight: 800;
   line-height: 66px;
   letter-spacing: 0.9999998807907104px;
@@ -47,7 +47,7 @@
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  color: var(--Light-gray-2) !important;
+  color: var(--carroussel-text) !important;
 }
 
 .carousel-image {

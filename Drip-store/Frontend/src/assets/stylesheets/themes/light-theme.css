@@ -22,6 +22,7 @@
   --primary-g: linear-gradient(180deg, #C92071 0%, #EDABCA 100%);
   --secondary-g: linear-gradient(180deg, #B5B6F2 0%, #EFEFFF 100%);
   --carroussel-background: #bcbcbc3b;
+  --carroussel-text: #000000;
   --footer-background: #595959;
   --searchbar-background: #f8f9fa;
   --dicont-background: #E7FF86;
