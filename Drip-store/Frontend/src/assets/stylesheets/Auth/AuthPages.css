@@ -2,7 +2,7 @@
 @import '@styles/themes/light-theme.css';
 
 .cordefundo {
-  background:linear-gradient(180deg, #B5B6F2 0%, #EFEFFF 100%);
+  background: linear-gradient(180deg, #B5B6F2 0%, #EFEFFF 100%);
 }
 
 .mercadoria {
@@ -16,22 +16,28 @@
   opacity: 0.7;
   text-align: start;
 }
+
 body {
   font-family: "Inter", sans-serif;
 }
+
 .card {
   border: none;
   transition: transform 0.3s;
 }
+
 .card:hover {
   transform: scale(1.05);
 }
+
 footer a {
   color: #fff;
 }
+
 footer a:hover {
   color: #ccc;
 }
+
 .custom-badge {
   font-size: 14px;
   position: absolute;
@@ -41,8 +47,9 @@ footer a:hover {
   padding: 9px 15px 9px 18px;
   background-color: rgba(231, 255, 134, 1);
   color: rgba(71, 71, 71, 1);
-  
+
 }
+
 .custom-badge-produtos {
   font-size: 14px;
   position: absolute;
@@ -52,8 +59,9 @@ footer a:hover {
   padding: 9px 15px 9px 18px;
   background-color: rgba(231, 255, 134, 1);
   color: rgba(71, 71, 71, 1);
-  
+
 }
+
 .custom-button {
   position: absolute;
   bottom: 10px;
@@ -66,35 +74,35 @@ footer a:hover {
   font-size: 17px;
   font-weight: 700;
 }
+
 .custom-button:hover {
   color: #fff;
   background-color: rgba(201, 32, 113, 1);
 }
 
 
-.card-body{
+.card-body {
   padding: 0;
 }
 
 footer a {
   color: #fff;
 }
+
 footer a:hover {
   color: #ccc;
 }
-/* Container geral do card */
 
 
-/* Estilo geral do card */
+
 .custom-card {
   display: flex;
   flex-direction: column;
   border: none;
   border-radius: 12px;
-  background-color: rgba(255, 254, 254, 0); /* Fundo transparente */
+  background-color: rgba(255, 254, 254, 0);
 }
 
-/* Container da imagem com borda arredondada e sombra */
 .image-container {
   position: relative;
   overflow: hidden;
@@ -104,39 +112,23 @@ footer a:hover {
 }
 
 .image-container:hover {
-  transform: scale(1.05); /* Efeito de subir no hover */
-  box-shadow: 6px 16px 30px 0px rgba(105, 98, 98, 0.05); /* Sombra mais intensa no hover */
+  transform: scale(1.05);
+  box-shadow: 6px 16px 30px 0px rgba(105, 98, 98, 0.05);
 }
 
-/* Imagem estática */
 .product-image {
   width: 100%;
   height: auto;
   object-fit: cover;
-  transition: none; /* Imagem sem movimento */
+  transition: none;
 }
 
-/* Selo de desconto */
-.discount-badge {
-  font-size: 14px;
-  position: absolute;
-  top: 10px;
-  left: 15px;
-  border-radius: 29px;
-  padding: 9px 15px 9px 18px;
-  background-color: rgba(231, 255, 134, 1);
-  color: rgba(71, 71, 71, 1);
-  font-weight: bold;
-}
-
-/* Corpo do card */
 .custom-body {
   padding: 15px;
   text-align: center;
-  background-color: transparent; /* Fundo do corpo permanece transparente */
+  background-color: transparent;
 }
 
-/* Títulos e textos */
 .product-title {
   font-size: 1.2rem;
   font-weight: bold;
@@ -151,34 +143,28 @@ footer a:hover {
 }
 
 .price .text-descont {
-  color: #000000; /* Vermelho para destaque */
+  color: #000000;
   font-weight: bold;
   font-size: 1rem;
 }
 
-/* Remove hover no corpo do card */
 .custom-body:hover {
   transform: none;
 }
 
-.text{
+.text {
   color: var(--text-color);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-
-
-
-
-
-
 @media (max-width: 768px) {
   .img-md-fluid {
-    width: 60%; /* ou uma largura específica */
+    width: 60%;
   }
-  .esfera::before{
+
+  .esfera::before {
     width: 281px;
     transform: translate(-50%, -23%);
-    height: 280px;  
+    height: 280px;
   }
 }
