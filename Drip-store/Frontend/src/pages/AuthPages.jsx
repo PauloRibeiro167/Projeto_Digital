@@ -24,6 +24,12 @@ const AuthPage = () => {
       return;
     }
 
+    // Verificação explícita para o usuário 1234 e senha 1234
+    if (username === '1234' && password === '1234') {
+      navigate('/');
+      return;
+    }
+
     try {
       const userData = await login({ username, password });
       if (userData.role === 'super_admin') {
@@ -33,7 +39,6 @@ const AuthPage = () => {
       }
     } catch (err) {
       setError('Credenciais inválidas');
-      navigate('/login');
     }
   };
 
@@ -64,26 +69,6 @@ const AuthPage = () => {
                     />
                   </Form.Group>
 
-                  {/* -------> Explicação do campo de formulários
-                  </Form>{error && <Alert variant="danger">{error}</Alert>}
-                   --> Exibe mensagem de erro se houver*/
-
-                    /*<Form onSubmit={handleAuth}>
-                   -->Formulário de login, handleAuth autentica se o usuário existe ou não
-                    <Form.Group className='text-start text-secondary m-4' controlId="formUsername">
-                    <Form.Label className="text">Login</Form.Label> 
-                    <Form.Control 
-                      type="text"
-                      placeholder="Insira seu login ou email" 
-                    -->Tipo de formulário, nesse caso é um campo para o usuário se cadastrar*
-                      value={username} 
-                      onChange={(e) => setUsername(e.target.value)} 
-                    --> vai buscar no controller (que vai no banco) e vai validar se o login existe*
-                      className="custom-placeholder" 
-                    --> custom-placeholder é a função de mostar o que vai aparecer no campo do formulário*/}
-
-
-
                   <Form.Group controlId="formPassword" className="mt-3 m-4 text-start text-secondary">
                     <Form.Label className="text">Senha</Form.Label>
                     <Form.Control
@@ -95,10 +80,6 @@ const AuthPage = () => {
                     />
                     <p className='justify-content-start mt-3 text text-decoration-underline'>Esqueci minha senha</p>
                   </Form.Group>
-
-                      {/*value={password} vai transformar esse valor em uma senha criptografada, 
-                      e o 'onChange' vai transformar em uma senha criptografada também, onChange vai verificar no controller
-                      se a senha existe ou não, se não existe vai mostrar uma mensagem de erro*/}
 
                   <Button className="w-75 mt-1 mb-3 m-4" type="submit" style={{ backgroundColor: '#c92071' }}>
                     Login
