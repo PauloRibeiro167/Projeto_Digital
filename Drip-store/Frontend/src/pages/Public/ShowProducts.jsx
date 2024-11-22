@@ -73,7 +73,7 @@ const ShowProducts = () => {
               <div className="custom-card">
                 <div className="image-container">
                   {product.preco_desconto && (
-                    <div className="discount-badge">
+                    <div className="discount-badge ">
                       {Math.round(
                         ((product.preco_original - product.preco_desconto) /
                           product.preco_original) *
@@ -87,11 +87,11 @@ const ShowProducts = () => {
                       product.imagem_url || "https://via.placeholder.com/200"
                     }
                     alt={product.nome}
-                    className="product-image"
+                    className="product-image w-75 me-3 ms-3"
                   />
                 </div>
                 <div className="custom-body text-start">
-                  <h6 className=" text-color">{product.modelo}</h6>
+                  <h6 className="text-color">{product.modelo}</h6>
                   <h5 className="product-title text-color">{product.nome}</h5>
                   <p className="price">
                     <del>${product.preco_original}</del>{" "}
@@ -131,7 +131,7 @@ const ShowProducts = () => {
 
           <div className="row">
             <aside className="col-lg-3">
-              <div className="sidebar">
+              <div className="sidebar py-5 p-5">
                 <h5>Filtrar por</h5>
                 <hr />
                 <h6 className="mt-4">Marca</h6>
