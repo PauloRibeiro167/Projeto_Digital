@@ -1,0 +1,12 @@
+@import "@styles/themes/light-theme.css";
+@import "@styles/themes//dark-theme.css";
+
+.text-color {
+  color: var(--text-color) !important;
+  transition: color var(--transition-duration);
+}
+
+.background {
+  background-color: var(--background-color);
+  transition: background-color var(--transition-duration), color var(--transition-duration);
+}
