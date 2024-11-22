@@ -1,12 +1,12 @@
 /* src/assets/stylesheets/themes/dark-theme.css */
 :root.dark-theme {
-  --primary-color: #C92071;
-  --secondary-color: #343a40;
+  --primary-color: #991956;
+  --secondary-color: #000000;
   --tertialy-color: #991956;
-  --background-color: #2c2929;
+  --background-color: #230313;
   --text-color: #ffffff;
   --text-danger-color: #f6aa1c;
-  --button-background-color: #C92071;
+  --button-background-color: #991956;
   --button-text-color: #ffffff;
   --transition-duration: 2s;
   --Dark-gray: #1f1f1f;
@@ -19,16 +19,17 @@
   --error: #EE4266;
   --succsses: #52ca76;
   --warning: #f6aa1c;
-  --primary-g: linear-gradient(180deg, #C92071 0%, #EDABCA 100%);
+  --primary-g: linear-gradient(180deg, #991956 0%, #EDABCA 100%);
   --secondary-g: linear-gradient(180deg, #B5B6F2 0%, #EFEFFF 100%);
   --carroussel-text: #000000;
-  --carroussel-background: #5c5858;
-  --footer-background: #971d57;
+  --carroussel-background: #acacac;
+  --footer-background: #000000;
   --searchbar-background: #959595;
   --discount-background: #ff0000;
-  --menu-icon-color: #C92071;
+  --menu-icon-color: #991956;
   --togglethme-text: #aca678;
-  --itens-menu-offcanvas: #c33b7c;
+  --itens-menu-offcanvas: #991956;
   --collection-background: #8f8f8f;
   --special-offer-background: #a4a4a4;
+  --text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }

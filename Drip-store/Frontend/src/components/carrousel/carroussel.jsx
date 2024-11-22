@@ -39,13 +39,12 @@ const Carrossel1 = () => {
               <div className="d-flex align-items-center justify-content-center text-md-start text-center container flex-column flex-md-row ">
                 <section className="order-2 order-md-1 py-5 flex-fill m-5 py-5 w-50 mt-5 mb-5">
                   <div>
-                    <h6 className="carousel-mini-text">Melhores ofertas personalizadas</h6>
+                    <h6 className="carousel-mini-text">As Melhores Ofertas Personalizadas</h6>
                     <h1 className="carousel-info">
-                      Queima de estoque Nike <span className="text-danger">🔥</span>
+                      BlackFriday e Frete Grátis no site todo<span className="text-danger">🔥</span>
                     </h1>
                     <p className="carousel-text">
-                      Consequat culpa exercitation mollit nisi excepteur do do tempor laboris
-                      eiusmod irure consectetur.
+                      À partir de $300 em compras receba cupom de Frete Grátis em qualquer produto do site.
                     </p>
                     <button className="btn btn-carousel col-md-12">Ver Ofertas</button>
                   </div>

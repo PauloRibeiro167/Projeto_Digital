@@ -1,6 +1,7 @@
 @import '@styles/themes/dark-theme.css';
 @import '@styles/themes/light-theme.css';
 
+* { text-shadow: 0.5px 0.5px 0.5px rgba(36, 36, 36, 0.3);}
 .background {
   background-color: var(--background-color);
   transition: background-color var(--transition-duration), color var(--transition-duration);
