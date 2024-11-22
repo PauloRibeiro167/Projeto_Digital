@@ -46,7 +46,7 @@ const PaymentPage = () => {
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
     } else {
-      // Enviar dados para o backend
+      // Enviar dados para o backend ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧ //
       console.log('Form data:', formData);
     }
   };
@@ -54,7 +54,7 @@ const PaymentPage = () => {
   return (
     <div className="w-100">
       <CustomNavbar />
-      <div className="container mt-5">
+      <div className="container mt-5"> //Form de preenchimendo de dados (˶˃⤙˂˶)//
         <h2>Informações Pessoais</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
