@@ -6,5 +6,5 @@ export const paths = {
   admin: '/admin',
   payment: '/public/payment',
   cadastro: '/cadastro',
-  show_products: '/show_products', // Atualize para minúsculas
+  show_products: '/show_products',
 };

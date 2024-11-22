@@ -1,47 +1,131 @@
-import React from 'react';
-import { Container, Navbar, Nav, Badge, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Card, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import logoHeader from '@images/logo-header.png';
-import logoFooter from '@images/logo-footer.svg';
-import productThumb from '@images/product-thumb-5.jpeg';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import CustomNavbar from '@components/navbar/navbar1';
+import Footer1 from '@components/footer/footer1';
+import { fetchData } from '@api-tenis';
+import '@styles/pages/showProducts.css';
+import { paths } from '@utils/paths';
 
 const ShowProducts = () => {
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filters, setFilters] = useState({
+    marca: '',
+  });
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const data = await fetchData();
+        const filteredData = data.filter((product) => product.id !== 4); 
+        setProducts(filteredData);
+        setFilteredProducts(filteredData);
+      } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+      }
+    };
+
+    getProducts();
+  }, []);
+
+  const handleFilterChange = (e) => {
+    const { id } = e.target;
+    setFilters({ marca: id });
+  };
+
+  const sortByLowestPrice = () => {
+    const sortedProducts = [...filteredProducts].sort((a, b) => a.preco_desconto - b.preco_desconto);
+    setFilteredProducts(sortedProducts);
+  };
+
+  const sortByHighestPrice = () => {
+    const sortedProducts = [...filteredProducts].sort((a, b) => b.preco_desconto - a.preco_desconto);
+    setFilteredProducts(sortedProducts);
+  };
+
+  const getLowestPrice = () => {
+    if (filteredProducts.length === 0) return null;
+    return Math.min(...filteredProducts.map(product => product.preco_desconto));
+  };
+
+  useEffect(() => {
+    const applyFilters = () => {
+      let filtered = products;
+
+      if (filters.marca) {
+        filtered = filtered.filter((product) => product.marca === filters.marca);
+      }
+
+      setFilteredProducts(filtered.slice(0, 9));
+    };
+
+    applyFilters();
+  }, [filters, products]);
+
+  const renderProducts = () => {
+    return (
+      <Row className="row-cols-1 row-cols-md-3 g-4">
+        {filteredProducts.map((product, index) => (
+          <Col key={index}>
+            <Link to={`${paths.show_products}/${product.id}`} className="text-decoration-none">
+              <div className="custom-card">
+                <div className="image-container">
+                  {product.preco_desconto && (
+                    <div className="discount-badge">
+                      {Math.round(
+                        ((product.preco_original - product.preco_desconto) /
+                          product.preco_original) *
+                          100
+                      )}
+                      % OFF
+                    </div>
+                  )}
+                  <img
+                    src={
+                      product.imagem_url || "https://via.placeholder.com/200"
+                    }
+                    alt={product.nome}
+                    className="product-image"
+                  />
+                </div>
+                <div className="custom-body text-start">
+                  <h6 className=" text-color">{product.modelo}</h6>
+                  <h5 className="product-title text-color">{product.nome}</h5>
+                  <p className="price">
+                    <del>${product.preco_original}</del>{" "}
+                    <span className="text-descont text-danger fw-bold">
+                      ${product.preco_desconto}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </Link>
+          </Col>
+        ))}
+      </Row>
+    );
+  };
+
   return (
     <>
-      <header className="bg-light border-bottom py-3">
-        <Container className="d-flex justify-content-between align-items-center">
-          <Navbar.Brand as={Link} to="/">
-            <img src={logoHeader} alt="Digital Store" />
-          </Navbar.Brand>
-          <Form.Control type="search" className="w-50 p-3" placeholder="Pesquisar produto..." />
-          <div>
-            <Link to="/cadastro" className="text-dark me-3">Cadastre-se</Link>
-            <Link to="/login" className="btn btn-primary">Entrar</Link>
-            <Link to="/cart" className="text-dark position-relative">
-              <img src={miniCart} alt="Carrinho" />
-              <Badge pill bg="danger" className="position-absolute top-0 start-100 translate-middle">
-                2
-              </Badge>
-            </Link>
-          </div>
-        </Container>
-        <Container className="d-flex justify-content-between align-items-center mt-5">
-          <div>
-            <Link to="/cadastro" className="text-dark me-3">Cadastre-se</Link>
-            <Link to="/produtos" className="text-dark me-3">Produtos</Link>
-            <Link to="/categorias" className="text-dark me-3">Categorias</Link>
-            <Link to="/meus-pedidos" className="text-dark me-3">Meus Pedidos</Link>
-          </div>
-        </Container>
-      </header>
+      <CustomNavbar className="text-color w-100" />
 
-      <main className="container my-5">
-        <section>
+      <main className="container-fluid background text-color p-5 py-5">
+        <section className="w-100">
           <div className="d-flex justify-content-between mb-3">
-            <h6>Resultados para “Ténis” - 369 produtos</h6>
-            <Form.Select className="w-auto">
+            <h6>Resultados para “Ténis” - {filteredProducts.length} produtos</h6>
+            <Form.Select className="w-auto" onChange={(e) => {
+              if (e.target.value === 'menor preço') {
+                sortByLowestPrice();
+              } else if (e.target.value === 'maior preço') {
+                sortByHighestPrice();
+              }
+            }}>
               <option>Ordenar por: mais relevantes</option>
+              <option value="menor preço">Ordenar por: menor preço</option>
+              <option value="maior preço">Ordenar por: maior preço</option>
             </Form.Select>
           </div>
 
@@ -51,52 +135,30 @@ const ShowProducts = () => {
                 <h5>Filtrar por</h5>
                 <hr />
                 <h6 className="mt-4">Marca</h6>
-                <Form.Check type="checkbox" id="adidas" label="Adidas" />
-                <Form.Check type="checkbox" id="calci" label="Calciéncaga" />
-                <Form.Check type="checkbox" id="kswiss" label="K-Swiss" defaultChecked />
+                <Form.Check type="radio" id="Adidas" name="marca" label="Adidas" checked={filters.marca === 'Adidas'} onChange={handleFilterChange} />
+                <Form.Check type="radio" id="Puma" name="marca" label="Puma" checked={filters.marca === 'Puma'} onChange={handleFilterChange} />
+                <Form.Check type="radio" id="Mizuno" name="marca" label="Mizuno" checked={filters.marca === 'Mizuno'} onChange={handleFilterChange} />
               </div>
+              <Card bg="secondary" text="white" className="mt-4">
+                <Card.Body>
+                  <Card.Title>Informações</Card.Title>
+                  <Card.Text className='text-color'>
+                    Use os filtros acima para selecionar os produtos de sua preferência.
+                  </Card.Text>
+                  <Card.Text className='text-color'>
+                    Menor preço: ${getLowestPrice()}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
             </aside>
 
             <section className="col-lg-9">
-              <div>
-                <Row className="row-cols-2 row-cols-md-3 g-3">
-                  {[...Array(10)].map((_, index) => (
-                    <Col key={index}>
-                      <Card>
-                        <Card.Img variant="top" src={productThumb} alt={`Produto ${index + 1}`} />
-                        <Card.Body className="text-center">
-                          <Card.Subtitle className="text-muted">Tênis</Card.Subtitle>
-                          <Card.Title>Produto {index + 1}</Card.Title>
-                          <Card.Text>
-                            <del>$200</del> <span className="text-danger">$100</span>
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  ))}
-                </Row>
-              </div>
+              {renderProducts()}
             </section>
           </div>
         </section>
       </main>
-
-      <footer className="bg-dark text-light py-4">
-        <Container>
-          <Row>
-            <Col md={3}>
-              <h5><img src={logoFooter} alt="Digital Store" /></h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <div className="d-flex gap-3">
-                <Link to="#" className="text-light"><i className="bi bi-facebook"></i></Link>
-                <Link to="#" className="text-light"><i className="bi bi-instagram"></i></Link>
-                <Link to="#" className="text-light"><i className="bi bi-twitter"></i></Link>
-              </div>
-            </Col>
-            {/* Outras colunas do rodapé, como links e contato */}
-          </Row>
-        </Container>
-      </footer>
+      <Footer1 />
     </>
   );
 };

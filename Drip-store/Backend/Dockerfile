@@ -1,22 +1,10 @@
-# Use uma imagem base do Node para construir o backend
-FROM node:18-alpine as build
+FROM node:14
 
 WORKDIR /app
 
-# Copie os arquivos package.json e yarn.lock
-COPY Backend/package.json Backend/yarn.lock ./
-
-# Instale as dependências
+COPY package.json yarn.lock ./
 RUN yarn install
 
-# Copie o restante dos arquivos do backend
-COPY Backend .
+COPY . .
 
-# Build do backend
-RUN yarn build
-
-# Exponha a porta que o backend usa
-EXPOSE 3000
-
-# Comando para rodar o backend
-CMD ["yarn", "start"]
+CMD ["node", "server.mjs"]

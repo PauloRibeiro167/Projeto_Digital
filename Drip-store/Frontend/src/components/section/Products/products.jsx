@@ -41,7 +41,7 @@ const SectionProducts = () => {
               <h3 className="text-start text-color ms-5">Coleções em destaque</h3>
             </div>
             <div className="col-auto text-color me-3">
-              <Link to="/Show_products">Ver todos</Link> {/* Atualize para usar o componente Link */}
+              <Link to="/Show_products" className="btn btn-primary">Ver todos</Link>
             </div>
           </div>
           <Row className="row-cols-2 row-cols-md-5 g-4">

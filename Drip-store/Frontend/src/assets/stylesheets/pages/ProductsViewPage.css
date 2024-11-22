@@ -1,0 +1,25 @@
+@import '@styles/themes/dark-theme.css';
+@import '@styles/themes/light-theme.css';
+
+.background {
+  background-color: var(--background-color);
+  transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+.text-color {
+  color: var(--text-color);
+  transition: color var(--transition-duration);
+}
+
+.product-image {
+  width: 100%;
+}
+
+.product-thumbnail {
+  width: 18%;
+}
+
+.product-color {
+  width: 24px;
+  height: 24px;
+}

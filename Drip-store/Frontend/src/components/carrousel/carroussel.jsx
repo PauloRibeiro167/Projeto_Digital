@@ -37,7 +37,7 @@ const Carrossel1 = () => {
           {slides.map((slide, index) => (
             <Carousel.Item key={index} className="h-100">
               <div className="d-flex align-items-center justify-content-center text-md-start text-center container flex-column flex-md-row ">
-                <section className="order-2 order-md-1 py-5 flex-fill w-50 mt-5 mb-5">
+                <section className="order-2 order-md-1 py-5 flex-fill m-5 py-5 w-50 mt-5 mb-5">
                   <div>
                     <h6 className="carousel-mini-text">Melhores ofertas personalizadas</h6>
                     <h1 className="carousel-info">

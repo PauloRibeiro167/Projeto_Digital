@@ -32,6 +32,13 @@ connectWithRetry();
 app.use(cors());
 app.use(express.json());
 
+// Rota de login
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  // Adicione a lógica de autenticação aqui
+  res.json({ message: 'Login bem-sucedido' });
+});
+
 // Servir arquivos estáticos do frontend
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, '../Frontend/dist')));
