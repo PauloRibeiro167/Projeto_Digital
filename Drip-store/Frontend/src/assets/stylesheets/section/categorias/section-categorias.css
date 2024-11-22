@@ -1,4 +1,5 @@
-@import "@styles/button/toggletheme.css";
+@import '@styles/themes/dark-theme.css';
+@import '@styles/themes/light-theme.css';
 
 .section-categorias {
   background-color: var(--background-color);
@@ -34,4 +35,20 @@
   background-color: rgba(201, 32, 113, 1);
 }
 
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 15px;
+}
 
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  margin-right: 16px;
+}

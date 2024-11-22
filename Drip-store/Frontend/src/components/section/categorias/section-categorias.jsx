@@ -29,9 +29,9 @@ const SectionCategorias = () => {
   return (
     <Container className='section-categorias text'>
       <h4 className='text-start text-color ms-3 fw-bold'>Coleções em destaque</h4>
-      <Row>
+      <div className="scroll-container">
         {collections.map((collection, index) => (
-          <Col md={4} key={index}>
+          <div key={index} className='scroll-item'>
             <Card className="bg-transparent p-4 border-0 position-relative">
               <Card.Img src={collection.src} alt={collection.alt} />
               <Discounbtn 
@@ -45,9 +45,9 @@ const SectionCategorias = () => {
                 className="btn-categorias position-absolute bottom-0 start-0 mb-5 ms-5 rounded-3 py-2 px-3" 
               />
             </Card>
-          </Col>
+          </div>
         ))}
-      </Row>
+      </div>
     </Container>
   );
 }

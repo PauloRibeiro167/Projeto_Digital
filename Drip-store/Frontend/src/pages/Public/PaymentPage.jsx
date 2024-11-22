@@ -1,185 +1,153 @@
-// src/pages/Public/PaymentPage.jsx
 import React, { useState } from 'react';
 import CustomNavbar from '@components/navbar/navbar1';
 import Footer1 from '@components/footer/footer1';
 
 const PaymentPage = () => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    cpf: '',
-    email: '',
-    phone: '',
-    address: '',
-    neighborhood: '',
-    city: '',
-    state: '',
-    zipCode: '',
-    complement: ''
-  });
-
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.fullName) newErrors.fullName = 'Nome Completo é obrigatório';
-    if (!formData.cpf) newErrors.cpf = 'CPF é obrigatório';
-    if (!formData.email) newErrors.email = 'Email é obrigatório';
-    if (!formData.phone) newErrors.phone = 'Celular é obrigatório';
-    if (!formData.address) newErrors.address = 'Endereço é obrigatório';
-    if (!formData.neighborhood) newErrors.neighborhood = 'Bairro é obrigatório';
-    if (!formData.city) newErrors.city = 'Cidade é obrigatório';
-    if (!formData.state) newErrors.state = 'Estado é obrigatório';
-    if (!formData.zipCode) newErrors.zipCode = 'CEP é obrigatório';
-
-    return newErrors;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formErrors = validateForm();
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
-    } else {
-      // Enviar dados para o backend ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧ //
-      console.log('Form data:', formData);
-    }
-  };
+  const [paymentMethod, setPaymentMethod] = useState('boleto'); 
+  const handlePaymentMethodChange = (event) => setPaymentMethod(event.target.value);
 
   return (
     <div className="w-100">
       <CustomNavbar />
-      <div className="container mt-5"> //Form de preenchimendo de dados (˶˃⤙˂˶)//
-        <h2>Informações Pessoais</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="fullName" className="form-label">Nome Completo</label>
-            <input
-              type="text"
-              className="form-control"
-              id="fullName"
-              value={formData.fullName}
-              onChange={handleChange}
-              required
-            />
-            {errors.fullName && <div className="text-danger">{errors.fullName}</div>}
-          </div>
-          <div className="mb-3">
-            <label htmlFor="cpf" className="form-label">CPF</label>
-            <input
-              type="text"
-              className="form-control"
-              id="cpf"
-              value={formData.cpf}
-              onChange={handleChange}
-              required
-            />
-            {errors.cpf && <div className="text-danger">{errors.cpf}</div>}
-          </div>
-          <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email</label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            {errors.email && <div className="text-danger">{errors.email}</div>}
-          </div>
-          <div className="mb-3">
-            <label htmlFor="phone" className="form-label">Celular</label>
-            <input
-              type="tel"
-              className="form-control"
-              id="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-            {errors.phone && <div className="text-danger">{errors.phone}</div>}
-          </div>
+      <h2>Finalizar Pagamento</h2>
 
-          <h2>Informações da Entrega</h2>
+      
+      <section className="container col-6 text-start">
+        <p>Informações Pessoais</p>
+        <hr />
+        <form>
           <div className="mb-3">
-            <label htmlFor="address" className="form-label">Endereço</label>
-            <input
-              type="text"
-              className="form-control"
-              id="address"
-              value={formData.address}
-              onChange={handleChange}
-              required
-            />
-            {errors.address && <div className="text-danger">{errors.address}</div>}
+            <label htmlFor="name" className="form-label">Nome Completo*</label>
+            <input type="text" className="form-control" id="name" placeholder="Insira seu nome" required />
           </div>
           <div className="mb-3">
-            <label htmlFor="neighborhood" className="form-label">Bairro</label>
-            <input
-              type="text"
-              className="form-control"
-              id="neighborhood"
-              value={formData.neighborhood}
-              onChange={handleChange}
-              required
-            />
-            {errors.neighborhood && <div className="text-danger">{errors.neighborhood}</div>}
+            <label htmlFor="cpf" className="form-label">CPF*</label>
+            <input type="text" className="form-control" id="cpf" placeholder="Insira seu CPF" required />
           </div>
           <div className="mb-3">
-            <label htmlFor="city" className="form-label">Cidade</label>
-            <input
-              type="text"
-              className="form-control"
-              id="city"
-              value={formData.city}
-              onChange={handleChange}
-              required
-            />
-            {errors.city && <div className="text-danger">{errors.city}</div>}
+            <label htmlFor="email" className="form-label">E-mail*</label>
+            <input type="email" className="form-control" id="email" placeholder="Insira seu email" required />
           </div>
           <div className="mb-3">
-            <label htmlFor="state" className="form-label">Estado</label>
-            <input
-              type="text"
-              className="form-control"
-              id="state"
-              value={formData.state}
-              onChange={handleChange}
-              required
-            />
-            {errors.state && <div className="text-danger">{errors.state}</div>}
+            <label htmlFor="phone" className="form-label">Celular*</label>
+            <input type="tel" className="form-control" id="phone" placeholder="Insira seu celular" required />
+          </div>
+        </form>
+      </section>
+
+      
+      <section className="container col-6 text-start">
+        <p>Informações de Entrega</p>
+        <hr />
+        <form>
+          <div className="mb-3">
+            <label htmlFor="address" className="form-label">Endereço*</label>
+            <input type="text" className="form-control" id="address" placeholder="Insira seu endereço" required />
           </div>
           <div className="mb-3">
-            <label htmlFor="zipCode" className="form-label">CEP</label>
-            <input
-              type="text"
-              className="form-control"
-              id="zipCode"
-              value={formData.zipCode}
-              onChange={handleChange}
-              required
-            />
-            {errors.zipCode && <div className="text-danger">{errors.zipCode}</div>}
+            <label htmlFor="neighborhood" className="form-label">Bairro*</label>
+            <input type="text" className="form-control" id="neighborhood" placeholder="Insira seu bairro" required />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="city" className="form-label">Cidade*</label>
+            <input type="text" className="form-control" id="city" placeholder="Insira sua cidade" required />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="zip" className="form-label">CEP*</label>
+            <input type="text" className="form-control" id="zip" placeholder="Insira seu cep" required />
           </div>
           <div className="mb-3">
             <label htmlFor="complement" className="form-label">Complemento</label>
-            <input
-              type="text"
-              className="form-control"
-              id="complement"
-              value={formData.complement}
-              onChange={handleChange}
-            />
+            <input type="text" className="form-control" id="complement" placeholder="Insira complemento" />
           </div>
-          <button type="submit" className="btn btn-primary">Enviar</button>
         </form>
+      </section>
+
+      
+      <section className="container col-6 text-start">
+        <p>Informações de Pagamento</p>
+        <hr />
+        <form className="d-flex justify-content-start">
+          
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="paymentMethod"
+              id="creditCard"
+              value="cartao"
+              checked={paymentMethod === 'cartao'}
+              onChange={handlePaymentMethodChange}
+            />
+            <label className="form-check-label" htmlFor="creditCard">Cartão de Crédito</label>
+          </div>
+          <div className="form-check ms-4">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="paymentMethod"
+              id="boleto"
+              value="boleto"
+              checked={paymentMethod === 'boleto'}
+              onChange={handlePaymentMethodChange}
+            />
+            <label className="form-check-label" htmlFor="boleto">Boleto Bancário</label>
+          </div>
+        </form>
+
+        {paymentMethod === 'cartao' && (
+          <form>
+            <div className="mb-3">
+              <label htmlFor="cardName" className="form-label">Nome do Cartão*</label>
+              <input type="text" className="form-control" id="cardName" placeholder="Insira o nome do cartão" required />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="cardNumber" className="form-label">Número do Cartão*</label>
+              <input
+                type="text"
+                className="form-control"
+                id="cardNumber"
+                placeholder="Insira o número do cartão"
+                pattern="\d{16}" 
+                maxLength="16"   
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="expirationDate" className="form-label">Data de validade*</label>
+              <input
+                type="month"
+                className="form-control"
+                id="expirationDate"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="cvv" className="form-label">CVV*</label>
+              <input
+                type="password"
+                className="form-control"
+                id="cvv"
+                placeholder="CVV"
+                pattern="\d{3,4}" 
+                maxLength="4"     
+                required
+              />
+            </div>
+          </form>
+        )}
+      </section>
+      <div className='container col-6 text-start'>
+      <h4>Total</h4>
       </div>
+      <div className='container col-6 text-end'>
+        <h5>Valor</h5>
+      </div>
+      <section className="container col-6 text-start">
+        
+        <button type="submit" className="btn btn-primary">Finalizar Compra</button>
+      </section>
+
       <Footer1 />
     </div>
   );
