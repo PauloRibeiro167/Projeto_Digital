@@ -1,12 +1,12 @@
 /* src/assets/stylesheets/themes/light-theme.css */
 :root {
-  --primary-color: #C92071;
+  --primary-color: #991956;
   --secondary-color: #f8f9fa;
   --tertialy-color: #991956;
   --background-color: #ffffff;
-  --text-color: #000000;
+  --text-color: #070000;
   --text-danger-color: #f6aa1c;
-  --button-background-color: #C92071;
+  --button-background-color: #991956;
   --button-text-color: #ffffff;
   --transition-duration: 2s;
   --Dark-gray: #1f1f1f;
@@ -19,16 +19,17 @@
   --error: #EE4266;
   --succsses: #52ca76;
   --warning: #f6aa1c;
-  --primary-g: linear-gradient(180deg, #C92071 0%, #EDABCA 100%);
-  --secondary-g: linear-gradient(180deg, #B5B6F2 0%, #EFEFFF 100%);
-  --carroussel-background: #bcbcbc3b;
-  --carroussel-text: #000000;
-  --footer-background: #595959;
+  --primary-g: linear-gradient(180deg, #991956 0%, #EDABCA 100%);
+  --secondary-g: linear-gradient(180deg, #d9d9d9 0%, #ffffff 100%);
+  --carroussel-background: #9696963b;
+  --carroussel-text: #878787;
+  --footer-background: #991956;
   --searchbar-background: #f8f9fa;
   --dicont-background: #E7FF86;
-  --menu-icon-color: #C92071;
+  --menu-icon-color: #991956;
   --togglethme-text: #515151;
   --itens-menu-offcanvas: #494949;
   --collection-background: #8f8f8f;
   --special-offer-background: #ffffff;
+  --text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
