@@ -52,3 +52,9 @@
   scroll-snap-align: start;
   margin-right: 16px;
 }
+
+.img-card {
+  width: 15rem;
+  height: 9rem;
+  transition: box-shadow 0.3s ease-in-out;
+}

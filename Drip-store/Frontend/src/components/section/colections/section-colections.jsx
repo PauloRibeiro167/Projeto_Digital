@@ -19,7 +19,7 @@ const SectionColections = () => {
 
   return (
     <section className="py-5 section-colections">
-      <Container className="d-flex justify-content-center "/>
+      <Container className="d-flex justify-content-center"/>
         <h3 className="mb-4 text-center text-color">Coleções em Destaque</h3>
       <Container className="d-flex justify-content-center">
         <div className="scroll-container">

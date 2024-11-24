@@ -28,21 +28,21 @@ const collections = [
 const SectionCategorias = () => {
   return (
     <Container className='section-categorias text'>
-      <h4 className='text-start text-color ms-3 fw-bold'>Coleções em destaque</h4>
+      <h4 className='text-start text-color ms-5 fw-bold'>Coleções em destaque</h4>
       <div className="scroll-container">
         {collections.map((collection, index) => (
-          <div key={index} className='scroll-item'>
-            <Card className="bg-transparent p-4 border-0 position-relative">
-              <Card.Img src={collection.src} alt={collection.alt} />
+          <div key={index} className='scroll-item me-5 ms-5'>
+            <Card className="bg-transparent p-4 border-0 position-relative w-100">
+              <Card.Img src={collection.src} alt={collection.alt} className='img-card'/>
               <Discounbtn 
                 discount={collection.discount} 
                 onClick={() => alert(`Desconto de ${collection.discount} aplicado!`)} 
-                className="position-absolute top-5 start-3 m-3 rounded-4 py-2 p-2 discount-button-custom"
+                className="position-absolute top-5 start-3 m-2 rounded-4 py-1 p-2 discount-button-custom"
               />
               <SecondaryBtn 
                 label="Comprar" 
-                onClick={() => alert('Botão Comprar agora clicado!')} 
-                className="btn-categorias position-absolute bottom-0 start-0 mb-5 ms-5 rounded-3 py-2 px-3" 
+                onClick={() => alert('Sem coleções!')} 
+                className="btn-categorias position-absolute bottom-0 start-0 mb-5 mt-2 ms-5 rounded-3 py-1 px-3 p-2 w-50" 
               />
             </Card>
           </div>
