@@ -15,7 +15,7 @@ const Seachbar = () => {
   };
 
   return (
-    <Form className="form w-50" onSubmit={handleSearch}>
+    <Form className="form mt-2 w-50" onSubmit={handleSearch}>
       <InputGroup className="search custom-input-group">
         <FormControl type="search" placeholder="Pesquisar" aria-label="Search" />
         <InputGroup.Text className="botão">

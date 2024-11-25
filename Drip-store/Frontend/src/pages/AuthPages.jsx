@@ -14,19 +14,13 @@ const AuthPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login } = useAuth();
+  const { login, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   const handleAuth = async (e) => {
     e.preventDefault();
     if (!username || !password) {
       setError('Por favor, preencha todos os campos.');
-      return;
-    }
-
-    // Verificação explícita para o usuário 1234 e senha 1234
-    if (username === '1234' && password === '1234') {
-      navigate('/');
       return;
     }
 
