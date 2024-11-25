@@ -28,7 +28,7 @@ const collections = [
 const SectionCategorias = () => {
   return (
     <Container className='section-categorias text'>
-      <h4 className='text-start text-color ms-5 fw-bold'>Coleções em destaque</h4>
+      <h4 className='text-center text-color ms-5 fw-bold'>Coleções em destaque</h4>
       <div className="scroll-container d-flex justify-content-center">
         {collections.map((collection, index) => (
           <div key={index} className='scroll-item me-5 ms-5'>
