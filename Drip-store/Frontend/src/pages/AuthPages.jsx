@@ -50,7 +50,7 @@ const AuthPage = () => {
           <Col className="d-flex justify-content-center">
             <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-5 mb-5 w-100 card">
               <Card.Body className='bg-white rounded-3 p-3'> {/*Parte de cima do card*/}
-                <h3 className="text-center mb-3 mt-3 text">Acesse sua Conta</h3>
+                <h3 className="text-center mb-3 mt-3">Acesse sua Conta</h3>
 
                 <div className="m-2 d-flex justify-content-center align-items-center text-center text-secondary">
                   Não tem uma conta? <Link to={paths.cadastro} className="ms-1">Cadastre-se</Link>

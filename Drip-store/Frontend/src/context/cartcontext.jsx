@@ -8,7 +8,6 @@ const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    // Carregar itens do carrinho do banco de dados quando o componente é montado
     const fetchCartItems = async () => {
       try {
         const response = await axios.get('/api/cart');
@@ -21,8 +20,35 @@ const CartProvider = ({ children }) => {
     fetchCartItems();
   }, []);
 
+  const addToCart = (product, size, color) => {
+    const newItem = {
+      id: product.id,
+      nome: product.nome,
+      marca: product.marca,
+      preco_desconto: product.preco_desconto,
+      preco_original: product.preco_original,
+      imagem_url: product.imagem_url,
+      size,
+      color
+    };
+    setCartItems((prevItems) => [...prevItems, newItem]);
+    console.log('Item adicionado ao carrinho:', newItem);
+  };
+
+  const removeFromCart = (product, size, color) => {
+    setCartItems((prevItems) => {
+      const index = prevItems.findIndex(item => item.id === product.id && item.size === size && item.color === color);
+      if (index !== -1) {
+        const newItems = [...prevItems];
+        newItems.splice(index, 1);
+        return newItems;
+      }
+      return prevItems;
+    });
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );

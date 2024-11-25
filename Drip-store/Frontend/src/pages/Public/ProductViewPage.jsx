@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Container, Row, Col, Card, Button, Breadcrumb, Badge } from 'react-bootstrap';
+import { Container, Row, Col, Button, Breadcrumb, Badge, Card } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { fetchData } from '@api-tenis';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import productThumb from '@images/product-thumb-5.jpeg';
 import CustomNavbar from '@components/navbar/navbar1';
 import Footer1 from '@components/footer/footer1';
 import '@styles/pages/ProductsViewPage.css';
-import { LinkContainer } from 'react-router-bootstrap';
+import { CartContext } from '@context/cartcontext';
 
 const ProductViewPage = () => {
   const { id } = useParams();
@@ -15,6 +14,7 @@ const ProductViewPage = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState(null);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const getProduct = async () => {
@@ -51,10 +51,18 @@ const ProductViewPage = () => {
     };
   };
 
+  const handleAddToCart = () => {
+    if (selectedSize && selectedColor) {
+      addToCart(product, selectedSize, selectedColor);
+    } else {
+      alert('Por favor, selecione um tamanho e uma cor.');
+    }
+  };
+
   return (
     <>
       <CustomNavbar />
-      <Container fluid className="w-100 p-5 py-5 background">
+      <Container fluid className="w-100 p-5 py-1 background">
         <Breadcrumb>
           <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }} className='text-color'>
             Home
@@ -67,13 +75,13 @@ const ProductViewPage = () => {
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
-      <Container fluid className="d-flex w-100 p-5 py-5 background">
+      <Container fluid className="d-flex w-100 p-5 py-1 background">
         <Row className="gy-4">
           <Col lg={6}>
             <img
               src={product.imagem_url || "/assets/img/imagesliddetalhe.png"}
               alt={product.nome}
-              className="img-fluid rounded mb-3 product-image w-50"
+              className="img-fluid rounded mb-3 py-2 p-4 product-image"
             />
             <div className="d-flex justify-content-between gap-2">
               {[...Array(5)].map((_, index) => (
@@ -130,9 +138,10 @@ const ProductViewPage = () => {
               ))}
             </div>
 
-            <Button  className="btn-buy btn-lg w-50"
-              disabled={!selectedSize || !selectedColor}>
-              COMPRAR
+            <Button className="btn-buy btn-lg w-50"
+              disabled={!selectedSize || !selectedColor}
+              onClick={handleAddToCart}>
+              Adicionar ao carrinho
             </Button>
           </Col>
         </Row>

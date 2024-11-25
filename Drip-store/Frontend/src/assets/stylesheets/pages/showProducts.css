@@ -33,7 +33,6 @@
 }
 
 .custom-card{
-
   background-color: var(--background-color);
   border: none;
   transition: background-color var(--transition-duration);

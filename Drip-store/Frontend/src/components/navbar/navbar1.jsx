@@ -2,21 +2,36 @@ import '@styles/navbar/navbar1.css';
 import { Link } from 'react-router-dom';
 import logoDrip from '@images/logo-header.png';
 import { CartContext } from '@context/cartcontext';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Seachbar from '@components/seachbar/seachbar';
 import ToggleTheme from '@components/button/toggletheme';
 import { Navbar, Nav, Container, Badge, Row, Col, Button, Dropdown, Offcanvas } from 'react-bootstrap';
 import { paths } from '@utils/paths';
+import CartItem from '@components/cart/CartItem';
 
 const CustomNavbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [show, setShow] = useState(false);
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
+
+  useEffect(() => {
+    console.log('Itens do carrinho:', cartItems);
+  }, [cartItems]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleDropdownClose = () => setShowDropdown(false);
   const handleDropdownShow = () => setShowDropdown(true);
+
+  const filteredCartItems = Array.isArray(cartItems) ? cartItems.filter(item => item.size && item.color) : [];
+
+  const getColorStyle = (color) => {
+    return {
+      backgroundColor: color,
+      borderColor: color,
+      color: 'white'
+    };
+  };
 
   return (
     <>
@@ -30,9 +45,9 @@ const CustomNavbar = () => {
           </Navbar.Brand>
           <Nav.Link onClick={handleShow} className="nav-link position-relative me-2">
             <i className="bi bi-cart custom-cart-icon"></i>
-            {Array.isArray(cartItems) && cartItems.length > 0 && (
+            {filteredCartItems.length > 0 && (
               <Badge pill bg="danger" className="cart-badge">
-                {cartItems.length}
+                {filteredCartItems.length}
               </Badge>
             )}
           </Nav.Link>
@@ -74,9 +89,9 @@ const CustomNavbar = () => {
               <Col md={1} className="d-flex justify-content-center align-items-center">
                 <Nav.Link onClick={handleShow} className="nav-link position-relative">
                   <i className="bi bi-cart custom-cart-icon"></i>
-                  {Array.isArray(cartItems) && cartItems.length > 0 && (
+                  {filteredCartItems.length > 0 && (
                     <Badge pill bg="danger" className="cart-badge">
-                      {cartItems.length}
+                      {filteredCartItems.length}
                     </Badge>
                   )}
                 </Nav.Link>
@@ -93,13 +108,19 @@ const CustomNavbar = () => {
           <button type="button" className="btn-close" aria-label="Close" onClick={handleClose}></button>
         </Offcanvas.Header>
         <Offcanvas.Body className="d-flex flex-column justify-content-between">
-          <div className='text-color'>
-            {Array.isArray(cartItems) && cartItems.length === 0 ? (
+          <div className='text-color text-center mt-4'>
+            {filteredCartItems.length === 0 ? (
               <p>Seu carrinho está vazio.</p>
             ) : (
               <ul>
-                {Array.isArray(cartItems) && cartItems.map(item => (
-                  <li key={item.id}>{item.name}</li>
+                {filteredCartItems.map((item, index) => (
+                  <CartItem
+                    key={`${item.id}-${index}`}
+                    item={item}
+                    addToCart={addToCart}
+                    removeFromCart={removeFromCart}
+                    getColorStyle={getColorStyle}
+                  />
                 ))}
               </ul>
             )}

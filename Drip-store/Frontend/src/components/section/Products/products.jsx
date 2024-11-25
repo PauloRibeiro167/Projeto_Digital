@@ -64,7 +64,7 @@ const SectionProducts = () => {
                           product.imagem_url || "https://via.placeholder.com/200"
                         }
                         alt={product.nome}
-                        className="product-image"
+                        className="products-imagens py-5 p-2"
                       />
                     </div>
                     <div className="custom-body text-start">

@@ -152,11 +152,6 @@ footer a:hover {
   transform: none;
 }
 
-.text {
-  color: var(--text-color);
-  
-}
-
 @media (max-width: 768px) {
   .img-md-fluid {
     width: 60%;
