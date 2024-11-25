@@ -1,35 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Container, Row, Col, Button, Breadcrumb, Badge } from 'react-bootstrap';
-import { fetchData } from '@api-tenis';
+import { Container, Row, Col, Button, Badge } from 'react-bootstrap';
 import CustomNavbar from '@components/navbar/navbar1';
 import Footer1 from '@components/footer/footer1';
 import RelatedProducts from '@components/section/Sugestions/RelatedProducts.jsx';
+import Breadcrumbs from '@components/breadcrumb/breadcrumb.jsx';
+import { productsViewPageConfig } from '@controllers/PagesController';
 import '@styles/pages/ProductsViewPage.css';
 import { CartContext } from '@context/cartcontext';
 
 const ProductViewPage = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
-  const [relatedProducts, setRelatedProducts] = useState([]);
+  const { product, relatedProducts } = productsViewPageConfig.useProductData(id);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState(null);
   const { addToCart } = useContext(CartContext);
-
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const data = await fetchData();
-        const product = data.find((product) => product.id === parseInt(id));
-        setProduct(product);
-        setRelatedProducts(data.filter((p) => p.id !== parseInt(id)));
-      } catch (error) {
-        console.error('Erro ao buscar produto:', error);
-      }
-    };
-
-    getProduct();
-  }, [id]);
 
   if (!product) {
     return <div>Carregando...</div>;
@@ -43,37 +28,13 @@ const ProductViewPage = () => {
     setSelectedSize(size);
   };
 
-  const getColorStyle = (color) => {
-    return {
-      backgroundColor: color,
-      borderColor: selectedColor === color ? 'black' : color,
-      color: selectedColor === color ? 'white' : 'black'
-    };
-  };
-
-  const handleAddToCart = () => {
-    if (selectedSize && selectedColor) {
-      addToCart(product, selectedSize, selectedColor);
-    } else {
-      alert('Por favor, selecione um tamanho e uma cor.');
-    }
-  };
+  const breadcrumbItems = productsViewPageConfig.createBreadcrumbItems(product.nome);
 
   return (
     <>
       <CustomNavbar />
       <Container fluid className="w-100 p-5 py-1 background">
-        <Breadcrumb>
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }} className='text-color'>
-            Home
-          </Breadcrumb.Item>
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/Show_products" }} className='text-color'>
-            Produtos
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active className='text-primary'>
-            {product.nome}
-          </Breadcrumb.Item>
-        </Breadcrumb>
+        <Breadcrumbs items={breadcrumbItems} />
       </Container>
       <Container fluid className="d-flex w-100 p-5 py-1 background">
         <Row className="gy-4">
@@ -131,7 +92,7 @@ const ProductViewPage = () => {
                   variant={selectedColor === color ? 'primary' : 'outline-secondary'}
                   className={`me-1 p-2 rounded-circle fs-6 btn-sm btn-color ${selectedColor === color ? 'selected' : ''}`}
                   onClick={() => handleColorClick(color)}
-                  style={getColorStyle(color)}
+                  style={productsViewPageConfig.getColorStyle(color, selectedColor)}
                   disabled={!selectedSize}
                 >
                 </Button>
@@ -139,7 +100,7 @@ const ProductViewPage = () => {
             </div>
             <Button className="btn-buy btn-lg w-50"
               disabled={!selectedSize || !selectedColor}
-              onClick={handleAddToCart}>
+              onClick={() => productsViewPageConfig.handleAddToCart(product, selectedSize, selectedColor, addToCart)}>
               Adicionar ao carrinho
             </Button>
           </Col>

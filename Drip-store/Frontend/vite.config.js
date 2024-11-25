@@ -19,6 +19,7 @@ export default defineConfig({
       '@public_pages': path.resolve(__dirname, 'src/pages/public'),
       '@admin_pages': path.resolve(__dirname, 'src/pages/admin'),
       '@utils': path.resolve(__dirname, 'src/utils'),
+      '@controllers': path.resolve(__dirname, '../Backend/controller'),
     },
   },
 })
