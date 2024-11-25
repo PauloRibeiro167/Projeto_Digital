@@ -5,8 +5,6 @@ import mercadoria from '@images/sapatos.png';
 import Footer1 from '@components/footer/footer1';
 import { CustomNbar } from '@components/navbar/nbar.jsx';
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
-import facebookIcon from '@images/icons/facebook.png';
-import gmail from '@images/icons/gmail.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { paths } from '@utils/paths';
 
@@ -14,7 +12,7 @@ const AuthPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login, isLoggedIn } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleAuth = async (e) => {
@@ -23,18 +21,18 @@ const AuthPage = () => {
       setError('Por favor, preencha todos os campos.');
       return;
     }
-  
+
     const adminUser = {
       email: 'admin@example.com',
       password: '1234',
       role: 'super_admin'
     };
-  
+
     if (username === adminUser.email && password === adminUser.password) {
       navigate(paths.super_admin);
       return;
     }
-  
+
     try {
       const userData = await login({ username, password });
       if (userData.role === 'super_admin') {
@@ -44,6 +42,7 @@ const AuthPage = () => {
       }
     } catch (err) {
       setError('Credenciais inválidas');
+      console.error('Erro ao tentar redirecionar para a página de admin:', err);
     }
   };
 
@@ -51,10 +50,10 @@ const AuthPage = () => {
     <>
       <CustomNbar />
       <div className="d-flex justify-content-center align-items-center cordefundo w-100">
-        <Row className="w-100 justify-content-center mb-5"> 
+        <Row className="w-100 justify-content-center mb-5">
           <Col className="d-flex justify-content-center w-50">
             <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-5 mb-5 w-75 card">
-              <Card.Body className='bg-white rounded-3 p-3'> 
+              <Card.Body className='bg-white rounded-3 p-3'>
                 <h3 className="text-center mb-3 mt-3">Acesse sua Conta</h3>
 
                 <div className="m-2 d-flex justify-content-center align-items-center text-center text-secondary">
@@ -92,12 +91,12 @@ const AuthPage = () => {
                   <div className="m-2 d-flex justify-content-center align-items-center text-secondary">
                     Ou faça o login com
                     <div className="d-flex justify-content-start ms-3">
-                    <Link to={paths.cadastro} className="me-2">
-                      <i className="fa-brands fa-google fs-6"></i>
-                    </Link>
-                    <Link to={paths.cadastro} className="me-2">
-                      <i className="fa-brands fa-facebook fs-6"></i>
-                    </Link>
+                      <Link to={paths.cadastro} className="me-2">
+                        <i className="fa-brands fa-google fs-6"></i>
+                      </Link>
+                      <Link to={paths.cadastro} className="me-2">
+                        <i className="fa-brands fa-facebook fs-6"></i>
+                      </Link>
                     </div>
                   </div>
                 </Form>

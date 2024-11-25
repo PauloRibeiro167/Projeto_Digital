@@ -12,4 +12,8 @@ RUN if [ -f yarn.lock ]; then yarn install; else yarn install; fi
 # Copy the rest of the backend directory
 COPY Backend .
 
+# Expose the port the app runs on
+EXPOSE 4000
+
+# Command to run the application
 CMD ["node", "server.mjs"]

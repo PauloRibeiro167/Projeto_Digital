@@ -1,22 +1,12 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
-import { useAuth } from '../../context/auth';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '@context/auth';
+import { paths } from '@utils/paths';
 
-const PrivateRoute = ({ element: Component, ...rest }) => {
-  const { isAuthenticated, user } = useAuth();
+const PrivateRoute = ({ element }) => {
+  const { isLoggedIn } = useAuth();
 
-  return (
-    <Route
-      {...rest}
-      element={
-        isAuthenticated && user.role === 'superadmin' ? (
-          <Component />
-        ) : (
-          <Navigate to="/login" />
-        )
-      }
-    />
-  );
+  return isLoggedIn ? element : <Navigate to={paths.login} />;
 };
 
 export default PrivateRoute;

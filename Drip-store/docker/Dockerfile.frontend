@@ -12,4 +12,8 @@ RUN if [ -f yarn.lock ]; then yarn install; else yarn install; fi
 # Copy the rest of the frontend directory
 COPY Frontend .
 
-CMD ["yarn", "dev", "watch"]
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Command to run the application
+CMD ["npm", "run", "dev", "watch"]
