@@ -1,6 +1,5 @@
 // CustomNavbar.jsx
 import React, { useState, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { CartContext } from '@context/cartcontext';
 import { useAuth } from '@context/auth';
 import NavbarMobile from '@components/navbar/subcomponentes/navbarMobile.jsx';
@@ -31,7 +30,7 @@ const CustomNavbar = () => {
     return {
       backgroundColor: color,
       borderColor: color,
-      color: 'white'
+      color: 'red'
     };
   };
 

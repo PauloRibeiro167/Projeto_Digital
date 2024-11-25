@@ -1,0 +1,30 @@
+@import '@styles/themes/dark-theme.css';
+@import '@styles/themes/light-theme.css';
+
+
+.dropdown-toggle-custom {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.dropdown-menu-custom {
+  transform: translateX(-50%);
+  left: 50% !important;
+  min-width: 5rem;
+  background-color: var(--error); 
+  width: 100%;
+}
+
+.dropdown-item-custom {
+  text-align: center;
+  color: var(--Dark-gray); 
+}
+
+.drop{
+  background-color: var(--error); 
+}

@@ -1,10 +1,12 @@
 // navbarDesktop.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Container, Row, Col, Badge, Nav } from 'react-bootstrap';
+import { Navbar, Container, Row, Col, Badge, Nav, Dropdown } from 'react-bootstrap';
 import Seachbar from '@components/seachbar/seachbar';
 import ToggleTheme from '@components/button/toggletheme';
 import logoDrip from '@images/logo-header.png';
+import { paths } from '@utils/paths';
+import '@styles/navbar/navbarDesktop.css';
 
 const NavbarDesktop = ({ handleShow, filteredCartItems, isLoggedIn }) => {
   return (
@@ -24,9 +26,26 @@ const NavbarDesktop = ({ handleShow, filteredCartItems, isLoggedIn }) => {
             <Col md={3} className="d-flex align-items-center justify-content-end">
               <ToggleTheme />
               {isLoggedIn ? (
-                <i className="bi bi-person-fill text-success ms-3"></i>
+                <Dropdown className="ms-3 drop">
+                  <Dropdown.Toggle as="span" id="dropdown-basic" className="d-inline-flex align-items-center p-0 dropdown-toggle-custom">
+                    <i className="bi bi-person-fill text-success fs-4"></i>
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="dropdown-menu-custom">
+                    <Dropdown.Item as={Link} to={paths.userProfile} className="text-center">Minha Conta</Dropdown.Item>
+                    <Dropdown.Item as={Link} to={paths.logout} className="text-center">Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               ) : (
-                <i className="bi bi-person-exclamation ms-3"></i>
+                <Dropdown className="ms-3">
+                  <Dropdown.Toggle as="span" id="dropdown-basic" className="d-inline-flex align-items-center p-0 dropdown-toggle-custom">
+                    <i className="bi bi-person-exclamation text-danger fs-4"></i>
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="dropdown-menu-custom">
+                    <Dropdown.Item as={Link} to={paths.login} className="text-center p-1">Login</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               )}
               <Nav.Link onClick={handleShow} className="nav-link position-relative ms-3">
                 <i className="bi bi-cart custom-cart-icon"></i>

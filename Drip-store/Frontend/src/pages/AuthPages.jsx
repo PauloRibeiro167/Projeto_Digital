@@ -23,13 +23,24 @@ const AuthPage = () => {
       setError('Por favor, preencha todos os campos.');
       return;
     }
-
+  
+    const adminUser = {
+      email: 'admin@example.com',
+      password: '1234',
+      role: 'super_admin'
+    };
+  
+    if (username === adminUser.email && password === adminUser.password) {
+      navigate(paths.super_admin);
+      return;
+    }
+  
     try {
       const userData = await login({ username, password });
       if (userData.role === 'super_admin') {
-        navigate('/admin');
+        navigate(paths.super_admin);
       } else {
-        navigate('/home');
+        navigate(paths.home);
       }
     } catch (err) {
       setError('Credenciais inválidas');
@@ -40,10 +51,10 @@ const AuthPage = () => {
     <>
       <CustomNbar />
       <div className="d-flex justify-content-center align-items-center cordefundo w-100">
-        <Row className="w-75 justify-content-center mb-5"> {/*tamanho do card*/}
-          <Col className="d-flex justify-content-center">
-            <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-5 mb-5 w-100 card">
-              <Card.Body className='bg-white rounded-3 p-3'> {/*Parte de cima do card*/}
+        <Row className="w-100 justify-content-center mb-5"> 
+          <Col className="d-flex justify-content-center w-50">
+            <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-5 mb-5 w-75 card">
+              <Card.Body className='bg-white rounded-3 p-3'> 
                 <h3 className="text-center mb-3 mt-3">Acesse sua Conta</h3>
 
                 <div className="m-2 d-flex justify-content-center align-items-center text-center text-secondary">
@@ -75,26 +86,26 @@ const AuthPage = () => {
                     <p className='justify-content-start mt-3 text text-decoration-underline'>Esqueci minha senha</p>
                   </Form.Group>
 
-                  <Button className="w-75 mt-1 mb-3 m-4" type="submit" style={{ backgroundColor: '#c92071' }}>
+                  <Button className="w-75 mt-1 mb-3 m-4 custom-login-button" type="submit">
                     Login
                   </Button>
                   <div className="m-2 d-flex justify-content-center align-items-center text-secondary">
                     Ou faça o login com
                     <div className="d-flex justify-content-start ms-3">
-                      <Link to={paths.cadastro}>
-                      <img
-                      src={gmail} alt="Google" className="me-2" style={{ width: "15%" }} /> </Link>
-                      <Link to={paths.cadastro}> 
-                      <img src={facebookIcon} alt="Facebook" className="me-2" style={{ width: "15%" }} /> </Link>
+                    <Link to={paths.cadastro} className="me-2">
+                      <i className="fa-brands fa-google fs-6"></i>
+                    </Link>
+                    <Link to={paths.cadastro} className="me-2">
+                      <i className="fa-brands fa-facebook fs-6"></i>
+                    </Link>
                     </div>
                   </div>
                 </Form>
               </Card.Body>
             </Card>
           </Col>
-          {/*Imagem do Sapato na Tela*/}
-          <Col xs={12} md={6} className="d-none d-md-flex justify-content-center">
-            <img src={mercadoria} alt="Sapatos modelo melvin bueno" className="img-fluid" style={{ maxWidth: "500px" }} />
+          <Col xs={12} md={6} className="d-none d-md-flex justify-content-center w-50">
+            <img src={mercadoria} alt="Sapatos modelo melvin bueno" className="img-fluid product-image w-100 mt-5" />
           </Col>
         </Row>
       </div>

@@ -20,6 +20,7 @@ import PaymentPage from '../pages/Public/PaymentPage.jsx';
 import ErrorPage from '../pages/Public/ErrorPage.jsx';
 import ShowProducts from '../pages/Public/ShowProducts.jsx';
 import ProductViewPage from '../pages/Public/ProductViewPage.jsx';
+import SuperAdmin from '../pages/Admin/SuperAdmin.jsx';
 
 const App = () => {
   const [error, setError] = useState(null);
@@ -51,7 +52,7 @@ const App = () => {
       <AuthProvider>
         <CartProvider>
           <Router>
-          <Routes>
+            <Routes>
               <Route path={paths.home} element={<HomePage />} />
               <Route path={paths.public} element={<PublicPage />} />
               <Route path={paths.login} element={<AuthPage />} />
@@ -60,6 +61,7 @@ const App = () => {
               <Route path={paths.cadastro} element={<CadastroPage />} />
               <Route path={paths.show_products} element={<ShowProducts />} />
               <Route path={`${paths.show_products}/:id`} element={<ProductViewPage />} />
+              <Route path={paths.super_admin} element={<PrivateRoute element={<SuperAdmin />} />} />
               <Route path="/error" element={<ErrorPage />} />
             </Routes>
           </Router>
