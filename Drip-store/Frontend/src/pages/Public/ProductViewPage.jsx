@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Container, Row, Col, Button, Breadcrumb, Badge, Card } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Container, Row, Col, Button, Breadcrumb, Badge } from 'react-bootstrap';
 import { fetchData } from '@api-tenis';
 import CustomNavbar from '@components/navbar/navbar1';
 import Footer1 from '@components/footer/footer1';
+import RelatedProducts from '@components/section/Sugestions/RelatedProducts.jsx';
 import '@styles/pages/ProductsViewPage.css';
 import { CartContext } from '@context/cartcontext';
 
@@ -137,7 +137,6 @@ const ProductViewPage = () => {
                 </Button>
               ))}
             </div>
-
             <Button className="btn-buy btn-lg w-50"
               disabled={!selectedSize || !selectedColor}
               onClick={handleAddToCart}>
@@ -146,32 +145,7 @@ const ProductViewPage = () => {
           </Col>
         </Row>
       </Container>
-      <Container fluid className="background p-5 py-5">
-        <div className="d-flex justify-content-between mb-3">
-          <h5 className='text-color ms-5'>Produtos Relacionados</h5>
-          <LinkContainer to="/Show_products">
-            <Button variant="primary" className="me-5 fs-6">
-              Ver todos <i className="bi bi-arrow-right fs-6"></i>
-            </Button>
-          </LinkContainer>
-        </div>
-        <Row className="w-100 d-flex justify-content-start scroll-container">
-          {relatedProducts.slice(0, 5).map((relatedProduct, index) => (
-            <Col xs={12} sm={6} md={3} key={index} className="scroll-item">
-              <Card className="h-100 related-product-card">
-                <Card.Img variant="top" src={relatedProduct.imagem_url || productThumb} alt={`Produto ${index + 1}`} className='card-color' />
-                <Card.Body className="text-center">
-                  <Card.Title className='text-color fs-6 mt-2'>{relatedProduct.nome}</Card.Title>
-                  <Card.Text>
-                    <del className="text-color text-secondary">R$ {relatedProduct.preco_original}</del>{" "}
-                    <span className="text-danger fw-bold">R$ {relatedProduct.preco_desconto}</span>
-                  </Card.Text>
-                </Card.Body>
-              </Card>   
-            </Col>
-          ))}
-        </Row>
-      </Container>
+      <RelatedProducts relatedProducts={relatedProducts} />
       <Footer1 />
     </>
   );
