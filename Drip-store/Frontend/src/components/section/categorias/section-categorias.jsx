@@ -28,7 +28,7 @@ const collections = [
 const SectionCategorias = () => {
   return (
     <Container className='section-categorias text'>
-      <h4 className='text-center text-color ms-5 fw-bold'>Coleções em destaque</h4>
+      <h4 className='text-center text-color ms-5 fw-bold'>Coleções em Destaque</h4>
       <div className="scroll-container d-flex justify-content-center">
         {collections.map((collection, index) => (
           <div key={index} className='scroll-item me-5 ms-5'>
@@ -42,7 +42,7 @@ const SectionCategorias = () => {
               <SecondaryBtn 
                 label="Comprar" 
                 onClick={() => alert('Sem coleções!')} 
-                className="btn-categorias position-absolute bottom-0 start-0 mb-5 mt-2 ms-5 rounded-3 py-1 px-3 p-2 w-50" 
+                className="btn-categorias position-absolute bottom-0 start-0 mb-5 mt-2 ms-5 me-5 rounded-3 py-1 px-3 p-2 w-75" 
               />
             </Card>
           </div>

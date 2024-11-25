@@ -70,6 +70,7 @@ const CustomNavbar = () => {
           </Offcanvas.Body>
         </Offcanvas>
       </Navbar>
+      
       <Navbar expand="md" className="custom-navbar d-none d-md-flex">
         <Container fluid className="navbar-container">
           <Navbar.Toggle aria-controls="basic-navbar-nav-lg" />
@@ -100,6 +101,20 @@ const CustomNavbar = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+
+
+      <Navbar expand="md" className="d-none d-md-flex">
+        <div className="d-flex flex-row text-center ms-5 p-1 text-color">
+        <Dropdown.Item className='ms-5 me-3' as={Link} to="/">Home</Dropdown.Item>
+          <Dropdown.Item className='ms-4 me-3' as={Link} to="/produtos">Produtos</Dropdown.Item>
+          <Dropdown.Item className='ms-2 me-3' as={Link} to="/categorias">Categorias</Dropdown.Item>
+          <Dropdown.Item className='ms-2 me-3' as={Link} to="/meus-pedidos">Meus Pedidos</Dropdown.Item>
+        </div>
+      </Navbar>
+
+
+
       <Offcanvas show={show} onHide={handleClose} placement="end" className="menu-off-canvas w-50">
         <Offcanvas.Header className="d-flex justify-content-between align-items-center">
           <Offcanvas.Title className="d-flex align-items-center">

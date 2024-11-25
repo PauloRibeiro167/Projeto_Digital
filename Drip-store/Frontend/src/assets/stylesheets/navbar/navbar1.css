@@ -5,7 +5,6 @@
 .custom-navbar {
   width: 100%;
   background-color: var(--background-color);
-  transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
 .navbar-container {
