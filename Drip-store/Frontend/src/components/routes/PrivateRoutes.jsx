@@ -1,12 +1,17 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@context/auth';
-import { paths } from '@utils/paths';
 
 const PrivateRoute = ({ element }) => {
-  const { isLoggedIn } = useAuth();
+  const { user, isAuthenticated } = useAuth();
+  console.log('Verificando usuário no PrivateRoute:', user);
 
-  return isLoggedIn ? element : <Navigate to={paths.login} />;
+  if (!isAuthenticated) {
+    console.log('Usuário não autenticado, redirecionando para login');
+    return <Navigate to="/login" />;
+  }
+
+  return element;
 };
 
 export default PrivateRoute;

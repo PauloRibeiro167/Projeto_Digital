@@ -1,11 +1,12 @@
 import React from 'react';
+import ErrorFallback from '../../components/Error/ErrorFallback.jsx';
 
 const ErrorPage = () => {
   return (
-    <div>
-      <h1>Erro ao carregar dados</h1>
-      <p>Ocorreu um erro ao carregar os dados da aplicação. Por favor, tente novamente mais tarde.</p>
-    </div>
+    <ErrorFallback
+      error={{ message: 'Erro ao carregar dados' }}
+      resetErrorBoundary={() => window.location.reload()}
+    />
   );
 };
 

@@ -1,30 +1,24 @@
-// src/components/Error/ErrorBoundary.jsx
+// src/components/Error/ErrorFallback.jsx
 import React from 'react';
-import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary';
-import ErrorFallback from './ErrorFallback.jsx';
+import RedirectButton from './RedirectButton';
+import ConsoleErrorLog from './ConsoleErrorLog';
+import { Alert, Button } from 'react-bootstrap';
 
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false, error: null, errorInfo: null };
-  }
+const ErrorFallback = ({ error, resetErrorBoundary }) => {
+  const errorMessage = error?.message || 'Erro desconhecido';
 
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
-  }
+  return (
+    <div className="d-flex flex-column align-items-center justify-content-center vh-100">
+      <ConsoleErrorLog />
+      <Alert variant="danger" className="text-center">
+        <h1>Ocorreu um erro</h1>
+        <p><strong>Código do erro:</strong> {errorMessage}</p>
+        <p>Ocorreu um erro ao carregar os dados da aplicação. Por favor, tente novamente mais tarde.</p>
+        <Button onClick={resetErrorBoundary} variant="primary" className="m-2">Recarregar Página</Button>
+        <RedirectButton />
+      </Alert>
+    </div>
+  );
+};
 
-  componentDidCatch(error, errorInfo) {
-    console.error("ErrorBoundary caught an error", error, errorInfo);
-    this.setState({ error, errorInfo });
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return <ErrorFallback error={this.state.error} errorInfo={this.state.errorInfo} resetErrorBoundary={() => this.setState({ hasError: false, error: null, errorInfo: null })} />;
-    }
-
-    return this.props.children;
-  }
-}
-
-export default ErrorBoundary;
+export default ErrorFallback;

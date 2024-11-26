@@ -33,34 +33,38 @@ const Carrossel1 = () => {
   return (
     <div className="carousel-container w-100">
       <div className="carousel-content h-100">
-        <Carousel activeIndex={activeIndex} onSelect={handleSelect} interval={3000} className="h-100">
-          {slides.map((slide, index) => (
-            <Carousel.Item key={index} className="h-100">
-              <div className="d-flex align-items-center justify-content-center text-md-start text-center container flex-column flex-md-row ">
-                <section className="order-2 order-md-1 py-5 flex-fill m-5 py-5 w-50 mt-5 mb-5">
-                  <div>
-                    <h6 className="carousel-mini-text">As Melhores Ofertas Personalizadas</h6>
-                    <h1 className="carousel-info">
-                      BlackFriday e Frete Grátis no site todo<span className="text-danger">🔥</span>
-                    </h1>
-                    <p className="carousel-text">
-                      À partir de $300 em compras receba cupom de Frete Grátis em qualquer produto do site.
-                    </p>
-                    <button className="btn btn-carousel col-md-12">Ver Ofertas</button>
-                  </div>
-                </section>
-                <section className="order-1 order-md-2 flex-fill w-50 mt-5 rotate-img">
-                  <img
-                    className="d-block w-100"
-                    src={slide.imagem_url}
-                    alt={slide.nome}
-                    style={{ marginBottom: '20px' }}
-                  />
-                </section>
-              </div>
-            </Carousel.Item>
-          ))}
-        </Carousel>
+        {slides.length > 0 ? (
+          <Carousel activeIndex={activeIndex} onSelect={handleSelect} interval={3000} className="h-100">
+            {slides.map((slide, index) => (
+              <Carousel.Item key={index} className="h-100">
+                <div className="d-flex align-items-center justify-content-center text-md-start text-center container flex-column flex-md-row ">
+                  <section className="order-2 order-md-1 py-5 flex-fill m-5 py-5 w-50 mt-5 mb-5">
+                    <div>
+                      <h6 className="carousel-mini-text">As Melhores Ofertas Personalizadas</h6>
+                      <h1 className="carousel-info">
+                        BlackFriday e Frete Grátis no site todo<span className="text-danger">🔥</span>
+                      </h1>
+                      <p className="carousel-text">
+                        À partir de $300 em compras receba cupom de Frete Grátis em qualquer produto do site.
+                      </p>
+                      <button className="btn btn-carousel col-md-12">Ver Ofertas</button>
+                    </div>
+                  </section>
+                  <section className="order-1 order-md-2 flex-fill w-50 mt-5 rotate-img">
+                    <img
+                      className="d-block w-100"
+                      src={slide.imagem_url}
+                      alt={slide.nome}
+                      style={{ marginBottom: '20px' }}
+                    />
+                  </section>
+                </div>
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        ) : (
+          <p>Carregando...</p>
+        )}
         <div className="radio-buttons mt-4">
           {slides.map((_, index) => (
             <React.Fragment key={index}>
@@ -80,4 +84,4 @@ const Carrossel1 = () => {
   );
 };
 
-export default Carrossel1; 
+export default Carrossel1;

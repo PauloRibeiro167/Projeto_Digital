@@ -1,4 +1,3 @@
-// src/context/auth.jsx
 import React, { createContext, useContext, useState } from 'react';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
@@ -22,7 +21,8 @@ export const AuthProvider = ({ children }) => {
         tracesSampleRate: 1.0,
       });
 
-      console.log(response.data.message);
+      console.log('Login bem-sucedido:', response.data.message);
+      console.log('Estado de autenticação atualizado:', { isAuthenticated: true, user: userData });
     } catch (error) {
       console.error('Erro ao fazer login', error);
     }
@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setIsAuthenticated(false);
     setUser(null);
+    console.log('Usuário deslogado');
   };
 
   return (

@@ -1,18 +1,13 @@
-// src/components/Error/RedirectButton.jsx
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { paths } from '../../utils/paths.js';
+import ErrorFallback from '../../components/Error/ErrorFallback.jsx';
 
-const RedirectButton = () => {
-    const navigate = useNavigate();
-  
-    const handleClick = () => {
-      navigate(paths.home);
-    };
-  
-    return (
-      <button onClick={handleClick}>Voltar para a página inicial</button>
-    );
-  };
-  
-  export default RedirectButton;
+const ErrorPage = () => {
+  return (
+    <ErrorFallback
+      error={{ message: 'Erro ao carregar dados' }}
+      resetErrorBoundary={() => window.location.reload()}
+    />
+  );
+};
+
+export default ErrorPage;
