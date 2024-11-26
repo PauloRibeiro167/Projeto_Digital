@@ -1,6 +1,7 @@
 // src/components/Error/ConsoleErrorLog.jsx
 import React, { useState, useEffect } from 'react';
-import { Modal, Button, Alert } from 'react-bootstrap';
+import { Modal, Button, Alert } from 'react-bootstrap';4
+import '@styles/Error/ConsoleErrorLog.css';
 
 const ConsoleErrorLog = () => {
   const [logs, setLogs] = useState([]);

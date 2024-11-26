@@ -1,4 +1,4 @@
-import React from 'react';
+aperrimport React from 'react';
 import ErrorFallback from '../../components/Error/ErrorFallback.jsx';
 
 const ErrorPage = () => {

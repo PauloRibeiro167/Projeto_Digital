@@ -3,6 +3,7 @@ import React from 'react';
 import RedirectButton from './RedirectButton';
 import ConsoleErrorLog from './ConsoleErrorLog';
 import { Alert, Button } from 'react-bootstrap';
+import '@styles/Error/ErrorFallback.css';
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   const errorMessage = error?.message || 'Erro desconhecido';
