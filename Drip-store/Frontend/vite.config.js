@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path';
+import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
@@ -19,7 +19,12 @@ export default defineConfig({
       '@public_pages': path.resolve(__dirname, 'src/pages/public'),
       '@admin_pages': path.resolve(__dirname, 'src/pages/admin'),
       '@utils': path.resolve(__dirname, 'src/utils'),
-      '@controllers': path.resolve(__dirname, '../Backend/controller'),
+      '@controllers': path.resolve(__dirname, '../Backend/Controller/'),
+    },
+  },
+  build: {
+    rollupOptions: {
+      external: ['@controllers/PagesController'],
     },
   },
 })

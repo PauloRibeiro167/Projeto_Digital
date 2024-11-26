@@ -24,20 +24,26 @@ const AuthPage = () => {
 
     const adminUser = {
       email: 'admin@example.com',
-      password: '1234',
+      password: 'Paulo1lotusred',
       role: 'super_admin'
     };
 
+    console.log('Tentando autenticar com:', { username, password });
+
     if (username === adminUser.email && password === adminUser.password) {
+      console.log('Credenciais de super admin corretas, redirecionando...');
       navigate(paths.super_admin);
       return;
     }
 
     try {
       const userData = await login({ username, password });
+      console.log('Dados do usuário:', userData);
       if (userData.role === 'super_admin') {
+        console.log('Usuário é super admin, redirecionando...');
         navigate(paths.super_admin);
       } else {
+        console.log('Usuário não é super admin, redirecionando para home...');
         navigate(paths.home);
       }
     } catch (err) {

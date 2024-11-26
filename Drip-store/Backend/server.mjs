@@ -5,6 +5,9 @@ import adminRoutes from './routes/adminRoutes.js';
 import pkg from 'pg';
 import listEndpoints from 'express-list-endpoints';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const { Pool } = pkg;
 const app = express();
@@ -19,7 +22,7 @@ const connectWithRetry = () => {
   pool.connect((err) => {
     if (err) {
       console.error('Erro ao adquirir cliente', err.stack);
-      setTimeout(connectWithRetry, 5000); // Tentar novamente após 5 segundos
+      setTimeout(connectWithRetry, 5000); 
     } else {
       console.log('Conectado ao banco de dados');
     }
@@ -28,33 +31,30 @@ const connectWithRetry = () => {
 
 connectWithRetry();
 
-// Middleware para lidar com JSON e CORS
 app.use(cors());
 app.use(express.json());
 
-// Rota de login
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
+  console.log('Tentativa de login:', { username, password });
+
   // Adicione a lógica de autenticação aqui
+
   res.json({ message: 'Login bem-sucedido' });
 });
 
-// Servir arquivos estáticos do frontend
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, '../Frontend/dist')));
+app.use(express.static(path.join(__dirname, '../../Frontend')));
 
-// Usar as rotas
 app.use(publicRoutes);
 app.use(adminRoutes);
 
-// Listar todas as rotas
 app.get('/routes', (req, res) => {
   res.json(listEndpoints(app));
 });
 
-// Servir o arquivo index.html para qualquer rota não reconhecida
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Frontend/dist/index.html'));
+  res.sendFile(path.join(__dirname, '../../Frontend/index.html'));
 });
 
 app.listen(port, () => {
