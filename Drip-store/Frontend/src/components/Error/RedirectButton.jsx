@@ -1,6 +1,6 @@
 import React from 'react';
 import ErrorFallback from '../../components/Error/ErrorFallback.jsx';
-import '@styles/Error/RedirectButton.css';
+import '@styles/error/RedirectButton.css';
 
 const ErrorPage = () => {
   return (

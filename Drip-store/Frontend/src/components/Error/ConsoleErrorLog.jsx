@@ -1,7 +1,7 @@
 // src/components/Error/ConsoleErrorLog.jsx
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Alert } from 'react-bootstrap';4
-import '@styles/Error/ConsoleErrorLog.css';
+import '@styles/error/ConsoleErrorLog.css';
 
 const ConsoleErrorLog = () => {
   const [logs, setLogs] = useState([]);
@@ -9,7 +9,7 @@ const ConsoleErrorLog = () => {
 
   useEffect(() => {
     const originalConsoleError = console.error;
-
+  
     console.error = (...args) => {
       const errorDetails = args.map(arg => {
         if (arg instanceof Error) {
@@ -17,13 +17,13 @@ const ConsoleErrorLog = () => {
         }
         return arg;
       }).join(' ');
-
+  
       const errorMessage = analyzeError(errorDetails);
       setLogs((prevLogs) => [...prevLogs, errorMessage]);
       originalConsoleError(...args);
       setShow(true);
     };
-
+  
     return () => {
       console.error = originalConsoleError;
     };

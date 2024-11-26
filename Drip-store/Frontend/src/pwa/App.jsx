@@ -34,7 +34,7 @@ const App = () => {
         navigate('/error');
       }
     }
-
+  
     getData();
   }, [navigate]);
 
