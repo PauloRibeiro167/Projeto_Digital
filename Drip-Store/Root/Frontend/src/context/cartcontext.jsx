@@ -1,4 +1,3 @@
-// src/context/cartcontext.js
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -10,7 +9,7 @@ const CartProvider = ({ children }) => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get('/api/cart');
+        const response = await axios.get('https://api-store-do1w.onrender.com/shoes'); 
         setCartItems(response.data);
       } catch (error) {
         console.error('Erro ao carregar itens do carrinho:', error);

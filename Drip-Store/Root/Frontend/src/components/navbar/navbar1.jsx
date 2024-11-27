@@ -9,6 +9,7 @@ import CartItem from '@components/cart/CartItem';
 import CustomOffcanvas from '@components/cart/custonoffcanvas.jsx';
 import { paths } from '@utils/paths';
 
+
 const CustomNavbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [show, setShow] = useState(false);
@@ -16,7 +17,6 @@ const CustomNavbar = () => {
   const { isLoggedIn } = useAuth();
 
   useEffect(() => {
-    console.log('Itens do carrinho:', cartItems);
   }, [cartItems]);
 
   const handleClose = () => setShow(false);
@@ -25,14 +25,6 @@ const CustomNavbar = () => {
   const handleDropdownShow = () => setShowDropdown(true);
 
   const filteredCartItems = Array.isArray(cartItems) ? cartItems.filter(item => item.size && item.color) : [];
-
-  const getColorStyle = (color) => {
-    return {
-      backgroundColor: color,
-      borderColor: color,
-      color: 'red'
-    };
-  };
 
   return (
     <>
