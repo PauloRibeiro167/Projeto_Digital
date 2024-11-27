@@ -11,7 +11,7 @@ import ErrorPage from '@public/ErrorPage.jsx';
 import ShowProducts from '@public/ShowProducts.jsx';
 import ProductViewPage from '@public/ProductViewPage.jsx';
 import SuperAdmin from '@admin/SuperAdmin.jsx';
-import PrivateRoute from '@routes/PrivateRoutes.jsx';
+import PrivateRoute from '@components/routes/PrivateRoutes.jsx';
 import { paths } from '@utils/paths';
 
 const RoutesConfig = () => {

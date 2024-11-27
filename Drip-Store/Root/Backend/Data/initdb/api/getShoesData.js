@@ -1,7 +1,6 @@
 import { config } from 'dotenv';
 import pkg from 'pg';
 
-// Carregar o arquivo .env do diretório correto
 config({ path: '/home/e06158795/Documentos/Projetos_pessoais/Projetos_em_Desenvolvimento/digital college/Projeto_Digital/Drip-store/Backend/config/.env' });
 
 const { Client } = pkg;

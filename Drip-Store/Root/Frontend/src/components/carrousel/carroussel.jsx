@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
 import '@styles/carroussel/carroussel.css';
-import { fetchData } from '../../../services/api';
+import { fetchData } from '@api-tenis';
 
 const Carrossel1 = () => {
   const [slides, setSlides] = useState([]);
