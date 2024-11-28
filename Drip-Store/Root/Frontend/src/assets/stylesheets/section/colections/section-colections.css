@@ -37,20 +37,18 @@
   color: rgba(201, 32, 113, 1);
 }
 
-
-.card-img-top-product {
+.card-category {
   width: 60%; 
   height: auto;
   transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
-
-.card:hover .image-container-product {
+.card:hover .card-category {
   box-shadow: rgba(0, 0, 0, 0.05);
 }
 
-.card:hover .card-img-top-product{
-  fill: rgba(201, 32, 113, 1); 
+.card:hover .card-category {
+  filter: brightness(0) saturate(100%) invert(40%) sepia(100%) saturate(1000%) hue-rotate(299deg) brightness(61%) contrast(100%);
 }
 
 .scroll-container {
@@ -61,12 +59,11 @@
 }
 
 .scroll-container::-webkit-scrollbar {
-  display: none; /* Ocultar a barra de rolagem */
+  display: none; 
 }
 
 .scroll-item {
   flex: 0 0 auto;
   scroll-snap-align: start;
-  margin-right: 16px; /* Espaçamento entre os itens */
+  margin-right: 16px;
 }
-

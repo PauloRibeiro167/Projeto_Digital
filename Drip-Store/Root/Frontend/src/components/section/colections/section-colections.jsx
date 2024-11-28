@@ -30,7 +30,7 @@ const SectionColections = () => {
                   <Card.Img
                     src={collection.image}
                     alt={collection.title}
-                    className="card-img-top-product"
+                    className="card-category"
                   />
                 </div>
                 <Card.Body>
