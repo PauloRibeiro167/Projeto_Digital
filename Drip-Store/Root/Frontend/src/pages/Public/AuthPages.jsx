@@ -1,14 +1,13 @@
-import '@styles/Auth/AuthPages.css';
-import React, { useState } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
+import { Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@context/auth';
 import mercadoria from '@images/sapatos.png';
-import Footer1 from '@components/footer/footer1';
-import { CustomNbar } from '@components/navbar/nbar.jsx';
-import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import facebookIcon from '@images/icons/facebook.png';
 import gmail from '@images/icons/gmail.png';
-import { Link, useNavigate } from 'react-router-dom';
-import { paths } from '@utils/paths';
+
+const CustomNbar = lazy(() => import('@components/navbar/nbar.jsx'));
+const Footer1 = lazy(() => import('@components/footer/footer1'));
 
 const AuthPage = () => {
   const [username, setUsername] = useState('');
@@ -24,7 +23,6 @@ const AuthPage = () => {
       return;
     }
 
-    // Verificação explícita para o usuário 1234 e senha 1234
     if (username === '1234' && password === '1234') {
       navigate('/');
       return;
@@ -44,16 +42,18 @@ const AuthPage = () => {
 
   return (
     <>
-      <CustomNbar />
+      <Suspense fallback={<div className="d-flex justify-content-center align-items-center vh-100">Loading...</div>}>
+        <CustomNbar />
+      </Suspense>
       <div className="d-flex justify-content-center align-items-center cordefundo w-100">
-        <Row className="w-75 justify-content-center mb-5"> {/*tamanho do card*/}
+        <Row className="w-75 justify-content-center mb-5"> 
           <Col className="d-flex justify-content-center">
             <Card className="shadow-sm py-0 p-1 shadow-sm m-1 mt-5 mb-5 w-100 card">
-              <Card.Body className='bg-white rounded-3 p-3'> {/*Parte de cima do card*/}
+              <Card.Body className='bg-white rounded-3 p-3'> 
                 <h3 className="text-center mb-3 mt-3 text">Acesse sua Conta</h3>
 
                 <div className="m-2 d-flex justify-content-center align-items-center text-center text-secondary">
-                  Não tem uma conta? <Link to={paths.cadastro} className="ms-1">Cadastre-se</Link>
+                  Não tem uma conta? <Link to="/user/new" className="ms-1">Cadastre-se</Link>
                 </div>
 
                 {error && <Alert variant="danger">{error}</Alert>}
@@ -87,11 +87,12 @@ const AuthPage = () => {
                   <div className="m-2 d-flex justify-content-center align-items-center text-secondary">
                     Ou faça o login com
                     <div className="d-flex justify-content-start ms-3">
-                      <Link to={paths.cadastro}>
-                      <img
-                      src={gmail} alt="Google" className="me-2" style={{ width: "15%" }} /> </Link>
-                      <Link to={paths.cadastro}> 
-                      <img src={facebookIcon} alt="Facebook" className="me-2" style={{ width: "15%" }} /> </Link>
+                      <Link to="/user/new">
+                        <img src={gmail} alt="Google" className="me-2" style={{ width: "15%" }} />
+                      </Link>
+                      <Link to="/user/new">
+                        <img src={facebookIcon} alt="Facebook" className="me-2" style={{ width: "15%" }} />
+                      </Link>
                     </div>
                   </div>
                 </Form>
@@ -103,7 +104,9 @@ const AuthPage = () => {
           </Col>
         </Row>
       </div>
-      <Footer1 />
+      <Suspense fallback={<div className="d-flex justify-content-center align-items-center vh-100">Loading...</div>}>
+        <Footer1 />
+      </Suspense>
     </>
   );
 };

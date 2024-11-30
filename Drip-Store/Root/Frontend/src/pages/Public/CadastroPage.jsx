@@ -13,7 +13,6 @@ const LoginPage = () => {
   const { login } = useAuth();
 
   const handleLogin = () => {
-    // Simulação de autenticação
     const userData = { username, role: username === 'superadmin' ? 'superadmin' : 'user' };
     login(userData);
   };
@@ -21,7 +20,6 @@ const LoginPage = () => {
   return (
     <Container className="d-flex justify-content-center align-items-center min-vh-100">
       <Row>
-        {/* container do login */}
         <Col md={6} className='card-login'>
           <Card className="p-4 shadow-sm">
             <Card.Body>
